@@ -1,4 +1,10 @@
-Alto Mando v3
+BAckEnd MonTweet System
 ===========
 
-Ultimo Sprint
+El servicio se encuentra montado sobre:
+
+-- NodeJS
+-- ExpressJS
+-- KrakenJS 
+-- MongoDB
+-- Mongoose
