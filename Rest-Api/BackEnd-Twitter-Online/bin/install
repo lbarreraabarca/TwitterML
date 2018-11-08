@@ -1,0 +1,30 @@
+#!/bin/bash
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+# Download
+curl -L -o ${OPENSHIFT_DATA_DIR}tmp.tgz http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-${2}.tgz
+
+# Create bin directory if necessary
+mkdir -p ${OPENSHIFT_DATA_DIR}.mongodb/bin
+
+# Copy just the mongod binary
+tar -xvzf ${OPENSHIFT_DATA_DIR}tmp.tgz --strip-components=1 -C ${OPENSHIFT_DATA_DIR}.mongodb mongodb-linux-x86_64-${2}/bin/mongod
+
+# Remove downloaded archive
+rm ${OPENSHIFT_DATA_DIR}tmp.tgz
+
+# Create data directory if necessary
+mkdir -p ${OPENSHIFT_DATA_DIR}.mongodb/data
+
+# Add MONGODB_URL environment variable
+if [ -z "$OPENSHIFT_MONGODB_PROXY_PORT" ]; then
+  # Since $OPENSHIFT_MONGODB_PROXY_PORT is missing, cartridge must be running in the main gear
+  echo "mongodb://$OPENSHIFT_MONGODB_IP:$OPENSHIFT_MONGODB_PORT/" > $OPENSHIFT_MONGODB_DIR/env/MONGODB_URL
+else
+  # Found $OPENSHIFT_MONGODB_PROXY_PORT, the cartridge is running in a separate gear
+  echo "mongodb://$OPENSHIFT_GEAR_DNS:$OPENSHIFT_MONGODB_PROXY_PORT/" > $OPENSHIFT_MONGODB_DIR/env/MONGODB_URL
+fi
+
+# Output result
+client_result "MongoDB ${2} installed - use \$MONGODB_URL environment variable to connect your application."

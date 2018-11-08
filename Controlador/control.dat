@@ -1,0 +1,52 @@
+***************************************************************************************
+Compilando Vectorizacion...
+rm -fr *.class
+javac main.java
+***************************************************************************************
+Ejecutando Vectorizacion : ../../Data/Huracanes/2017/Sept/Irma/label/huracan-irma.csv
+java -d64 -Xms512m -Xmx4g main ../../Data/Huracanes/2017/Sept/Irma/label/huracan-irma.csv ../../Data/Huracanes/2017/Sept/Irma/keywords/keywords.word ../../Data/Huracanes/2017/Sept/Irma/vectorInicial/huracan-irma.vector 5 ../../Data/Palabras/Verbos/ConjugadosUnion/listadoverbos.verbo ../../Data/Huracanes/2017/Sept/Irma/bolsa/huracan-irma-bolsaPalabras.bow ../../Data/Huracanes/2017/Sept/Irma/bolsa/huracan-irma-bolsaHashtags.bow ../../Data/Huracanes/2017/Sept/Irma/bolsa/huracan-irma-bolsaUserMentions.bow ../../Data/Huracanes/2017/Sept/Irma/vectorInicial/huracan-irma-estructurales.vector ../../Data/Huracanes/2017/Sept/Irma/vectorInicial/huracan-irma-bolsaPalabras.vector ../../Data/Huracanes/2017/Sept/Irma/vectorInicial/huracan-irma-bolsaHashtags.vector ../../Data/Huracanes/2017/Sept/Irma/vectorInicial/huracan-irma-bolsaUserMentions.vector
+Cargando en Memoria Series de Tiempo OK!
+Generando Bolsa de Hashtags OK!
+Generando Bolsa de UserMentions OK!
+Generando Bolsa de Palabras OK!
+Liberando memoria de ArrayList instantes_ts_minuto
+Cargar Tuits en memoria para vectorizar
+***************************************************************************************
+Ejecutando Vectorizacion : ../../Data/Terremotos/2017/Sept/07/label/terremoto-mexico1.csv
+java -d64 -Xms512m -Xmx4g main ../../Data/Terremotos/2017/Sept/07/label/terremoto-mexico1.csv ../../Data/Terremotos/2017/Sept/07/keywords/keywords.word ../../Data/Terremotos/2017/Sept/07/vectorInicial/terremoto-mexico1.vector 5 ../../Data/Palabras/Verbos/ConjugadosUnion/listadoverbos.verbo ../../Data/Terremotos/2017/Sept/07/bolsa/terremoto-mexico1-bolsaPalabras.bow ../../Data/Terremotos/2017/Sept/07/bolsa/terremoto-mexico1-bolsaHashtags.bow ../../Data/Terremotos/2017/Sept/07/bolsa/terremoto-mexico1-bolsaUserMentions.bow ../../Data/Terremotos/2017/Sept/07/vectorInicial/terremoto-mexico1-estructurales.vector ../../Data/Terremotos/2017/Sept/07/vectorInicial/terremoto-mexico1-bolsaPalabras.vector ../../Data/Terremotos/2017/Sept/07/vectorInicial/terremoto-mexico1-bolsaHashtags.vector ../../Data/Terremotos/2017/Sept/07/vectorInicial/terremoto-mexico1-bolsaUserMentions.vector
+Cargando en Memoria Series de Tiempo OK!
+Generando Bolsa de Hashtags OK!
+Generando Bolsa de UserMentions OK!
+Generando Bolsa de Palabras OK!
+Liberando memoria de ArrayList instantes_ts_minuto
+Cargar Tuits en memoria para vectorizar
+***************************************************************************************
+Ejecutando Vectorizacion : ../../Data/Nieve/2017/Jul/label/nieve..csv
+java -d64 -Xms512m -Xmx4g main ../../Data/Nieve/2017/Jul/label/nieve..csv ../../Data/Nieve/2017/Jul/keywords/keywords.word ../../Data/Nieve/2017/Jul/vectorInicial/nieve.vector 5 ../../Data/Palabras/Verbos/ConjugadosUnion/listadoverbos.verbo ../../Data/Nieve/2017/Jul/bolsa/nieve-bolsaPalabras.bow ../../Data/Nieve/2017/Jul/bolsa/nieve-bolsaHashtags.bow ../../Data/Nieve/2017/Jul/bolsa/nieve-bolsaUserMentions.bow ../../Data/Nieve/2017/Jul/vectorInicial/nieve-estructurales.vector ../../Data/Nieve/2017/Jul/vectorInicial/nieve-bolsaPalabras.vector ../../Data/Nieve/2017/Jul/vectorInicial/nieve-bolsaHashtags.vector ../../Data/Nieve/2017/Jul/vectorInicial/nieve-bolsaUserMentions.vector
+Cargando en Memoria Series de Tiempo OK!
+Generando Bolsa de Hashtags OK!
+Generando Bolsa de UserMentions OK!
+Generando Bolsa de Palabras OK!
+Liberando memoria de ArrayList instantes_ts_minuto
+Cargar Tuits en memoria para vectorizar
+***************************************************************************************
+Proceso de Vectorizacion Terminado.
+***************************************************************************************
+******************************************************************************************************
+Preparando Selector de Caracteristicas
+******************************************************************************************************
+Ejecutando Selector de Caracteristicas : ../../Data/Huracanes/2017/Sept/Irma/vectorInicial/huracan-irma-bolsaHashtags.vector
+python selector.py ../../Data/Huracanes/2017/Sept/Irma/vectorInicial/huracan-irma-bolsaHashtags.vector ../../Data/Huracanes/2017/Sept/Irma/bolsa/huracan-irma-bolsaHashtags.bow ../../Data/Clases/clases.dat ../../Data/Huracanes/2017/Sept/Irma/seleccion/vectorSeleccionado/huracan-irma-bolsaHashtags.vs ../../Data/Huracanes/2017/Sept/Irma/seleccion/bolsaSeleccionada/huracan-irma-bolsaHashtags.bs ../../Data/Huracanes/2017/Sept/Irma/seleccion/metricas/huracan-irma-bolsaHashtags.metrics ../../Data/Huracanes/2017/Sept/Irma/instanciasAzar/huracan.azar
+Cargando listado de clases
+Cargando Caracteristicas
+Cargando instancias Azar
+Cargando Vectores de Caracteristicas
+Ejecucion del proceso de seleccion de caracteristicas
+********************************************************************************************************
+Ejecutando Selector de Caracteristicas : ../../Data/Huracanes/2017/Sept/Irma/vectorInicial/huracan-irma-bolsaPalabras.vector
+python selector.py ../../Data/Huracanes/2017/Sept/Irma/vectorInicial/huracan-irma-bolsaPalabras.vector ../../Data/Huracanes/2017/Sept/Irma/bolsa/huracan-irma-bolsaPalabras.bow ../../Data/Clases/clases.dat ../../Data/Huracanes/2017/Sept/Irma/seleccion/vectorSeleccionado/huracan-irma-bolsaPalabras.vs ../../Data/Huracanes/2017/Sept/Irma/seleccion/bolsaSeleccionada/huracan-irma-bolsaPalabras.bs ../../Data/Huracanes/2017/Sept/Irma/seleccion/metricas/huracan-irma-bolsaPalabras.metrics ../../Data/Huracanes/2017/Sept/Irma/instanciasAzar/huracan.azar
+Cargando listado de clases
+Cargando Caracteristicas
+Cargando instancias Azar
+Cargando Vectores de Caracteristicas
+Ejecucion del proceso de seleccion de caracteristicas

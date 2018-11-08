@@ -1,0 +1,293 @@
+make: Nothing to be done for 'all'.
+rm -f proxies.dat tmp.dat
+java -cp ".:./jsoup-1.8.3.jar" GetProxyList
+http://www.us-proxy.org/ OK
+http://www.proxys.com.ar/ OK
+https://hidemy.name/en/proxy-list/ OK
+https://www.socks-proxy.net/ OK
+https://free-proxy-list.net/ OK
+sort -u proxies.dat > tmp.dat
+cat tmp.dat | awk '{if(NF==2) print ;}' > tmp2.dat
+mv tmp2.dat proxies.dat
+make: Nothing to be done for 'all'.
+java -cp ".:/home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/twitter4j/lib/twitter4j-core-4.0.4.jar:/home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/twitter4j/lib/twitter4j-stream-4.0.4.jar:/home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/twitter4j/lib/twitter4j-media-support-4.0.4.jar:/home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/twitter4j/lib/twitter4j-async-4.0.4.jar:/home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/twitter4j/lib/twitter4j-examples-4.0.4.jar" main ./proxies.dat ./ok_proxies.dat /home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/controller/cuenta_test.dat /home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/controller/ok_proxies.dat
+file input : ./proxies.dat
+file input : /home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/controller/ok_proxies.dat
+------------------------
+Testeando Proxy=47.89.41.164:80
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:57:41 CLST 2017]Establishing connection.
+[Wed Jan 25 14:57:43 CLST 2017]Unable to tunnel through proxy. Proxy returns "HTTP/1.1 400 Bad Request"
+		PROBLEMA 
+[Wed Jan 25 14:57:43 CLST 2017]Waiting for 250 milliseconds
+NOK!
+		RETORNANDO TESTING...
+NOK=47.89.41.164
+------------------------
+Testeando Proxy=104.28.16.51:80
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:57:45 CLST 2017]Establishing connection.
+[Wed Jan 25 14:57:45 CLST 2017]Unable to tunnel through proxy. Proxy returns "HTTP/1.1 400 Bad Request"
+		PROBLEMA 
+NOK!
+		RETORNANDO TESTING...
+[Wed Jan 25 14:57:45 CLST 2017]Waiting for 250 milliseconds
+NOK=104.28.16.51
+------------------------
+Testeando Proxy=190.166.90.2:8080
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:57:47 CLST 2017]Establishing connection.
+[Wed Jan 25 14:57:49 CLST 2017]Connection established.
+[Wed Jan 25 14:57:49 CLST 2017]Receiving status stream.
+		RECIBIENDO
+OK!
+		RETORNANDO TESTING...
+		RECIBIENDO
+		RECIBIENDO
+		RECIBIENDO
+		RECIBIENDO
+		RECIBIENDO
+OK=190.166.90.2 8080 2231
+------------------------
+Testeando Proxy=189.218.20.95:44058
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:57:51 CLST 2017]Establishing connection.
+[Wed Jan 25 14:57:51 CLST 2017]Conexión rehusada
+		PROBLEMA 
+NOK!
+		RETORNANDO TESTING...
+[Wed Jan 25 14:57:51 CLST 2017]Waiting for 250 milliseconds
+NOK=189.218.20.95
+------------------------
+Testeando Proxy=195.8.236.233:8080
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:57:53 CLST 2017]Establishing connection.
+NOK!
+		RETORNANDO TESTING...
+NOK=195.8.236.233
+------------------------
+Testeando Proxy=213.136.77.246:80
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:58:05 CLST 2017]Establishing connection.
+[Wed Jan 25 14:58:06 CLST 2017]Unable to tunnel through proxy. Proxy returns "HTTP/1.1 503 Service Temporarily Unavailable"
+		PROBLEMA 
+NOK!
+		RETORNANDO TESTING...
+[Wed Jan 25 14:58:06 CLST 2017]Waiting for 250 milliseconds
+NOK=213.136.77.246
+------------------------
+Testeando Proxy=101.109.89.51:8080
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:58:08 CLST 2017]Establishing connection.
+[Wed Jan 25 14:58:11 CLST 2017]Connection established.
+[Wed Jan 25 14:58:11 CLST 2017]Receiving status stream.
+		RECIBIENDO
+OK!
+		RETORNANDO TESTING...
+OK=101.109.89.51 8080 3454
+------------------------
+Testeando Proxy=116.197.134.130:8080
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:58:13 CLST 2017]Establishing connection.
+[Wed Jan 25 14:58:13 CLST 2017]connect timed out
+[Wed Jan 25 14:58:19 CLST 2017]Connection established.
+[Wed Jan 25 14:58:19 CLST 2017]Receiving status stream.
+		RECIBIENDO
+OK!
+		RETORNANDO TESTING...
+OK=116.197.134.130 8080 6478
+------------------------
+Testeando Proxy=209.133.66.212:8080
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:58:22 CLST 2017]Establishing connection.
+[Wed Jan 25 14:58:30 CLST 2017]Unable to tunnel through proxy. Proxy returns "HTTP/1.0 502 Bad Gateway"
+		PROBLEMA 
+NOK!
+		RETORNANDO TESTING...
+[Wed Jan 25 14:58:30 CLST 2017]Waiting for 250 milliseconds
+NOK=209.133.66.212
+------------------------
+Testeando Proxy=191.101.4.140:8080
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:58:32 CLST 2017]Establishing connection.
+[Wed Jan 25 14:58:33 CLST 2017]Unable to tunnel through proxy. Proxy returns "HTTP/1.1 403 Forbidden"
+		PROBLEMA 
+NOK!
+		RETORNANDO TESTING...
+[Wed Jan 25 14:58:33 CLST 2017]Waiting for 250 milliseconds
+NOK=191.101.4.140
+------------------------
+Testeando Proxy=217.128.175.129:80
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:58:35 CLST 2017]Establishing connection.
+[Wed Jan 25 14:58:39 CLST 2017]No existe ninguna ruta hasta el `host'
+		PROBLEMA 
+NOK!
+		RETORNANDO TESTING...
+[Wed Jan 25 14:58:39 CLST 2017]Waiting for 250 milliseconds
+NOK=217.128.175.129
+------------------------
+Testeando Proxy=104.28.26.193:80
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:58:41 CLST 2017]Establishing connection.
+[Wed Jan 25 14:58:41 CLST 2017]Unable to tunnel through proxy. Proxy returns "HTTP/1.1 400 Bad Request"
+		PROBLEMA 
+NOK!
+		RETORNANDO TESTING...
+[Wed Jan 25 14:58:41 CLST 2017]Waiting for 250 milliseconds
+NOK=104.28.26.193
+------------------------
+Testeando Proxy=51.254.221.166:3128
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:58:43 CLST 2017]Establishing connection.
+[Wed Jan 25 14:58:45 CLST 2017]Connection established.
+[Wed Jan 25 14:58:45 CLST 2017]Receiving status stream.
+		RECIBIENDO
+OK!
+		RETORNANDO TESTING...
+OK=51.254.221.166 3128 3265
+------------------------
+Testeando Proxy=191.234.183.150:80
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:58:48 CLST 2017]Establishing connection.
+[Wed Jan 25 14:58:49 CLST 2017]Connection established.
+[Wed Jan 25 14:58:49 CLST 2017]Receiving status stream.
+		RECIBIENDO
+OK!
+		RETORNANDO TESTING...
+OK=191.234.183.150 80 1034
+------------------------
+Testeando Proxy=104.31.90.212:80
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:58:51 CLST 2017]Establishing connection.
+[Wed Jan 25 14:58:51 CLST 2017]Unable to tunnel through proxy. Proxy returns "HTTP/1.1 400 Bad Request"
+		PROBLEMA 
+NOK!
+		RETORNANDO TESTING...
+NOK=104.31.90.212
+------------------------
+[Wed Jan 25 14:58:51 CLST 2017]Waiting for 250 milliseconds
+Testeando Proxy=67.195.42.72:80
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:58:53 CLST 2017]Establishing connection.
+[Wed Jan 25 14:58:55 CLST 2017]Connection established.
+[Wed Jan 25 14:58:55 CLST 2017]Receiving status stream.
+		RECIBIENDO
+OK!
+		RETORNANDO TESTING...
+OK=67.195.42.72 80 1531
+------------------------
+Testeando Proxy=190.237.234.69:8080
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:58:57 CLST 2017]Establishing connection.
+NOK!
+		RETORNANDO TESTING...
+NOK=190.237.234.69
+------------------------
+Testeando Proxy=112.104.175.136:8998
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:59:09 CLST 2017]Establishing connection.
+[Wed Jan 25 14:59:09 CLST 2017]Connection established.
+[Wed Jan 25 14:59:09 CLST 2017]Receiving status stream.
+[Wed Jan 25 14:59:17 CLST 2017]Connection established.
+[Wed Jan 25 14:59:17 CLST 2017]Receiving status stream.
+		RECIBIENDO
+OK!
+		RETORNANDO TESTING...
+		RECIBIENDO
+OK=112.104.175.136 8998 8579
+------------------------
+Testeando Proxy=191.185.9.207:24375
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:59:19 CLST 2017]Establishing connection.
+NOK!
+		RETORNANDO TESTING...
+NOK=191.185.9.207
+------------------------
+Testeando Proxy=143.202.175.125:8080
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:59:31 CLST 2017]Establishing connection.
+[Wed Jan 25 14:59:39 CLST 2017]connect timed out
+NOK!
+		RETORNANDO TESTING...
+NOK=143.202.175.125
+------------------------
+Testeando Proxy=94.246.181.118:8080
+7b4JAgHBHAViOFc4Z2XA4ncVk
+aFKswqhUWkA1b3Jr0LfJVVO2WnIjhCqas83zUzvu3YSidBM1HC
+3406300617-HvgzZniX0dae6a1mNkRWq0fUxkZmCJF1y8YU1oB
+NoDV138sRo4xg6TVlxlWtB0HnTeLQ6ychbdpDoEiyNPZX
+[Wed Jan 25 14:59:43 CLST 2017]Establishing connection.
+Makefile:13: recipe for target 'run' failed
+make: *** [run] Interrupción
+cd /home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/controller
+cd /home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/twitter_proxy
+rm -fr *.class
+javac -classpath ".:/home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/twitter4j/lib/twitter4j-core-4.0.4.jar:/home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/twitter4j/lib/twitter4j-stream-4.0.4.jar:/home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/twitter4j/lib/twitter4j-media-support-4.0.4.jar:/home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/twitter4j/lib/twitter4j-async-4.0.4.jar:/home/lbarrera/PROYECTOS/PRACTICA-201701-carmona-cifuentes/DN-Twitter/twitter4j/lib/twitter4j-examples-4.0.4.jar" main.java
+Note: main.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+INSTANCIA=0
+INSTANCIA=1
+INSTANCIA=2
+INSTANCIA=3
+INSTANCIA=4

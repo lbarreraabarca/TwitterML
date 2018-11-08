@@ -1,0 +1,11 @@
+python loadData.py input/nerpos/POS/vectorPOS.out input/nerpos/POS/pos1.dat input/bolsaLemma/clases output/outputPOS 1 10 True True 10
+
+argv[ 1 ] = vector de caracteristicas
+argv[ 2 ] = features del modelo
+argv[ 3 ] = clases
+argv[ 4 ] = salida
+argv[ 5 ] = formato de salida ( 1:SVMLigth; 0:Vector Completo )
+argv[ 6 ] = K-features
+argv[ 7 ] = Foward [ True ; False ]
+argv[ 8 ] = Floting [ True ;  False ]
+argv[ 9 ] = K --> KNN

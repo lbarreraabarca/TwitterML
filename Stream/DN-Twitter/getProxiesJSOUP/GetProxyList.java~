@@ -1,0 +1,186 @@
+import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+import java.io.*;
+
+import java.net.URL;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.Connection.Response;
+import org.jsoup.select.Elements;
+
+public class GetProxyList
+{
+  public static void main( String args[] ) throws IOException
+  { 
+    
+    File tmp = null;
+    PrintWriter bw = null;
+    
+   try{
+      
+      tmp = new File( "./proxies.dat" );
+      bw = new PrintWriter(new FileWriter( tmp ) );
+      getUSProxy( bw );
+      getUSProxyAr( bw );
+      getIncloak( bw );
+      bw.close( );
+      
+    }catch(Exception e){
+    
+    }
+    /*
+    FileWriter out = null;
+    PrintWriter pwr = null;
+    FileReader fr = null;
+    BufferedReader br = null;
+
+    try{
+     
+     out = new FileWriter( "./proxies.dat" );
+     pwr = new PrintWriter( out );
+     fr = new FileReader( "./tmp.dat" );
+     br = new BufferedReader( fr );
+     Integer i = 1;
+     String linea;
+     while((linea=br.readLine())!=null)
+     {  
+        
+        if( ( i % 2 ) == 1 ){
+          System.out.println(linea);
+          pwr.write( linea );
+          pwr.write( "" );
+        }
+        i++;
+     }
+
+
+    }catch( Exception e ){
+    
+    }*/
+  }
+  
+  public static void getIncloak( PrintWriter bw ) throws IOException
+  {
+    URL url = null;
+    Document doc = null;
+    
+    try
+    {
+      url = new URL( "http://incloak.com/proxy-list/?ports=80" );
+      doc = Jsoup.parse( url, 3000 );
+       
+    }
+    catch( IOException e )
+    {
+    }
+
+    ArrayList<String> downServers = new ArrayList<>( );
+    Element table = doc.select( "table" ).get( 5 );
+    Elements rows = table.select( "tr" );
+
+    // recorren las filas de la tabla (desde la 1)
+    for( int i = 1; i < rows.size (); i++ )
+    {
+    	Element row = rows.get( i ); //se obtiene la fila "i"
+    	Elements cols = row.select( "td" ); //se obtiene columnas de esa fila
+      
+      String ip = cols.get( 0 ).text( ) + " 80\n";
+      //System.out.println( ip );
+      bw.write( ip );
+      bw.write( ip );
+      //pw.append( ip );
+      bw.close();
+    }
+  }
+
+  public static void getUSProxy( PrintWriter bw ) throws IOException
+  {
+    Document doc = null;
+    
+    try
+    {
+      Response res = Jsoup.connect( "http://www.us-proxy.org/" )
+                          .userAgent( "Mozilla" )
+                          .timeout( 3000 )
+                          .execute( );
+      doc = res.parse( );
+      
+    }
+    catch( IOException e )
+    {
+      System.out.println( e );
+    }
+
+    ArrayList<String> downServers = new ArrayList<>( );
+    Element table = doc.select( "table" ).get( 0 );
+    Elements rows = table.select( "tr" );
+
+    //se recorren las filas de la tabla (desde la 1 al N-1)
+    for( int i = 1; i < rows.size( ) - 1; i++ )
+    {
+    	Element row = rows.get( i ); //se obtiene la fila "i"
+      Elements cols = row.select( "td" ); //se obtiene columnas de esa fila
+      String ip = cols.get( 0 ).text( ) + " " + cols.get( 1 ).text( )+"\n";
+      bw.write( ip );
+      bw.write( ip );
+      //System.out.println( ip );
+      //pw.append( ip );
+   }
+   bw.close(); 
+  }
+
+  public static void getUSProxyAr( PrintWriter bw ) throws IOException
+  {
+    URL url = null;
+    Document doc = null;
+    
+    try
+    {
+      url = new URL( "http://www.proxys.com.ar/" );
+      doc = Jsoup.parse( url, 3000 );
+      
+    }
+    catch( IOException e )
+    {
+    }
+
+    ArrayList<String> downServers = new ArrayList<>( );
+    Element table = doc.select( "table" ).get( 0 );
+    Elements rows = table.select( "tr" );
+    
+    //se recorren las filas de la tabla (desde la 1)
+    for( int i = 2; i < rows.size( ); i++ )
+    {
+    	Element row = rows.get( i ); //se obtiene la fila "i"
+    	Elements cols = row.select( "td" ); //se obtiene columnas de esa fila
+      String ip  = cols.get( 0 ).text( ) + " "+ cols.get( 1 ).text( ) + "\n";
+      //System.out.println( ip );
+      bw.write( ip );
+      bw.write( ip );
+      //pw.append( ip );
+    }
+    bw.close(); 
+    
+  }
+
+  public static void printFile( ) throws IOException
+  {
+      
+      System.out.println("entre");
+
+
+      /*String cadena="";
+      int line=1;
+      while((cadena = bf.readLine())!=null) {
+        if(line % 1 == 0){
+          pw.write(cadena);
+          System.out.println(cadena);
+        }
+        line++;
+      }
+      */
+  }
+}
+

@@ -1,0 +1,100 @@
+Returned by the Streaming API:
+ Too many login attempts in a short period of time.
+ Running too many copies of the same application authenticating with the same account name.
+Exceeded connection limit for user
+
+------------------------------
+ proxy : [ 186.10.5.142 : 8080 ]
+Exception Listener
+------------------------------
+[Wed Jan 25 11:04:44 CLST 2017]Waiting for 40000 milliseconds
+[Wed Jan 25 11:04:44 CLST 2017]420:Returned by the Search and Trends API when you are being rate limited (https://dev.twitter.com/docs/rate-limiting).
+Returned by the Streaming API:
+ Too many login attempts in a short period of time.
+ Running too many copies of the same application authenticating with the same account name.
+Easy there, Turbo. Too many requests recently. Enhance your calm.
+
+------------------------------
+ proxy : [ 186.10.5.142 : 8080 ]
+Exception Listener
+------------------------------
+[Wed Jan 25 11:04:44 CLST 2017]Waiting for 80000 milliseconds
+Download Data by [ 186.10.5.142 : 8080 ]
+[Wed Jan 25 11:04:49 CLST 2017]Establishing connection.
+Download Data by [ 186.10.5.142 : 8080 ]
+[Wed Jan 25 11:04:53 CLST 2017]Establishing connection.
+Download Data by [ 186.10.5.142 : 8080 ]
+Download Data by [ 186.10.5.142 : 8080 ]
+Download Data by [ 186.10.5.142 : 8080 ]
+[Wed Jan 25 11:05:00 CLST 2017]420:Returned by the Search and Trends API when you are being rate limited (https://dev.twitter.com/docs/rate-limiting).
+Returned by the Streaming API:
+ Too many login attempts in a short period of time.
+ Running too many copies of the same application authenticating with the same account name.
+Easy there, Turbo. Too many requests recently. Enhance your calm.
+
+------------------------------
+ proxy : [ 186.10.5.142 : 8080 ]
+Exception Listener
+------------------------------
+[Wed Jan 25 11:05:00 CLST 2017]Waiting for 32000 milliseconds
+[Wed Jan 25 11:05:00 CLST 2017]Establishing connection.
+Download Data by [ 186.10.5.142 : 8080 ]
+Download Data by [ 186.10.5.142 : 8080 ]
+Download Data by [ 186.10.5.142 : 8080 ]
+-------------------
+PROXIES AGOTADOS...
+-------------------
+Leyendo Listado Proxies...
+186.10.5.142 8080
+Testeando Proxy Numero = (1) [186.10.5.142:8080]
+Proxy [186.10.5.142:8080] OK!
+Cargando datos del proxy = 186.10.5.142
+Cargando datos de la cuenta...
+7DUcbUVDiD3e1DnAQdXuPfl3R
+XvGzvO1yRCq3pBjRZeSpXtWmCVvCyQhWnkmgTtEjdBmQUoTRbV
+2671455090-ebLhO7yMpO64fzIq4MxOYXrgFSkoqzN91kexdv1
+pV9iSu8kpDOtQZbxoiUKxj7cokNtL1TzEjE2Uy3GoVedZ
+Cargando Terminos...
+----------------------
+Trackeando terminos...
+lluvia
+lluviasantiago
+inundacion
+inundación
+aluvion
+aluvión
+----------------------
+[Wed Jan 25 11:05:10 CLST 2017]Establishing connection.
+Download Data by [ 186.10.5.142 : 8080 ]
+[Wed Jan 25 11:05:13 CLST 2017]connect timed out
+------------------------------
+ proxy : [ 186.10.5.142 : 8080 ]
+Exception Listener
+------------------------------
+[Wed Jan 25 11:05:13 CLST 2017]Waiting for 20000 milliseconds
+		RETORNANDO PROXY CERRADO...
+Download Data by [ 186.10.5.142 : 8080 ]
+[Wed Jan 25 11:05:14 CLST 2017]Establishing connection.
+Download Data by [ 186.10.5.142 : 8080 ]
+[Wed Jan 25 11:05:19 CLST 2017]420:Returned by the Search and Trends API when you are being rate limited (https://dev.twitter.com/docs/rate-limiting).
+Returned by the Streaming API:
+ Too many login attempts in a short period of time.
+ Running too many copies of the same application authenticating with the same account name.
+Easy there, Turbo. Too many requests recently. Enhance your calm.
+
+------------------------------
+ proxy : [ 186.10.5.142 : 8080 ]
+Exception Listener
+------------------------------
+[Wed Jan 25 11:05:19 CLST 2017]Waiting for 10000 milliseconds
+Download Data by [ 186.10.5.142 : 8080 ]
+[Wed Jan 25 11:05:20 CLST 2017]connect timed out
+------------------------------
+ proxy : [ 186.10.5.142 : 8080 ]
+Exception Listener
+------------------------------
+[Wed Jan 25 11:05:20 CLST 2017]Waiting for 40000 milliseconds
+[Wed Jan 25 11:05:24 CLST 2017]Establishing connection.
+Download Data by [ 186.10.5.142 : 8080 ]
+[Wed Jan 25 11:05:29 CLST 2017]Establishing connection.
+Download Data by [ 186.10.5.142 : 8080 ]
