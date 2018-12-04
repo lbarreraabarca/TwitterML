@@ -50,7 +50,7 @@ public class main
 					String followers_count = data[ 6 ]; /* cantidad de seguidores*/
 					String retweet_count = data[ 7 ]; /* cantidad de retuits*/
 					String text = data[ 8 ]; /* cuerpo del tuit */
-					String horaUTC = data[ 9 ]; /* hora del tuit segun el meridiano de greenwich*/					
+					String horaUTC = data[ 9 ]; /* hora del tuit segun el meridiano de greenwich*/
 
 					/*Procesamiento de series de tiempo*/
 					instantes_ts_minuto.add( Long.parseLong( ts_minutos ) );
@@ -60,14 +60,14 @@ public class main
 					InsertarInstanteFrecuencia( palabras_Busqueda, frecuenciaPalabra, Long.parseLong( ts_minutos ), text );
       	}
         br.close( );
-				
+
 				Long upperBoundSerie = maximoSerie( instantes_ts_minuto );
       	Long lowerBoundSerie = minimoSerie( instantes_ts_minuto );
 				//System.out.println( lowerBoundSerie + "\t" + upperBoundSerie );
 				System.out.println( "Corrigiendo Series de Tiempo" );
 				corregirSerie( series, upperBoundSerie, lowerBoundSerie );
 				Long FinCrisis = frecuenciaMaxima( series, initCrisis, lowerBoundSerie, upperBoundSerie );
-				
+
 				/*OBTENER TENDENCIA ABSOLUTA*/
 				Long sizeTW = Long.parseLong( "20" ); /* Tamano de las ventanas de tiempo. */
 				HashMap < Long, ArrayList < Double  > > analisisTendencia = analisisHora( series, lowerBoundSerie, upperBoundSerie, sizeTW, args[ 5 ], args[ 6 ] );
@@ -75,9 +75,9 @@ public class main
 				double avgTendencia   = estadisticaTendencia.get( 0 );
 				double stdTendencia   = estadisticaTendencia.get( 1 );
 				double umbralInferior = avgTendencia - ( stdTendencia );
-				double umbralSuperior = avgTendencia + ( stdTendencia ); 
+				double umbralSuperior = avgTendencia + ( stdTendencia );
 				//System.out.println(  avgTendencia + " " + stdTendencia  + " " + umbralInferior + " " + umbralSuperior );
-				System.out.println( "Asignando etiqueta..." );
+				//System.out.println( "Asignando etiqueta..." );
 				//AsignarEtiqueta( dataBase, lowerBoundSerie, initCrisis, FinCrisis, upperBoundSerie, pw );
 				AsignarEtiqueta( dataBase, lowerBoundSerie, initCrisis, FinCrisis, upperBoundSerie, pw, frecuenciaPalabra, timeWindow, palabras_Busqueda,
 												analisisTendencia, avgTendencia, stdTendencia );
@@ -86,10 +86,10 @@ public class main
      	}
       catch ( IOException e)
       {
-      	// Manejo de excepciones      
+      	// Manejo de excepciones
       	e.printStackTrace();
       }
-     
+
    	}
 
 	}
@@ -123,7 +123,7 @@ public class main
 		return data;
 	}
 
-	public static HashMap < Long, ArrayList < Double  > > analisisHora( 	HashMap < String, Map < Long, Integer > > series, 
+	public static HashMap < Long, ArrayList < Double  > > analisisHora( 	HashMap < String, Map < Long, Integer > > series,
 																																				Long lowerBoundSerie, Long upperBoundSerie, Long sizeTW,
 																																				String pathVectores, String pathModelo )
 	{
@@ -143,8 +143,8 @@ public class main
 					PrintWriter pwModelo   = new PrintWriter( new FileWriter( new File( pathModelo + String.valueOf( contador ) + ".xls" ) ) );
 					Long upperBoundMovil = lowerBoundSerie;
 					double N      = sizeTW;
-					if( ( lowerBoundSerie + sizeTW -1 ) > upperBoundSerie )	
-					{	
+					if( ( lowerBoundSerie + sizeTW -1 ) > upperBoundSerie )
+					{
 						upperBoundMovil = upperBoundSerie;
 						N = ( upperBoundSerie - lowerBoundSerie ) + 1;
 					}
@@ -157,10 +157,10 @@ public class main
       		double sum_Y  = sumador_Y.get( 0 ); /* Sumatoria de Y (frecuencias)*/
       		double sum_Y2 = sumador_Y.get( 1 ); /* Sumatoria de Y cuadrado (frecuencias cuadradas)*/
       		double sum_XY = sumador_Y.get( 2 ); /* Sumatoria del producto X*Y */
-				
+
 					double m_lineal = calcular_m( sum_X, sum_X2, sum_Y, sum_Y2, sum_XY, N );
       		double n_lineal = calcular_n( sum_X, sum_X2, sum_Y, sum_Y2, sum_XY, N );
-					
+
 					m_lineal = redondear( m_lineal, 4 );
 					n_lineal = redondear( n_lineal, 4 );
 
@@ -171,10 +171,10 @@ public class main
       		pwModelo.println( "sum_XY = " + sum_XY );
       		pwModelo.println( "N      = " + N );
       		pwModelo.println( "Y = " + m_lineal + "X + " + n_lineal );
-					System.out.println( "Y = " + m_lineal + "X + " + n_lineal );
+					//System.out.println( "Y = " + m_lineal + "X + " + n_lineal );
 					pwModelo.println( "m = " + m_lineal );
 					pwModelo.println( "n = " + n_lineal );
-			
+
 					/* Almacenar pendiente y punto de corte para cada minuto. */
 					for ( Long instanteMinuto = lowerBoundSerie; instanteMinuto <= ( lowerBoundSerie + sizeTW - 1 ) ; instanteMinuto++  )
 					{
@@ -184,8 +184,8 @@ public class main
 						estadisticos.add( n_lineal );
 						analisisTendencia.put( instanteMinuto, estadisticos );
 					}
-					
-					/* Imprimir Serie de tiempo seccionada. */	
+
+					/* Imprimir Serie de tiempo seccionada. */
 					imprimeDatos( series, pwVectores, lowerBoundSerie, ( lowerBoundSerie + sizeTW - 1 ) );
 					lowerBoundSerie += sizeTW;
 					contador += 1;
@@ -221,8 +221,8 @@ public class main
     m_lineal = ( ( N * sum_XY ) - ( sum_X * sum_Y ) ) / ( ( N * sum_X2 ) - ( Math.pow( sum_X, 2 ) ) );
     return m_lineal;
   }
-	
-	public static void imprimeDatos( 	HashMap < String, Map< Long, Integer > > series, PrintWriter pwVectores, 
+
+	public static void imprimeDatos( 	HashMap < String, Map< Long, Integer > > series, PrintWriter pwVectores,
 																		Long lowerBoundSerie, Long upperBoundSerie )
 	{
 		Iterator it_2 = series.entrySet( ).iterator( );
@@ -269,7 +269,7 @@ public class main
 		double sum_X  = 0; /* sumador de X */
 		double sum_X2 = 0; /* sumador de X cuadrado */
 		for( int i = 1; i <= cantDatos; i++ )
-		{	
+		{
 			sum_X += i;
 			sum_X2 += Math.pow( i, 2);
 		}
@@ -292,7 +292,7 @@ public class main
 					frecuenciaPalabra.put( ts_minutos, frecuenciaPalabra.get( ts_minutos ) + 1 );
 		}
 	}
-	
+
 	public static void AsignarEtiqueta( HashMap< String, Map< Long, String > > dataBase, Long lowerBoundSerie, Long initCrisis, Long FinCrisis,
                                       Long upperBoundSerie, PrintWriter pw, HashMap < Long, Integer > frecuenciaPalabra, Long timeWindow,
 																			ArrayList < String > palabras_Busqueda, HashMap < Long, ArrayList < Double  > > analisisTendencia,
@@ -322,7 +322,7 @@ public class main
 					else if ( umbral_inferior <= m_lineal /*&& m_lineal < umbral_superior*/ )label = "CRI";
 				}
         pw.println( metadata + "\t" + label );
-				System.out.println( label );
+				//System.out.println( label );
       }
     }
 	}
@@ -400,7 +400,7 @@ public class main
 		return series;
 	}
 
-	public static HashMap< String,Map< Long,Integer > > insertarSerie( String text, HashMap< String,Map< Long,Integer > > series, 
+	public static HashMap< String,Map< Long,Integer > > insertarSerie( String text, HashMap< String,Map< Long,Integer > > series,
 																																			ArrayList<String>  palabras_Busqueda, String ts_minutos )
 	{
 		StringTokenizer st = new StringTokenizer( text );
@@ -470,7 +470,7 @@ public class main
 
         while( ( linea = br.readLine( ) ) != null)
           BW.add( linea );
-        
+
         br.close( );
         fr.close( );
 
@@ -483,4 +483,3 @@ public class main
       return BW;
     }
 }
-
