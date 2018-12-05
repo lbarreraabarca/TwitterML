@@ -18,31 +18,27 @@ public class main
 			BufferedReader br = null;
 			PrintWriter pwTrain = null;
 			PrintWriter pwTest = null;
-			ArrayList< String > precrisis = new ArrayList< String >( );
+			ArrayList< String > noCrisis = new ArrayList< String >( );
 			ArrayList< String > crisis    = new ArrayList< String >( );
-			//ArrayList< String > preludio  = new ArrayList< String >( );
-			/* Cambiar por HashMap*/
-			//HashMap < Integer, String > precrisis  = new HashMap < Integer, String >( );
-			//HashMap < Integer, String > crisis     = new HashMap < Integer, String >( );
-			//HashMap < Integer, String > preludio   = new HashMap < Integer, String >( );
+			ArrayList< String > trainData = new ArrayList< String >( );
+			ArrayList< String > testData = new ArrayList< String >( );
       try
       {
-				//int contadorPreludio = 1;
       	br = new BufferedReader( new FileReader( new File( args[ 0 ] ) ) ); /* Archivo de entrada que contiene los tuits en formato CSV*/
 				pwTrain = new PrintWriter( new FileWriter( new File( args[ 1 ] ) ) );
 				pwTest = new PrintWriter( new FileWriter( new File( args[ 2 ] ) ) );
+
 				String linea = "";
 				System.out.println( "Cargando instancias..." );
         while( ( linea = br.readLine( ) ) != null)
         {
 					String[] data = linea.split( ";" );
 					if( data.length != 2 ) continue;
-					//String idTuit = data[ 0 ];
 					String etiqueta = data[ 0 ];
 					String caracteristicas = data[ 1 ];
 					if( etiqueta.equals( "-1" ) )
 					{
-						precrisis = insertarDatos( precrisis, linea );
+						noCrisis = insertarDatos( noCrisis, linea );
 					}
 					else if( etiqueta.equals( "1" ) )
 					{
@@ -50,25 +46,17 @@ public class main
 					}
       	}
 
-				System.out.println( args[ 3 ] );
 				double percentTrain = Double.parseDouble( args[ 3 ] );
-				double percentTest = 1 - percentTrain;
-				System.out.println( "NOC : " + precrisis.size( ) );
-				System.out.println( "CRI : " + crisis.size( ) );
-				System.out.println( "percentTrain : " + percentTrain );
-				System.out.println( "percentTest : " + percentTest  );
+				int tamCrisis = noCrisis.size( );
+				int tamNoCrisis = crisis.size( );
 
+				distribuirTrainTest( crisis, noCrisis, trainData, testData, percentTrain );
 
-				//ArrayList < String> selectPrecrisis = tuitsSeleccionadosAzar( precrisis, lowerBound );
+				System.out.println( "Main TrainData : " + trainData.size( ) );
+				System.out.println( "Main TestData : " + testData.size( ) );
 
-				//ArrayList < String> selectCrisis = tuitsSeleccionadosAzar( crisis, lowerBound );
-				//System.out.println( "Seleccionando al azar PRELUDIO" );
-				//ArrayList < String> selectPreludio = tuitsSeleccionadosAzar( preludio, lowerBound );
-
-				//escribeSeleccionados( pwTrain, selectPrecrisis );
-				//escribeSeleccionados( pwTrain, selectCrisis );
-				//escribeSeleccionados( pwTrain, selectPreludio );
-
+				escribeSeleccionados( pwTrain, trainData );
+				escribeSeleccionados( pwTest, testData );
         br.close( );
 				pwTrain.close( );
 				pwTest.close( );
@@ -78,6 +66,71 @@ public class main
       	e.printStackTrace();
       }
    	}
+	}
+
+	public static double redondear( double numero,int digitos ){
+		int cifras=(int) Math.pow(10,digitos);
+		return Math.rint(numero*cifras)/cifras;
+	}
+
+	public static void distribuirTrainTest( 	ArrayList< String > crisis, ArrayList< String > noCrisis, ArrayList< String > trainData, ArrayList< String > testData, double percentTrain  )
+	{
+		double cantidadTrainC		=	redondear((crisis.size()*percentTrain), 0)	;
+		double cantidadTestC		=	redondear((crisis.size()*(1 - percentTrain)), 0) ;
+		double cantidadTrainNC	=	redondear(noCrisis.size()*percentTrain,0) ;
+		double cantidadTestNC		=	redondear((noCrisis.size()*(1 - percentTrain)), 0) ;
+
+		int conjunto, posicion;
+
+		while ( crisis.size( ) > 0 ){
+			conjunto = (int) (Math.random() * 1);
+			posicion = (int) (Math.random() * crisis.size( ) );
+
+			if ( conjunto == 0 ){
+					if( cantidadTrainC > 0){
+						trainData.add( crisis.get( posicion ) );
+						cantidadTrainC--;
+					}else{
+						testData.add( crisis.get( posicion ) );
+						cantidadTestC--;
+					}
+			}
+			else{
+				if( cantidadTestC > 0 ){
+						testData.add( crisis.get( posicion ) );
+						cantidadTestC--;
+				}else{
+					trainData.add( crisis.get( posicion ) );
+					cantidadTrainC--;
+				}
+			}
+			crisis.remove( posicion );
+		}
+
+		while ( noCrisis.size( ) > 0 ){
+			conjunto = (int) (Math.random() * 1);
+			posicion = (int) (Math.random() * noCrisis.size( ) );
+
+			if ( conjunto == 0 ){
+					if( cantidadTrainNC > 0){
+						trainData.add( noCrisis.get( posicion ) );
+						cantidadTrainNC--;
+					}else{
+						testData.add( noCrisis.get( posicion ) );
+						cantidadTestNC--;
+					}
+			}
+			else{
+				if( cantidadTestNC > 0 ){
+						testData.add( noCrisis.get( posicion ) );
+						cantidadTestNC--;
+				}else{
+					trainData.add( noCrisis.get( posicion ) );
+					cantidadTrainNC--;
+				}
+			}
+			noCrisis.remove( posicion );
+		}
 	}
 
 	public static void escribeSeleccionados( PrintWriter pwB, ArrayList < String > select )
@@ -134,10 +187,10 @@ public class main
   }
 
 
-	public static Integer obtenerMinimoClase( Integer precrisis, Integer crisis, Integer preludio )
+	public static Integer obtenerMinimoClase( Integer noCrisis, Integer crisis, Integer preludio )
 	{
-		if( precrisis < crisis /*&& precrisis < preludio*/ ) return precrisis;
-		else if ( crisis < precrisis /*&& crisis < preludio*/ ) return crisis;
+		if( noCrisis < crisis /*&& noCrisis < preludio*/ ) return noCrisis;
+		else if ( crisis < noCrisis /*&& crisis < preludio*/ ) return crisis;
 		return 0;
 		//else return preludio;
 	}
