@@ -1,4 +1,10 @@
 
+$logdata=log_proceso.dat
+if [ -f "$logdata" ]
+then
+	rm log_proceso.dat
+fi
+
 for i in Data/*/row/*
 do
     echo "Procesando : "$i" ..."
@@ -12,4 +18,8 @@ do
     echo "Descargando : "$file
     java -classpath TweetsRetrievalTool-2.0.jar qa.org.qcri.tweetsretrievaltool.TweetsRetrievalTool tweet_ids.txt output.txt
     cp tweet2.json $output"json"$file
+    rm tweet2.json
+    rm tweets_download.log
+    rm tweet_ids.txt
+    echo "Pprocesado : "$i" OK...!" >> log_proceso.dat
 done
