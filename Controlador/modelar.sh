@@ -1,33 +1,50 @@
+echo "[ modelar ][ modelar.sh Inicio ]"
 
-echo "Copiando..."
 #Huracanes
+echo "[ modelar ][ Copy Data ][ Huracan ][ Irma ]"
 cp -fr ../Data/Huracanes/2017/Sept/Irma/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/
 #cp -fr ../Data/Huracanes/2017/Sept/Irma/vectorFinal/* ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorFinal/
+
 #Terremotos
+echo "[ modelar ][ Copy Data ][ Terremoto ][ 2017 ]"
 cp -fr ../Data/Terremotos/2017/Sept/07/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorInicial/
 #cp -fr ../Data/Terremotos/2017/Sept/07/vectorFinal/* ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorFinal/
+
 #Nieve
+echo "[ modelar ][ Copy Data ][ Nieve ][ 2017 ]"
 cp -fr ../Data/Nieve/2017/Jul/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/
 #cp -fr ../Data/Nieve/2017/Jul/vectorFinal/* ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorFinal/
 
-echo "Eliminando..."
+#Terremoto 2014
+echo "[ modelar ][ Copy Data ][ Terremoto ][ 2014 ]"
+cp -fr ../Data/Terremotos/2014/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/
+#cp -fr ../Data/Nieve/2017/Jul/vectorFinal/* ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorFinal/
+
+echo "[ modelar ][ Delete Data ][ bolsaUserMentions ]"
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/*bolsaUserMentions*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorInicial/*bolsaUserMentions*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/*bolsaUserMentions*
+rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/*bolsaUserMentions*
 
+echo "[ modelar ][ Delete Data ][ bolsaHashtags ]"
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/*bolsaHashtags*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorInicial/*bolsaHashtags*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/*bolsaHashtags*
+rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/*bolsaHashtags*
 
+echo "[ modelar ][ Delete Data ][ bolsaPalabras ]"
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/*bolsaPalabras*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorInicial/*bolsaPalabras*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/*bolsaPalabras*
+rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/*bolsaPalabras*
 
+echo "[ modelar ][ Delete Data ][ estructurales ]"
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/*estructurales*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorInicial/*estructurales*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/*estructurales*
+rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/*estructurales*
 
-
+echo "[ modelar ][ cd ../MineriaDeDatos/Mallet/Twitter/Data/ ]"
 cd ../MineriaDeDatos/Mallet/Twitter/Data/
 
 for i in */*/*.vector
@@ -54,26 +71,25 @@ do
 
 	cat $i | awk '{FS="\t"; print $2" "$3}' > $salida
 	#Import Data
-	echo "Realizando Import... "$salida
+	echo "[ modelar ][ Mallet ][ Import Data ][ "$salida" ]"
 	../../bin/mallet import-svmlight --input $salida --output $importFile
 
 	#MaxEnt
-	echo "Generando Modelo MaxEnt 80..."
+	echo "[ modelar ][ Mallet ][ MaxEnt 80 ][ "$importFile" ]"
 	../../bin/mallet train-classifier --input $importFile --trainer MaxEnt --training-portion 0.8 --report test:accuracy test:f1 --output-classifier $modelMaxEntFile > $logFileMaxEnt
-	echo "Generando Modelo MaxEnt 70..."
+	echo "[ modelar ][ Mallet ][ MaxEnt 70 ][ "$importFile" ]"
   ../../bin/mallet train-classifier --input $importFile --trainer MaxEnt --training-portion 0.7 --report test:accuracy test:f1 --output-classifier $modelMaxEntFile > $logFileMaxEnt70
 
 	#NaiveBayes
-	echo "Generando Modelo NaiveBayes..."
+	echo "[ modelar ][ Mallet ][ NaiveBayes 80 ][ "$importFile" ]"
 	../../bin/mallet train-classifier --input $importFile --trainer NaiveBayes --training-portion 0.8 --report test:accuracy test:f1 --output-classifier $modelNaiveBayesFile > $logFileNaiveBayes
-	echo "Generando Modelo NaiveBayes 70..."
+	echo "[ modelar ][ Mallet ][ NaiveBayes 70 ][ "$importFile" ]"
   ../../bin/mallet train-classifier --input $importFile --trainer NaiveBayes --training-portion 0.7 --report test:accuracy test:f1 --output-classifier $modelNaiveBayesFile > $logFileNaiveBayes70
 
 	#Winnow
-	echo "Generando Modelo Winnow..."
+	echo "[ modelar ][ Mallet ][ Winnow 80 ][ "$importFile" ]"
 	../../bin/mallet train-classifier --input $importFile --trainer Winnow  --training-portion 0.8 --report test:accuracy test:f1 --output-classifier $modelWinnowFile > $logFileWinnow
-	echo "Generando Modelo Winnow 70..."
+	echo "[ modelar ][ Mallet ][ Winnow 70 ][ "$importFile" ]"
   ../../bin/mallet train-classifier --input $importFile --trainer Winnow  --training-portion 0.7 --report test:accuracy test:f1 --output-classifier $modelWinnowFile > $logFileWinnow70
 
-	echo "-------------------------------"
 done

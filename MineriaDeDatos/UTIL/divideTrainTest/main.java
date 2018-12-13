@@ -11,7 +11,7 @@ public class main
   {
   	if ( args.length != 4 )
     {
-    	System.out.println( "Error en la cantidad de argumentos " );
+    	System.out.println( "[ divideTrainTestSVM ][ Error en la cantidad de argumentos ]" );
    	}
     else
     {
@@ -29,7 +29,7 @@ public class main
 				pwTest = new PrintWriter( new FileWriter( new File( args[ 2 ] ) ) );
 
 				String linea = "";
-				System.out.println( "Cargando instancias..." );
+				System.out.println( "[ divideTrainTestSVM ][ Load Data ]" );
         while( ( linea = br.readLine( ) ) != null)
         {
 					String[] data = linea.split( ";" );
@@ -52,8 +52,8 @@ public class main
 
 				distribuirTrainTest( crisis, noCrisis, trainData, testData, percentTrain );
 
-				System.out.println( "Main TrainData : " + trainData.size( ) );
-				System.out.println( "Main TestData : " + testData.size( ) );
+				System.out.println( "[ divideTrainTestSVM ][ Main TrainData : " + trainData.size( ) + " ]" );
+				System.out.println( "[ divideTrainTestSVM ][ Main TestData  : " + testData.size( ) + " ]" );
 
 				escribeSeleccionados( pwTrain, trainData );
 				escribeSeleccionados( pwTest, testData );
