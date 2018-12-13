@@ -18,7 +18,7 @@ public class main
   {
   	if ( args.length != 12 )
     {
-    	System.out.println( "Error en la cantidad de argumentos " );
+    	System.out.println( "[ generarVector ][ Error en la cantidad de argumentos ]" );
    	}
     else
     {
@@ -47,7 +47,7 @@ public class main
       	br = new BufferedReader( new FileReader( new File( args[ 0 ] ) ) ); /* Archivo de entrada que contiene los tuits en formato CSV*/
 				Long largoVentanaTiempo = Long.parseLong( args[ 3 ] ); /*Controla la cantidad de minutos que tendra la ventana de tiempo*/
 				String linea = "";
-				System.out.print( "Cargando en Memoria Series de Tiempo ");
+				System.out.print( "[ generarVector ][ Cargando en Memoria Series de Tiempo ]");
         while( ( linea = br.readLine( ) ) != null)
         {
 					String[] data = linea.split( "\t" );
@@ -63,26 +63,26 @@ public class main
 					frecuenciaUserMentions  = agregarUserMentionsFrecuencia( user_mentions, frecuenciaUserMentions ); /* Insertan userMentions a la bolsa de UserMentions */
 					frecuenciaPalabras = agregarBolsaPalabrasFrecuencia( text, frecuenciaPalabras );
       	}
-				System.out.println( "OK!" );
+				System.out.println( "[ OK ]" );
         br.close( );
-				System.out.print( "Generando Bolsa de Hashtags " );
+				System.out.print( "[ generarVector ][  Generando Bolsa de Hashtags ]" );
 				bolsaPalabrasHashtags = agregarHashtagsBolsa( bolsaPalabrasHashtags, frecuenciaHashtags );
-				System.out.println( "OK!" );
+				System.out.println( "[ OK ]" );
 
-				System.out.print( "Generando Bolsa de UserMentions " );
+				System.out.print( "[ generarVector ][ Generando Bolsa de UserMentions ]" );
 				bolsaUserMentions = agregarUserMentionsBolsa( bolsaUserMentions, frecuenciaUserMentions );
-				System.out.println( "OK!" );
+				System.out.println( "[ OK ]" );
 
-				System.out.print( "Generando Bolsa de Palabras " );
+				System.out.print( "[ generarVector ][ Generando Bolsa de Palabras ]" );
 				bolsaPalabras = agregarBolsaPalabrasBolsa( bolsaPalabras, frecuenciaPalabras );
-				System.out.println( "OK!" );
+				System.out.println( "[ OK ]" );
 
 				Long upperBoundSerie = maximoSerie( instantes_ts_minuto ); /* Obtiene el minuto maximo del conjunto de tuits*/
       	Long lowerBoundSerie = minimoSerie( instantes_ts_minuto ); /* Obtiene el minuto minimo del conjunto de tuits*/
-				System.out.println( "Liberando memoria de ArrayList instantes_ts_minuto" );
+				System.out.println( "[ generarVector ][ Liberando memoria de ArrayList instantes_ts_minuto ]" );
 				instantes_ts_minuto.clear( );
 
-				System.out.println( "Cargar Tuits en memoria para vectorizar" );
+				System.out.println( "[ generarVector ][ Cargar Tuits en memoria para vectorizar ]" );
         if( imprimeJunto ) pw = new PrintWriter( new FileWriter( args[ 2 ]) ); /* Archivo de salida para los vectores en Formato SVMLigth */
 				pwVEST = new PrintWriter( new FileWriter( args[ 8 ]) );
 				pwVBOW = new PrintWriter( new FileWriter( args[ 9 ]) );

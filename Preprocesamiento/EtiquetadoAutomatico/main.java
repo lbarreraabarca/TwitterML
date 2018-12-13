@@ -18,7 +18,7 @@ public class main
   {
   	if ( args.length != 7 )
     {
-    	System.out.println( "Error en la cantidad de argumentos " );
+    	System.out.println( "[ EtiquetadoAutomatico ][ Error en la cantidad de argumentos ]" );
    	}
     else
     {
@@ -36,6 +36,7 @@ public class main
       	br = new BufferedReader( new FileReader( new File( args[ 0 ] ) ) );
         pw = new PrintWriter( new FileWriter( args[ 2 ]) );
 				String linea = "";
+				System.out.println( "[ EtiquetadoAutomatico ][ Load Data ]" );
         while( ( linea = br.readLine( ) ) != null)
         {
 					String[] data = linea.split( "\t" );
@@ -64,7 +65,7 @@ public class main
 				Long upperBoundSerie = maximoSerie( instantes_ts_minuto );
       	Long lowerBoundSerie = minimoSerie( instantes_ts_minuto );
 				//System.out.println( lowerBoundSerie + "\t" + upperBoundSerie );
-				System.out.println( "Corrigiendo Series de Tiempo" );
+				System.out.println( "[ EtiquetadoAutomatico ][ Corrigiendo Series de Tiempo ]" );
 				corregirSerie( series, upperBoundSerie, lowerBoundSerie );
 				Long FinCrisis = frecuenciaMaxima( series, initCrisis, lowerBoundSerie, upperBoundSerie );
 
@@ -79,14 +80,15 @@ public class main
 				//System.out.println(  avgTendencia + " " + stdTendencia  + " " + umbralInferior + " " + umbralSuperior );
 				//System.out.println( "Asignando etiqueta..." );
 				//AsignarEtiqueta( dataBase, lowerBoundSerie, initCrisis, FinCrisis, upperBoundSerie, pw );
+				System.out.println( "[ EtiquetadoAutomatico ][ Asignar Etiqueta ]" );
 				AsignarEtiqueta( dataBase, lowerBoundSerie, initCrisis, FinCrisis, upperBoundSerie, pw, frecuenciaPalabra, timeWindow, palabras_Busqueda,
 												analisisTendencia, avgTendencia, stdTendencia );
 
 				pw.close( );
      	}
-      catch ( IOException e)
+      catch ( Exception e)
       {
-      	// Manejo de excepciones
+      	System.out.println( "[ EtiquetadoAutomatico ][ Exception ]" );
       	e.printStackTrace();
       }
 

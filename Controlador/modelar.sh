@@ -58,16 +58,16 @@ do
 	../../bin/mallet import-svmlight --input $salida --output $importFile
 
 	#MaxEnt
-	#echo "Generando Modelo MaxEnt 80..."
-	#../../bin/mallet train-classifier --input $importFile --trainer MaxEnt --training-portion 0.8 --report test:accuracy test:f1 --output-classifier $modelMaxEntFile > $logFileMaxEnt
-	#echo "Generando Modelo MaxEnt 70..."
-  #../../bin/mallet train-classifier --input $importFile --trainer MaxEnt --training-portion 0.7 --report test:accuracy test:f1 --output-classifier $modelMaxEntFile > $logFileMaxEnt70
+	echo "Generando Modelo MaxEnt 80..."
+	../../bin/mallet train-classifier --input $importFile --trainer MaxEnt --training-portion 0.8 --report test:accuracy test:f1 --output-classifier $modelMaxEntFile > $logFileMaxEnt
+	echo "Generando Modelo MaxEnt 70..."
+  ../../bin/mallet train-classifier --input $importFile --trainer MaxEnt --training-portion 0.7 --report test:accuracy test:f1 --output-classifier $modelMaxEntFile > $logFileMaxEnt70
 
 	#NaiveBayes
-	#echo "Generando Modelo NaiveBayes..."
-	#../../bin/mallet train-classifier --input $importFile --trainer NaiveBayes --training-portion 0.8 --report test:accuracy test:f1 --output-classifier $modelNaiveBayesFile > $logFileNaiveBayes
-	#echo "Generando Modelo NaiveBayes 70..."
-  #../../bin/mallet train-classifier --input $importFile --trainer NaiveBayes --training-portion 0.7 --report test:accuracy test:f1 --output-classifier $modelNaiveBayesFile > $logFileNaiveBayes70
+	echo "Generando Modelo NaiveBayes..."
+	../../bin/mallet train-classifier --input $importFile --trainer NaiveBayes --training-portion 0.8 --report test:accuracy test:f1 --output-classifier $modelNaiveBayesFile > $logFileNaiveBayes
+	echo "Generando Modelo NaiveBayes 70..."
+  ../../bin/mallet train-classifier --input $importFile --trainer NaiveBayes --training-portion 0.7 --report test:accuracy test:f1 --output-classifier $modelNaiveBayesFile > $logFileNaiveBayes70
 
 	#Winnow
 	echo "Generando Modelo Winnow..."

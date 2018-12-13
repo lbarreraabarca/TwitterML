@@ -1,0 +1,221 @@
+{
+   "in_reply_to_status_id_str":null,
+   "in_reply_to_status_id":null,
+   "created_at":"Wed Apr 02 05:23:31 +0000 2014",
+   "in_reply_to_user_id_str":null,
+   "source":"<a href=\"http:\/\/twitter.com\/download\/android\" rel=\"nofollow\">Twitter for Android<\/a>",
+   "retweeted_status":{
+      "in_reply_to_status_id_str":null,
+      "in_reply_to_status_id":null,
+      "coordinates":null,
+      "created_at":"Wed Apr 02 01:28:19 +0000 2014",
+      "truncated":false,
+      "in_reply_to_user_id_str":null,
+      "source":"<a href=\"http:\/\/twitter.com\/download\/iphone\" rel=\"nofollow\">Twitter for iPhone<\/a>",
+      "retweet_count":1776,
+      "retweeted":false,
+      "geo":null,
+      "in_reply_to_screen_name":null,
+      "is_quote_status":false,
+      "entities":{
+         "urls":[
+
+         ],
+         "hashtags":[
+
+         ],
+         "user_mentions":[
+
+         ],
+         "symbols":[
+
+         ]
+      },
+      "full_text":"Desde la UNAM en Mexico le mandamos fuerza a Chile y a Perú por el terremoto. Si pueden nos mandan info sobre lo que ocurre!",
+      "id_str":"451169221146583040",
+      "in_reply_to_user_id":null,
+      "display_text_range":[
+         0,
+         124
+      ],
+      "favorite_count":1075,
+      "id":451169221146583040,
+      "place":null,
+      "contributors":null,
+      "lang":"es",
+      "user":{
+         "utc_offset":null,
+         "friends_count":1720,
+         "profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/1047989941446295552\/dc5V0IVp_normal.jpg",
+         "listed_count":22786,
+         "profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+         "default_profile_image":false,
+         "favourites_count":2169,
+         "description":"René Pérez Joglar https:\/\/t.co\/luTlu9DKYG https:\/\/t.co\/ZlkkLnylBW",
+         "created_at":"Mon May 11 06:01:58 +0000 2009",
+         "is_translator":false,
+         "profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+         "protected":false,
+         "screen_name":"Residente",
+         "id_str":"39203045",
+         "profile_link_color":"146B06",
+         "is_translation_enabled":true,
+         "translator_type":"none",
+         "id":39203045,
+         "geo_enabled":false,
+         "profile_background_color":"000000",
+         "lang":"en",
+         "has_extended_profile":false,
+         "profile_sidebar_border_color":"000000",
+         "profile_text_color":"333333",
+         "verified":true,
+         "profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/1047989941446295552\/dc5V0IVp_normal.jpg",
+         "time_zone":null,
+         "url":"https:\/\/t.co\/wA6H8CKuhe",
+         "contributors_enabled":false,
+         "profile_background_tile":false,
+         "profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/39203045\/1538695248",
+         "entities":{
+            "description":{
+               "urls":[
+                  {
+                     "display_url":"Instagram.com\/residente",
+                     "indices":[
+                        18,
+                        41
+                     ],
+                     "expanded_url":"http:\/\/Instagram.com\/residente",
+                     "url":"https:\/\/t.co\/luTlu9DKYG"
+                  },
+                  {
+                     "display_url":"facebook.com\/residente",
+                     "indices":[
+                        42,
+                        65
+                     ],
+                     "expanded_url":"https:\/\/www.facebook.com\/residente",
+                     "url":"https:\/\/t.co\/ZlkkLnylBW"
+                  }
+               ]
+            },
+            "url":{
+               "urls":[
+                  {
+                     "display_url":"residente.com",
+                     "indices":[
+                        0,
+                        23
+                     ],
+                     "expanded_url":"http:\/\/www.residente.com",
+                     "url":"https:\/\/t.co\/wA6H8CKuhe"
+                  }
+               ]
+            }
+         },
+         "statuses_count":29253,
+         "follow_request_sent":false,
+         "followers_count":5797284,
+         "profile_use_background_image":false,
+         "default_profile":false,
+         "following":false,
+         "name":"Residente",
+         "location":"Puerto Rico \/ Argentina",
+         "profile_sidebar_fill_color":"999999",
+         "notifications":false
+      },
+      "favorited":false
+   },
+   "retweet_count":1776,
+   "retweeted":false,
+   "geo":null,
+   "in_reply_to_screen_name":null,
+   "is_quote_status":false,
+   "full_text":"RT @Calle13Oficial: Desde la UNAM en Mexico le mandamos fuerza a Chile y a Perú por el terremoto. Si pueden nos mandan info sobre lo que oc\u2026",
+   "id_str":"451228412083204096",
+   "in_reply_to_user_id":null,
+   "favorite_count":0,
+   "id":451228412083204096,
+   "place":null,
+   "lang":"es",
+   "favorited":false,
+   "coordinates":null,
+   "truncated":false,
+   "entities":{
+      "urls":[
+
+      ],
+      "hashtags":[
+
+      ],
+      "user_mentions":[
+         {
+            "indices":[
+               3,
+               18
+            ],
+            "screen_name":"Calle13Oficial",
+            "id_str":"3291087656",
+            "name":"Calle13Oficial",
+            "id":3291087656
+         }
+      ],
+      "symbols":[
+
+      ]
+   },
+   "display_text_range":[
+      0,
+      140
+   ],
+   "contributors":null,
+   "user":{
+      "utc_offset":null,
+      "friends_count":4999,
+      "profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/1045382185971138560\/1MwX0-RM_normal.jpg",
+      "listed_count":39,
+      "profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme17\/bg.gif",
+      "default_profile_image":false,
+      "favourites_count":7795,
+      "description":"Mujer | Mamá | Est Arq #ULS| @feulscl '13-'14 |@Olla_revuelta| @FEMINISTACHILE. Artivista feminista digital \"sin permiso, las mujeres cambiamos el territorio🌎\"",
+      "created_at":"Mon Aug 17 08:16:58 +0000 2009",
+      "is_translator":false,
+      "profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme17\/bg.gif",
+      "protected":false,
+      "screen_name":"PaulaJeriaT",
+      "id_str":"66309096",
+      "profile_link_color":"981CEB",
+      "is_translation_enabled":false,
+      "translator_type":"regular",
+      "id":66309096,
+      "geo_enabled":true,
+      "profile_background_color":"642D8B",
+      "lang":"es",
+      "has_extended_profile":true,
+      "profile_sidebar_border_color":"FFFFFF",
+      "profile_text_color":"89CCBD",
+      "verified":false,
+      "profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/1045382185971138560\/1MwX0-RM_normal.jpg",
+      "time_zone":null,
+      "url":null,
+      "contributors_enabled":false,
+      "profile_background_tile":true,
+      "profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/66309096\/1538428015",
+      "entities":{
+         "description":{
+            "urls":[
+
+            ]
+         }
+      },
+      "statuses_count":56308,
+      "follow_request_sent":false,
+      "followers_count":3932,
+      "profile_use_background_image":true,
+      "default_profile":false,
+      "following":false,
+      "name":"Paula Jeria Tapia",
+      "location":"La Serena, Chile",
+      "profile_sidebar_fill_color":"A6929F",
+      "notifications":false
+   }
+}

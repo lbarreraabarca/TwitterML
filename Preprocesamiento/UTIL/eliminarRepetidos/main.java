@@ -12,7 +12,7 @@ public class main
 		{
 			if( args.length != 2 )
 			{
-				System.out.println( "Error en la cantidad de argumentos.. Debe ingresar un archivo de entrada y otro de salida." );
+				System.out.println( "[ eliminarRepetidos ][ Error en la cantidad de argumentos. Debe ingresar un archivo de entrada y otro de salida. ]" );
 				System.exit( 0 );
 			}
 			else
@@ -25,7 +25,7 @@ public class main
 					pw = new PrintWriter( new FileWriter( new File( args[ 1 ] ) ) );
 					ArrayList< String > data = new ArrayList< String >( );
 					String line;
-					System.out.println( "Cargando datos." );	
+					System.out.println( "[ eliminarRepetidos ][ Load data ] " );
 					while ( (line = br.readLine( ) ) != null )
 					{
 						//System.out.println( line ) ;
@@ -33,17 +33,17 @@ public class main
 							data.add( line );
 					}
 					br.close( );
-					System.out.println( "Imprimiendo Salida..." );
+					System.out.println( "[ eliminarRepetidos ][ Print output ]" );
 					for ( int i = 0 ; i < data.size( ) ; i++ )
 					{
-						pw.println( data.get( i ) );	
+						pw.println( data.get( i ) );
 					}
 					pw.close( );
 				}
 				catch (Exception  e )
 				{
 					e.printStackTrace();
-				}			
+				}
 			}
 
 		}

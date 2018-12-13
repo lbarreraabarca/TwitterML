@@ -28,9 +28,19 @@ public class main
 			pw = new PrintWriter( new FileWriter( new File( args[ 1 ] ) ) );
 			HashMap < String, String > stopwords = cargarBW( args[ 2 ] );
 			String line;
+			Integer countLineError = 0;
       while ( (line = br.readLine( ) ) != null )
 			{
-      	Object obj = parser.parse( line );
+				countLineError++;
+				Object obj = null;
+				try{
+					obj = parser.parse( line );
+				}catch( Exception e ){
+					obj = null;
+					System.out.println( "[ LimpiarDatosV2 ][ Error Data ] Line : " + countLineError);
+				}
+				if( obj == null ) continue;
+
         JSONObject jsonObject = (JSONObject)obj;
         String objTime = ( String )jsonObject.get( "created_at" );
         if( objTime != null )
@@ -41,7 +51,7 @@ public class main
           Date date = sdf.parse( postedTime );  //Se asigna la hora del tweet
           calendar.setTime( date ); // Se setea el valor en el calendario
           Long ts_minutos = new Long(calendar.getTimeInMillis( ) / ( 1000 * 60 ));  //Se transforma la fecha a un numero
-          String body = ( ( String )jsonObject.get( "text" ) ).toLowerCase( );  //Se obtiene el texto del tweet
+          String body = ( ( String )jsonObject.get( "full_text" ) ).toLowerCase( );  //Se obtiene el texto del tweet
           body = eliminarHttp( body ); //Eliminan todas las referecnias a url.
           body = eliminarSignosPuntuacion( body );  //Eliminan signos de puntuacion.
           body = cleanText( body ); //Se eliminan tildes.
@@ -68,6 +78,7 @@ public class main
 		}
 		catch (Exception  e )
 		{
+			System.out.println( "[ LimpiarDatosV2 ][ Catch Exception ] " );
 		  e.printStackTrace();
     }
 	}
