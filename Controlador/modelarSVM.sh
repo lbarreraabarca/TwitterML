@@ -1,14 +1,25 @@
+echo "[ modelarSVM ][ modelarSVM.sh Inicio ]"
 
-echo "Copiando..."
+
 #Huracanes
+echo "[ modelarSVM ][ Copy Data ][ Huracan ][ Irma ]"
 #cp -fr ../Data/Huracanes/2017/Sept/Irma/vectorSVM/train ../MineriaDeDatos/SVM-Light/Twitter/Data/Huracanes/
 #cp -fr ../Data/Huracanes/2017/Sept/Irma/vectorSVM/test ../MineriaDeDatos/SVM-Light/Twitter/Data/Huracanes/
+
 #Terremotos
-cp -fr ../Data/Terremotos/2017/Sept/07/vectorSVM/train ../MineriaDeDatos/SVM-Light/Twitter/Data/Terremoto/
-cp -fr ../Data/Terremotos/2017/Sept/07/vectorSVM/test ../MineriaDeDatos/SVM-Light/Twitter/Data/Terremoto/
+echo "[ modelarSVM ][ Copy Data ][ Terremoto ][ 2017 ]"
+#cp -fr ../Data/Terremotos/2017/Sept/07/vectorSVM/train ../MineriaDeDatos/SVM-Light/Twitter/Data/Terremoto/
+#cp -fr ../Data/Terremotos/2017/Sept/07/vectorSVM/test ../MineriaDeDatos/SVM-Light/Twitter/Data/Terremoto/
+
 #Nieve
-cp -fr ../Data/Nieve/2017/Jul/vectorSVM/train ../MineriaDeDatos/SVM-Light/Twitter/Data/Nieve/
-cp -fr ../Data/Nieve/2017/Jul/vectorSVM/test ../MineriaDeDatos/SVM-Light/Twitter/Data/Nieve/
+echo "[ modelarSVM ][ Copy Data ][ Nieve ][ 2017 ]"
+#cp -fr ../Data/Nieve/2017/Jul/vectorSVM/train ../MineriaDeDatos/SVM-Light/Twitter/Data/Nieve/
+#cp -fr ../Data/Nieve/2017/Jul/vectorSVM/test ../MineriaDeDatos/SVM-Light/Twitter/Data/Nieve/
+
+#Terremoto 2014
+echo "[ modelarSVM ][ Copy Data ][ Terremoto ][ 2014 ]"
+cp -fr ../Data/Terremotos/2014/vectorSVM/train ../MineriaDeDatos/SVM-Light/Twitter/Data/Terremoto_2014/
+cp -fr ../Data/Terremotos/2014/vectorSVM/test ../MineriaDeDatos/SVM-Light/Twitter/Data/Terremoto_2014/
 
 cd ../MineriaDeDatos/SVM-Light/Twitter/Data
 
@@ -16,7 +27,9 @@ for i in */train/*
 do
 	pathOutput=$(echo $i | awk '{split( $0, data, "train"); print data[1]}' )
 	file=$(echo $i | awk '{split( $0, data, "train"); print data[2] }' )
+	echo "[ modelarSVM ][ SVM-Light ][ Generar Modelo ][ "$i" ]"
 	../../svm_learn $i $pathOutput"model/modelo.dat"
+	echo "[ modelarSVM ][ SVM-Light ][ Clasificar ][ "$i" ]"
 	../../svm_classify $pathOutput"test"$file"test" $pathOutput"model/modelo.dat" $pathOutput"salida.dat" > $pathOutput"result/result.dat"
 	#echo $i
 done

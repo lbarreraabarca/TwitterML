@@ -8,17 +8,17 @@ cp -fr ../Data/Huracanes/2017/Sept/Irma/vectorInicial/* ../MineriaDeDatos/Mallet
 #Terremotos
 echo "[ modelar ][ Copy Data ][ Terremoto ][ 2017 ]"
 cp -fr ../Data/Terremotos/2017/Sept/07/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorInicial/
-#cp -fr ../Data/Terremotos/2017/Sept/07/vectorFinal/* ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorFinal/
+# Feat Selection # cp -fr ../Data/Terremotos/2017/Sept/07/vectorFinal/* ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorFinal/
 
 #Nieve
 echo "[ modelar ][ Copy Data ][ Nieve ][ 2017 ]"
 cp -fr ../Data/Nieve/2017/Jul/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/
-#cp -fr ../Data/Nieve/2017/Jul/vectorFinal/* ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorFinal/
+# Feat Selection #cp -fr ../Data/Nieve/2017/Jul/vectorFinal/* ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorFinal/
 
 #Terremoto 2014
 echo "[ modelar ][ Copy Data ][ Terremoto ][ 2014 ]"
 cp -fr ../Data/Terremotos/2014/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/
-#cp -fr ../Data/Nieve/2017/Jul/vectorFinal/* ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorFinal/
+
 
 echo "[ modelar ][ Delete Data ][ bolsaUserMentions ]"
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/*bolsaUserMentions*
@@ -36,13 +36,14 @@ echo "[ modelar ][ Delete Data ][ bolsaPalabras ]"
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/*bolsaPalabras*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorInicial/*bolsaPalabras*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/*bolsaPalabras*
-rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/*bolsaPalabras*
+#rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/*bolsaPalabras*
 
 echo "[ modelar ][ Delete Data ][ estructurales ]"
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/*estructurales*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorInicial/*estructurales*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/*estructurales*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/*estructurales*
+
 
 echo "[ modelar ][ cd ../MineriaDeDatos/Mallet/Twitter/Data/ ]"
 cd ../MineriaDeDatos/Mallet/Twitter/Data/
