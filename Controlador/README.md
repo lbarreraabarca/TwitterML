@@ -22,7 +22,18 @@ que se encarga de asignar una etiqueta a cada tuit. Este proceso se realizar a t
 El script [vectorizar.sh](https://github.com/lbarreraabarca/TwitterML/blob/master/Controlador/vectorizar.sh) ejecuta el módulo [generarVector](https://github.com/lbarreraabarca/TwitterML/tree/master/MineriaDeDatos/generarVector) que se encarga de transformar el tuit en una representación vectorial. El formato de salida corresponde a [SVM-light](https://stackoverflow.com/questions/18339547/file-format-for-classification-using-svm-light). 
 
 ### Convert SVM format ###
-El script [convertSVMformat.sh](https://github.com/lbarreraabarca/TwitterML/blob/master/Controlador/convertSVMformat.sh) se encarga de establecer el formato para que sea leido por el módulo [SVM-Light](https://github.com/lbarreraabarca/TwitterML/tree/master/MineriaDeDatos/SVM-Light/)
+El script [divideTrainTestSVM.sh](https://github.com/lbarreraabarca/TwitterML/blob/master/Controlador/divideTrainTestSVM.sh) se encarga de establecer el formato para que sea leido por el módulo [SVM-Light](https://github.com/lbarreraabarca/TwitterML/tree/master/MineriaDeDatos/SVM-Light/)
+
+### Divide Train test SVM ###
+El script [divideTrainTestSVM.sh](https://github.com/lbarreraabarca/TwitterML/blob/master/Controlador/convertSVMformat.sh) se encarga de dividir el conjunto de datos en datos de entrenamiento y pruebas.
+
+### Modelar ###
+El script [modelar.sh](https://github.com/lbarreraabarca/TwitterML/blob/master/Controlador/modelar.sh) se encarga de generar los modelos de Machine Learning a través de la herramienta [Mallet](http://mallet.cs.umass.edu/). El módulo que se ejecuta se encuentra en [Mallet](https://github.com/lbarreraabarca/TwitterML/tree/master/MineriaDeDatos). 
+
+
+### Modelar SVM ###
+El script [modelarSVM.sh](https://github.com/lbarreraabarca/TwitterML/blob/master/Controlador/modelarSVM.sh) se encarga de generar los de modelos de Machine Learning a través de la herramienta [SVM-Light](http://svmlight.joachims.org/). El módulo se encuentra en [SVM-Light](https://github.com/lbarreraabarca/TwitterML/tree/master/MineriaDeDatos/SVM-Light)
+
 
   
   
