@@ -31,9 +31,24 @@ Se debe contar con una máquina Linux, sobre ella instalar los siguientes compon
   
 ``` Bash
  $ tar xzvf Data.tar.gz
- $ mv Data/ path-git-repo/TwitterML/
+ $ mv Data/ ./
  
 ```
   
-  
+### Integrar Mallet ###
+Para integrar la herramienta Mallet se debe descargar desde el siguiente link [Mallet](https://drive.google.com/open?id=1uxUauF1uzJxcVwEOSaU3WHYRxGKTScj1).
 
+``` Bash
+ $ tar xzvf Mallet.tar.gz
+ $ mv Mallet/ ./MineriaDeDatos/
+ 
+```
+
+### Integrar SVM-Light ###
+Para integrar la herramienta SVM-Light se debe descargar desde el siguiente link [SVM-Light](https://drive.google.com/open?id=1gWSWjt9FcIcuAA-eyMm17Ydnd1NYQftV).
+
+``` Bash
+ $ tar xzvf SVM-Light.tar.gz
+ $ mv SVM-Light/ ./MineriaDeDatos/
+ 
+```
