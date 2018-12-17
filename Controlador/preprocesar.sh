@@ -1,4 +1,5 @@
-echo "[ LimpiarDatos ][ preprocesamiento.sh Inicio ]"
+now="$(date)"
+echo "[ LimpiarDatos ][ preprocesamiento.sh Inicio ][ "$now" ]"
 
 cd ../Preprocesamiento/LimpiarDatos/
 
@@ -45,6 +46,7 @@ do
 	echo "[ LimpiarDatosV2 ][ 3 ][ Ejecucion LimpiarDatosV2 Terminada ][ "$input" ]"
 done
 
+now="$(date)"
 cd ../../Controlador/
 echo "[ LimpiarDatos ][ cd ../../Controlador/ ]"
-echo "[ LimpiarDatos ][ preprocesamiento.sh Terminado ]"
+echo "[ LimpiarDatos ][ preprocesamiento.sh Terminado ][ "$now" ]"

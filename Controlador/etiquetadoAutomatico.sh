@@ -1,4 +1,5 @@
-echo "[ EtiquetadoAutomatico ][ etiquetadoAutomatico.sh Inicio ]"
+now="$(date)"
+echo "[ EtiquetadoAutomatico ][ etiquetadoAutomatico.sh Inicio ][ "$now" ]"
 
 echo "[ EtiquetadoAutomatico ][ cd ../Preprocesamiento/EtiquetadoAutomatico/ ]"
 cd ../Preprocesamiento/EtiquetadoAutomatico/
@@ -37,7 +38,7 @@ do
 	echo "[ EtiquetadoAutomatico ][ 3 ][ Ejecucion EtiquetadoAutomatico Terminada ][ "$input" ]"
 done
 
-
+now="$(date)"
 cd ../../Controlador/
 echo "[ EtiquetadoAutomatico ][ cd ../../Controlador/ ]"
-echo "[ EtiquetadoAutomatico ][ etiquetadoAutomatico.sh Terminada ]"
+echo "[ EtiquetadoAutomatico ][ etiquetadoAutomatico.sh Terminada ][ "$now" ]"

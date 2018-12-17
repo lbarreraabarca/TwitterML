@@ -1,4 +1,5 @@
-echo "[ modelar ][ modelar.sh Inicio ]"
+now="$(date)"
+echo "[ modelar ][ modelar.sh Inicio ][ "$now" ]"
 
 #Huracanes
 echo "[ modelar ][ Copy Data ][ Huracan ][ Irma ]"
@@ -94,3 +95,8 @@ do
   ../../bin/mallet train-classifier --input $importFile --trainer Winnow  --training-portion 0.7 --report test:accuracy test:f1 --output-classifier $modelWinnowFile > $logFileWinnow70
 
 done
+
+cd ../../../../Controlador/
+echo "[ modelar ][ cd ../../../../Controlador/ ]"
+now="$(date)"
+echo "[ modelar ][ modelar.sh Terminado ][ "$now" ]"

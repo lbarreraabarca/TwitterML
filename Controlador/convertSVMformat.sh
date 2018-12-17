@@ -1,4 +1,5 @@
-echo "[ convertSVMformat ][ convertSVMformat.sh Inicio ]"
+now="$(date)"
+echo "[ convertSVMformat ][ convertSVMformat.sh Inicio ][ "$now" ]"
 
 #Terremoto 2017 y Huracan
 for i in ../Data/*/*/*/*/vectorInicial/*
@@ -29,3 +30,6 @@ do
   cat $j | awk '{FS="\t"; if($2=="CRI"){ print "1;"$3}else{ print "-1;"$3}}' > $path_output2"vectorSVM"$file
   echo "[ convertSVMformat ][ 3 ][ Ejecutando convertSVMformat Terminada ][ "$j" ]"
 done
+
+now="$(date)"
+echo "[ convertSVMformat ][ convertSVMformat.sh Terminado ][ "$now" ]"

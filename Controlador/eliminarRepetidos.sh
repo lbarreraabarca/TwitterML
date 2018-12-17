@@ -1,4 +1,5 @@
-echo "[ eliminarRepetidos ][ eliminarRepetidos.sh Inicio ]"
+now="$(date)"
+echo "[ eliminarRepetidos ][ eliminarRepetidos.sh Inicio ][ "$now" ]"
 
 echo "[ eliminarRepetidos ][ Join Data ][ Nieve ]"
 echo "[ eliminarRepetidos ][ cat ../Data/Nieve/2017/Jul/csv/* > ../Data/Nieve/2017/Jul/csv/tmp.csv ]"
@@ -26,6 +27,7 @@ cat ../../../Data/Terremotos/2014/csv/terremoto-chile2014.csv | sort | uniq -c |
 echo "[ eliminarRepetidos ][ mv ../../../Data/Terremotos/2014/csv/tmp.csv ../../../Data/Terremotos/2014/csv/terremoto-chile2014.csv ]"
 mv ../../../Data/Terremotos/2014/csv/tmp.csv ../../../Data/Terremotos/2014/csv/terremoto-chile2014.csv
 
+now="$(date)"
 cd ../../../Controlador/
 echo "[ eliminarRepetidos ][ cd ../../../Controlador/ ]"
-echo "[ eliminarRepetidos ][ eliminarRepetidos.sh Terminado ]"
+echo "[ eliminarRepetidos ][ eliminarRepetidos.sh Terminado ][ "$now" ]"

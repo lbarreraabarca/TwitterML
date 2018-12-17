@@ -1,4 +1,5 @@
-echo "[ divideTrainTestSVM ][ divideTrainTestSVM.sh Inicio ]"
+now="$(date)"
+echo "[ divideTrainTestSVM ][ divideTrainTestSVM.sh Inicio ][ "$now" ]"
 
 echo "[ divideTrainTestSVM ][ cd ../MineriaDeDatos/UTIL/divideTrainTest/ ]"
 cd ../MineriaDeDatos/UTIL/divideTrainTest/
@@ -46,6 +47,7 @@ do
   echo "[ divideTrainTestSVM ][ 3 ][ Ejecutando divideTrainTestSVM Terminada ][ "$input" ]"
 done
 
+now="$(date)"
 cd ../../../Controlador/
 echo "[ divideTrainTestSVM ][ cd ../../../Controlador/ ]"
-echo "[ divideTrainTestSVM ][ divideTrainTestSVM.sh Terminada ]"
+echo "[ divideTrainTestSVM ][ divideTrainTestSVM.sh Terminada ][ "$now" ]"
