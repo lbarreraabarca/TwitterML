@@ -18,6 +18,12 @@ El script [eliminarRepetidos.sh](https://github.com/lbarreraabarca/TwitterML/blo
 El script [etiquetadoAutomatico.sh](https://github.com/lbarreraabarca/TwitterML/blob/master/Controlador/etiquetadoAutomatico.sh) ejecuta el módulo [EtiquetadoAutomatico](https://github.com/lbarreraabarca/TwitterML/tree/master/Preprocesamiento/EtiquetadoAutomatico)
 que se encarga de asignar una etiqueta a cada tuit. Este proceso se realizar a través del cálculo de regresiones lineales. 
 
+### Vectorizar ###
+El script [vectorizar.sh](https://github.com/lbarreraabarca/TwitterML/blob/master/Controlador/vectorizar.sh) ejecuta el módulo [generarVector](https://github.com/lbarreraabarca/TwitterML/tree/master/MineriaDeDatos/generarVector) que se encarga de transformar el tuit en una representación vectorial. El formato de salida corresponde a [SVM-light](https://stackoverflow.com/questions/18339547/file-format-for-classification-using-svm-light). 
+
+### Convert SVM format ###
+El script [convertSVMformat.sh](https://github.com/lbarreraabarca/TwitterML/blob/master/Controlador/convertSVMformat.sh) se encarga de establecer el formato para que sea leido por el módulo {SVM-Light](https://github.com/lbarreraabarca/TwitterML/tree/master/MineriaDeDatos/SVM-Light/)
+
   
   
 
