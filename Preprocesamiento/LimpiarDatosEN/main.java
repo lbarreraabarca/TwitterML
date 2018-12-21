@@ -37,7 +37,7 @@ public class main
 					obj = parser.parse( line );
 				}catch( Exception e ){
 					obj = null;
-					System.out.println( "[ LimpiarDatosV2 ][ Error Data ] Line : " + countLineError);
+					System.out.println( "[ LimpiarDatosEN ][ Error Data ] Line : " + countLineError);
 				}
 				if( obj == null ) continue;
 
@@ -45,7 +45,7 @@ public class main
         String objTime = ( String )jsonObject.get( "created_at" );
         if( objTime != null )
         {
-					if ( ! getLangTuit( jsonObject ).equals( "es" ) ) continue;
+					if ( ! getLangTuit( jsonObject ).equals( "en" ) ) continue;
           String []data = objTime.split( " " ); // data[0] = Sun ; data[1] =Apr ; [2]=30; [3]=16:20:48; [4]=+0000 ; [5]=2017
           String postedTime = data[0] + ", " + data[2] + " " + data[1] + " " + data[ 5 ]+ " " + data[ 3 ] + " " + data[ 4 ];
           Date date = sdf.parse( postedTime );  //Se asigna la hora del tweet
@@ -67,6 +67,7 @@ public class main
 					pw.println( tuitID + "\t" + ts_minutos + "\t" + ht_list + "\t" + user_mentions + "\t" +
 					getLocation( jsonObject ) + "\t" + getTime_Zone( jsonObject ) + "\t" + getFollowersCount( jsonObject ) + "\t" +
 					getRetuitCount( jsonObject )  + "\t" + body + "\t" + objTime );
+
         }
 			}
 			br.close( );
@@ -78,7 +79,7 @@ public class main
 		}
 		catch (Exception  e )
 		{
-			System.out.println( "[ LimpiarDatosV2 ][ Catch Exception ] " );
+			System.out.println( "[ LimpiarDatosEN ][ Catch Exception ] " );
 		  e.printStackTrace();
     }
 	}

@@ -20,31 +20,39 @@ cp -fr ../Data/Nieve/2017/Jul/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/D
 echo "[ modelar ][ Copy Data ][ Terremoto ][ 2014 ]"
 cp -fr ../Data/Terremotos/2014/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/
 
+#Volcano 2014
+echo "[ modelar ][ Copy Data ][ Volcano ][ 2014 ]"
+cp -fr ../Data/EN/Event/Volcano/2014/ago/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Volcano/vectorInicial/
+
+
 
 echo "[ modelar ][ Delete Data ][ bolsaUserMentions ]"
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/*bolsaUserMentions*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorInicial/*bolsaUserMentions*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/*bolsaUserMentions*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/*bolsaUserMentions*
+rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Volcano/vectorInicial/*bolsaUserMentions*
 
 echo "[ modelar ][ Delete Data ][ bolsaHashtags ]"
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/*bolsaHashtags*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorInicial/*bolsaHashtags*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/*bolsaHashtags*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/*bolsaHashtags*
+rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Volcano/vectorInicial/*bolsaHashtags*
 
 echo "[ modelar ][ Delete Data ][ bolsaPalabras ]"
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/*bolsaPalabras*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorInicial/*bolsaPalabras*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/*bolsaPalabras*
-#rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/*bolsaPalabras*
+rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/*bolsaPalabras*
+rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Volcano/vectorInicial/*bolsaPalabras*
 
 echo "[ modelar ][ Delete Data ][ estructurales ]"
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/*estructurales*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorInicial/*estructurales*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/*estructurales*
 rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto_2014/vectorInicial/*estructurales*
-
+rm -fr ../MineriaDeDatos/Mallet/Twitter/Data/Volcano/vectorInicial/*estructurales*
 
 echo "[ modelar ][ cd ../MineriaDeDatos/Mallet/Twitter/Data/ ]"
 cd ../MineriaDeDatos/Mallet/Twitter/Data/

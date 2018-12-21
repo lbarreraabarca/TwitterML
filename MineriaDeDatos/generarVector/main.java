@@ -33,6 +33,7 @@ public class main
 			HashMap < String, Integer > frecuenciaUserMentions = new HashMap < String, Integer >( );
 			ArrayList < String >  bolsaPalabras = new ArrayList< String >( );
 			HashMap < String, Integer > frecuenciaPalabras = new HashMap < String, Integer >( );
+			HashMap < String, ArrayList< Double > > minMaxWord = new HashMap< String, ArrayList< Double > > ( );
       BufferedReader br = null;
       PrintWriter pw = null;
 			PrintWriter pwBOW = null;
@@ -75,19 +76,41 @@ public class main
 
 				System.out.print( "[ generarVector ][ Generando Bolsa de Palabras ]" );
 				bolsaPalabras = agregarBolsaPalabrasBolsa( bolsaPalabras, frecuenciaPalabras );
+				minMaxWord = iniciarlizarMinMaxWord( bolsaPalabras, minMaxWord );
 				System.out.println( "[ OK ]" );
+
 
 				Long upperBoundSerie = maximoSerie( instantes_ts_minuto ); /* Obtiene el minuto maximo del conjunto de tuits*/
       	Long lowerBoundSerie = minimoSerie( instantes_ts_minuto ); /* Obtiene el minuto minimo del conjunto de tuits*/
 				System.out.println( "[ generarVector ][ Liberando memoria de ArrayList instantes_ts_minuto ]" );
 				instantes_ts_minuto.clear( );
 
+				System.out.println( "[ generarVector ][ Obtener minimos y maximos por feature CV ]" );
+				BufferedReader br3 = null; /* Para volver a realizar lectura sobre el archivo con la finalidad de generar las caracteristicas. */
+				br3 = new BufferedReader( new FileReader( new File( args[ 0 ] ) ) );
+				Integer count1 = 0;
+				while( ( linea = br3.readLine( ) ) != null)
+        {
+         	String[] data = linea.split( "\t" );
+         	if( data.length != 11 ) continue;
+         	String ts_minutos = data[ 1 ]; /* instante del tuit*/
+         	String text = data[ 8 ]; /* cuerpo del tuit */
+					text =  steamingEspañol( text, verbos );
+
+					getMinMaxCVWord( series, bolsaPalabras, text, ts_minutos, largoVentanaTiempo, false, minMaxWord );
+				}
+				br3.close( );
+				imprimeMinMax( minMaxWord );
+
+
 				System.out.println( "[ generarVector ][ Cargar Tuits en memoria para vectorizar ]" );
-        if( imprimeJunto ) pw = new PrintWriter( new FileWriter( args[ 2 ]) ); /* Archivo de salida para los vectores en Formato SVMLigth */
+
+				if( imprimeJunto ) pw = new PrintWriter( new FileWriter( args[ 2 ]) ); /* Archivo de salida para los vectores en Formato SVMLigth */
 				pwVEST = new PrintWriter( new FileWriter( args[ 8 ]) );
 				pwVBOW = new PrintWriter( new FileWriter( args[ 9 ]) );
 				pwVBOH = new PrintWriter( new FileWriter( args[ 10 ]) );
 				pwVBUM = new PrintWriter( new FileWriter( args[ 11 ]) );
+
 				BufferedReader br2 = null; /* Para volver a realizar lectura sobre el archivo con la finalidad de generar las caracteristicas. */
 				br2 = new BufferedReader( new FileReader( new File( args[ 0 ] ) ) );
 				while( ( linea = br2.readLine( ) ) != null)
@@ -127,6 +150,7 @@ public class main
 					//pwVBUM.println( id_tuit  + "\t" + etiqueta  + "\t" + userMentionsCaracteristicas );
 				}
 				br2.close( );
+
 				if ( imprimeJunto ) pw.close( );
 				pwBOW = new PrintWriter( new FileWriter( new File( args[ 5 ] ) ) );
 				pwBOH = new PrintWriter( new FileWriter( new File( args[ 6 ] ) ) );
@@ -158,6 +182,14 @@ public class main
 			pwB.println( bolsa.get( i ) );
 	}
 
+	public static HashMap< String, ArrayList< Double > > iniciarlizarMinMaxWord( ArrayList < String > bolsaPalabras, HashMap< String, ArrayList< Double > > minMaxWord )
+	{
+		for( int i = 0; i < bolsaPalabras.size(); i++ ){
+			ArrayList< Double > aux =  new ArrayList< Double >();
+			minMaxWord.put( bolsaPalabras.get( i ), aux );
+		}
+		return minMaxWord;
+	}
 
 	public static String generarCaracteristicasUserMentions( ArrayList < String >  bolsaUserMentions, String user_mentions, int inicioVectorUserMentions )
 	{
@@ -185,6 +217,18 @@ public class main
 		return vectorSalida;
 	}
 
+	public static void imprimeMinMax( HashMap < String, ArrayList< Double > > minMaxWord ){
+		Iterator it = minMaxWord.entrySet( ).iterator( );
+		while( it.hasNext( ) )
+		{
+			Map.Entry pair = ( Map.Entry ) it.next( );
+			String word = ( String ) pair.getKey( );
+			ArrayList< Double > aux = ( ArrayList< Double > ) minMaxWord.get( word );
+			if( aux.size( ) > 0 )
+				System.out.println( word + "\t" + aux.get( 0 ) + "\t" + aux.get( 1 ) );
+		}
+	}
+
 	public static String generarCaracteristicasHashTags( ArrayList < String >  bolsaPalabrasHashtags, String hashtags, int inicioVectorHashtags )
 	{
 		int[] vectorHashtags = new int[ bolsaPalabrasHashtags.size( ) ];
@@ -205,14 +249,75 @@ public class main
 		for( int i = 0; i < bolsaPalabrasHashtags.size( ) ; i++ )
 			//vectorSalida= vectorSalida + vectorHashtags[ i ] + ",";
 			/* SVMLingth format */
- 			if( vectorHashtags[ i ] > 0 )
-			{
+ 			if( vectorHashtags[ i ] > 0 ){
 				int posicionVector = inicioVectorHashtags + i;
 				vectorSalida= vectorSalida + posicionVector + ":" + vectorHashtags[ i ] + " ";
 			}
 
 		return vectorSalida;
 	}
+
+	public static void getMinMaxCVWord( HashMap< String,Map< Long,Integer > > series,
+																																				ArrayList < String >  bolsaPalabras, String text,
+																																				String ts_minutos, Long largoVentanaTiempo, Boolean inicioFeatures )
+	{
+		StringTokenizer st = new StringTokenizer( text );
+    while( st.hasMoreTokens( ) )
+    {
+      String word = st.nextToken( ); /* palabra */
+			if( bolsaPalabras.contains( word ) )
+			{
+				int posicionPalabra = bolsaPalabras.indexOf( word ); /* Obtener la posicion de la palabra en la bolsa */
+				Long instante = Long.parseLong( ts_minutos );
+				Map<Long, Integer > instante_frecuencia = series.get( word );
+				Long inicioVentana = instante - ( largoVentanaTiempo - 1 );
+        ArrayList < Double > ventanaTiempoFrecuencia = new ArrayList< Double >( );
+        double promedio = 0.0;
+        double sumaFrecuencias = 0.0;
+        for( Long iSerie = inicioVentana; iSerie <= instante ; iSerie++ )
+        {
+        	if ( instante_frecuencia.containsKey( iSerie ) ){
+          	sumaFrecuencias += instante_frecuencia.get( iSerie );
+            ventanaTiempoFrecuencia.add( ( double )instante_frecuencia.get( iSerie ) );
+          }
+          else{
+            sumaFrecuencias += 0.0; /* No existe frecuencia para ese minuto*/
+            ventanaTiempoFrecuencia.add( ( double ) 0.0 );
+          }
+        }
+        promedio = sumaFrecuencias / largoVentanaTiempo;
+        double desviacionEstandar = 0.0;
+        double sumaDesviaciones = 0.0;
+        for( int i = 0 ; i < ventanaTiempoFrecuencia.size( ); i++ )
+        {
+          sumaDesviaciones += Math.pow( ventanaTiempoFrecuencia.get( i ) - promedio, 2 );
+        }
+				ventanaTiempoFrecuencia.clear( ); /* Se borra de memoria */
+        desviacionEstandar = sumaDesviaciones / largoVentanaTiempo;
+        desviacionEstandar = Math.sqrt( desviacionEstandar );
+				double coeficienteVariacion = desviacionEstandar / promedio ;
+				coeficienteVariacion = redondear( coeficienteVariacion, 3 );
+
+				//addMinMaxWord( word,  coeficienteVariacion, minMaxWord );
+				asingMinMax(min, max, coeficienteVariacion );
+				//System.out.println( word + "\t" + coeficienteVariacion );
+			}
+		}
+	}
+
+	public static void asingMinMax( double min, double max, double cv ){
+		if ( min == null )
+			min =  cv;
+		if ( max == null )
+			max = cv;
+
+		if ( min > cv )
+			min =  cv;
+		if ( max < cv )
+			max = cv;
+
+	}
+
 
 	public static String generarCaracteristicasTemporales( HashMap< String,Map< Long,Integer > > series,
 																																				ArrayList < String >  bolsaPalabras, String text,
@@ -261,6 +366,7 @@ public class main
 				double coeficienteVariacion = desviacionEstandar / promedio ;
 				coeficienteVariacion = redondear( coeficienteVariacion, 3 );
 				vectorTemporalidad[ posicionPalabra ] = coeficienteVariacion;
+				//word
 			}
 		}
 		String vectorSalida = "";
@@ -533,7 +639,6 @@ public class main
     {
     	Map.Entry pair = ( Map.Entry ) it.next( );
       String word = ( String ) pair.getKey( );
-			//System.out.println( "Corrigiendo " + word );
       Map<Long, Integer > instante_frecuencia = series.get( word );
       for ( Long instante_minuto = lowerBoundSerie; instante_minuto <= upperBoundSerie ; instante_minuto++ )
       	if ( ! instante_frecuencia.containsKey( instante_minuto ) )
