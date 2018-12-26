@@ -8,18 +8,24 @@ echo "[ modelarSVM ][ Copy Data ][ Huracan ][ Irma ]"
 
 #Terremotos
 echo "[ modelarSVM ][ Copy Data ][ Terremoto ][ 2017 ]"
-#cp -fr ../Data/Terremotos/2017/Sept/07/vectorSVM/train ../MineriaDeDatos/SVM-Light/Twitter/Data/Terremoto/
-#cp -fr ../Data/Terremotos/2017/Sept/07/vectorSVM/test ../MineriaDeDatos/SVM-Light/Twitter/Data/Terremoto/
+cp -fr ../Data/Terremotos/2017/Sept/07/vectorSVM/train ../MineriaDeDatos/SVM-Light/Twitter/Data/Terremoto/
+cp -fr ../Data/Terremotos/2017/Sept/07/vectorSVM/test ../MineriaDeDatos/SVM-Light/Twitter/Data/Terremoto/
 
 #Nieve
 echo "[ modelarSVM ][ Copy Data ][ Nieve ][ 2017 ]"
-#cp -fr ../Data/Nieve/2017/Jul/vectorSVM/train ../MineriaDeDatos/SVM-Light/Twitter/Data/Nieve/
-#cp -fr ../Data/Nieve/2017/Jul/vectorSVM/test ../MineriaDeDatos/SVM-Light/Twitter/Data/Nieve/
+cp -fr ../Data/Nieve/2017/Jul/vectorSVM/train ../MineriaDeDatos/SVM-Light/Twitter/Data/Nieve/
+cp -fr ../Data/Nieve/2017/Jul/vectorSVM/test ../MineriaDeDatos/SVM-Light/Twitter/Data/Nieve/
 
 #Terremoto 2014
 echo "[ modelarSVM ][ Copy Data ][ Terremoto ][ 2014 ]"
 cp -fr ../Data/Terremotos/2014/vectorSVM/train ../MineriaDeDatos/SVM-Light/Twitter/Data/Terremoto_2014/
 cp -fr ../Data/Terremotos/2014/vectorSVM/test ../MineriaDeDatos/SVM-Light/Twitter/Data/Terremoto_2014/
+
+#Terremoto 2014
+echo "[ modelarSVM ][ Copy Data ][ Volcano ][ 2014 ]"
+Data/EN/Event/Volcano/2014/ago/
+cp -fr ../Data/EN/Event/Volcano/2014/ago/vectorSVM/train ../MineriaDeDatos/SVM-Light/Twitter/Data/Volcano/
+cp -fr ../Data/EN/Event/Volcano/2014/ago/vectorSVM/test ../MineriaDeDatos/SVM-Light/Twitter/Data/Volcano/
 
 cd ../MineriaDeDatos/SVM-Light/Twitter/Data
 
