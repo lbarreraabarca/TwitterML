@@ -14,6 +14,9 @@ args[ 4 ] : Listado de Verbos y sus conjunciones
 */
 public class main
 {
+	public static double minCV;
+	public static double maxCV;
+
 	public static void main( String[] args ) throws FileNotFoundException, IOException, InterruptedException
   {
   	if ( args.length != 12 )
@@ -22,6 +25,8 @@ public class main
    	}
     else
     {
+			minCV = -1;
+			maxCV = -1;
 			HashMap< String,Map< Long,Integer > > series = new HashMap< String, Map< Long ,Integer> >( ); /*Almacena la series de tiempos de todas las palabras*/
 			Boolean imprimeJunto = true;
 			HashMap< String, String > verbos = cargarVerbos( args[ 4 ] ); /* Listado de verbos con sus conjugaciones*/
@@ -33,7 +38,7 @@ public class main
 			HashMap < String, Integer > frecuenciaUserMentions = new HashMap < String, Integer >( );
 			ArrayList < String >  bolsaPalabras = new ArrayList< String >( );
 			HashMap < String, Integer > frecuenciaPalabras = new HashMap < String, Integer >( );
-			HashMap < String, ArrayList< Double > > minMaxWord = new HashMap< String, ArrayList< Double > > ( );
+
       BufferedReader br = null;
       PrintWriter pw = null;
 			PrintWriter pwBOW = null;
@@ -76,7 +81,7 @@ public class main
 
 				System.out.print( "[ generarVector ][ Generando Bolsa de Palabras ]" );
 				bolsaPalabras = agregarBolsaPalabrasBolsa( bolsaPalabras, frecuenciaPalabras );
-				minMaxWord = iniciarlizarMinMaxWord( bolsaPalabras, minMaxWord );
+
 				System.out.println( "[ OK ]" );
 
 
@@ -96,11 +101,12 @@ public class main
          	String ts_minutos = data[ 1 ]; /* instante del tuit*/
          	String text = data[ 8 ]; /* cuerpo del tuit */
 					text =  steamingEspañol( text, verbos );
+					getMinMaxCVWord( series, bolsaPalabras, text, ts_minutos, largoVentanaTiempo, false );
 
-					getMinMaxCVWord( series, bolsaPalabras, text, ts_minutos, largoVentanaTiempo, false, minMaxWord );
 				}
 				br3.close( );
-				imprimeMinMax( minMaxWord );
+
+				System.out.println( "[ generarVector ][ Min : " + minCV + " ][ Max : " + maxCV +  " ]" );
 
 
 				System.out.println( "[ generarVector ][ Cargar Tuits en memoria para vectorizar ]" );
@@ -182,14 +188,6 @@ public class main
 			pwB.println( bolsa.get( i ) );
 	}
 
-	public static HashMap< String, ArrayList< Double > > iniciarlizarMinMaxWord( ArrayList < String > bolsaPalabras, HashMap< String, ArrayList< Double > > minMaxWord )
-	{
-		for( int i = 0; i < bolsaPalabras.size(); i++ ){
-			ArrayList< Double > aux =  new ArrayList< Double >();
-			minMaxWord.put( bolsaPalabras.get( i ), aux );
-		}
-		return minMaxWord;
-	}
 
 	public static String generarCaracteristicasUserMentions( ArrayList < String >  bolsaUserMentions, String user_mentions, int inicioVectorUserMentions )
 	{
@@ -215,18 +213,6 @@ public class main
 				vectorSalida= vectorSalida + posicionVector + ":" + vectorUserMentions[ i ] + " ";
 			}
 		return vectorSalida;
-	}
-
-	public static void imprimeMinMax( HashMap < String, ArrayList< Double > > minMaxWord ){
-		Iterator it = minMaxWord.entrySet( ).iterator( );
-		while( it.hasNext( ) )
-		{
-			Map.Entry pair = ( Map.Entry ) it.next( );
-			String word = ( String ) pair.getKey( );
-			ArrayList< Double > aux = ( ArrayList< Double > ) minMaxWord.get( word );
-			if( aux.size( ) > 0 )
-				System.out.println( word + "\t" + aux.get( 0 ) + "\t" + aux.get( 1 ) );
-		}
 	}
 
 	public static String generarCaracteristicasHashTags( ArrayList < String >  bolsaPalabrasHashtags, String hashtags, int inicioVectorHashtags )
@@ -298,23 +284,21 @@ public class main
 				double coeficienteVariacion = desviacionEstandar / promedio ;
 				coeficienteVariacion = redondear( coeficienteVariacion, 3 );
 
-				//addMinMaxWord( word,  coeficienteVariacion, minMaxWord );
-				asingMinMax(min, max, coeficienteVariacion );
-				//System.out.println( word + "\t" + coeficienteVariacion );
+				asingMinMax( coeficienteVariacion );
 			}
 		}
 	}
 
-	public static void asingMinMax( double min, double max, double cv ){
-		if ( min == null )
-			min =  cv;
-		if ( max == null )
-			max = cv;
+	public static void asingMinMax( double cv ){
+		if ( minCV == -1 )
+			minCV =  cv;
+		if ( maxCV == -1 )
+			maxCV = cv;
 
-		if ( min > cv )
-			min =  cv;
-		if ( max < cv )
-			max = cv;
+		if ( minCV > cv )
+			minCV =  cv;
+		if ( maxCV < cv )
+			maxCV = cv;
 
 	}
 
@@ -365,7 +349,10 @@ public class main
         desviacionEstandar = Math.sqrt( desviacionEstandar );
 				double coeficienteVariacion = desviacionEstandar / promedio ;
 				coeficienteVariacion = redondear( coeficienteVariacion, 3 );
-				vectorTemporalidad[ posicionPalabra ] = coeficienteVariacion;
+				if( coeficienteVariacion > 0 )
+					vectorTemporalidad[ posicionPalabra ] = ( ( coeficienteVariacion - minCV ) / ( maxCV - minCV  ) );
+				else
+					vectorTemporalidad[ posicionPalabra ] = 0.0;
 				//word
 			}
 		}
