@@ -27,7 +27,7 @@ Se debe contar con una máquina Linux, sobre ella instalar los siguientes compon
   [Nieve](https://www.24horas.cl/nacional/nevazon-en-santiago-seria-la-mas-grande-en-santiago-en-45-anos-2448957) | Stgo, Chile | Jul 2017
   
   
-  Una vez descargado el conjunto de datos [Data.tar.gz](https://drive.google.com/open?id=1EGA9rgxoh-tAEjNWodRetw-Jjvw5rwEL), se deben realizar los siguientes pasos:
+  Una vez descargado el conjunto de datos [Data.tar.gz](https://drive.google.com/open?id=1qkO6FAfsU-tuERFp5WevLJkTFBQhja-L), se deben realizar los siguientes pasos:
   
 ``` Bash
  $ tar xzvf Data.tar.gz
