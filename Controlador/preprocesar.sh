@@ -65,6 +65,16 @@ do
 	echo "[ LimpiarDatosEN ][ 4 ][ Ejecucion LimpiarDatosEN Terminada ][ "$input" ]"
 done
 
+#Earthquake 2014
+for input in ../../Data/EN/*/*/*/*/*/json/*.json
+do
+	echo "[ LimpiarDatosEN ][ 5 ][ Ejecutando LimpiarDatosEN ][ "$input" ]"
+	path_output=$(echo $input | awk '{split($0, data, "json"); print data[1]}')
+	output_file=$(echo $input | awk '{split($0, data, "/"); split(data[11], d, "."); print d[1]}')
+	make run IN=$input OUT=$path_output"csv/"$output_file".csv" STOPWORDS="../../Data/Stopwords/en/listado.stopwords"
+	echo "[ LimpiarDatosEN ][ 5 ][ Ejecucion LimpiarDatosEN Terminada ][ "$input" ]"
+done
+
 now="$(date)"
 cd ../../Controlador/
 echo "[ LimpiarDatos ][ cd ../../Controlador/ ]"

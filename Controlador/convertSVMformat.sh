@@ -41,6 +41,16 @@ do
   echo "[ convertSVMformat ][ 4 ][ Ejecutando convertSVMformat Terminada ][ "$j" ]"
 done
 
+#Earthquake 2014
+for j in ../Data/EN/*/*/*/*/*/vectorInicial/*
+do
+  echo "[ convertSVMformat ][ 5 ][ Ejecutando convertSVMformat ][ "$j" ]"
+  path_output2=$(echo $j | awk '{split($0, data, "vectorInicial"); print data[1]}')
+  file=$(echo $j | awk '{split($0, data, "vectorInicial"); print data[2]}')
+  cat $j | awk '{FS="\t"; if($2=="CRI"){ print "1;"$3}else{ print "-1;"$3}}' > $path_output2"vectorSVM"$file
+  echo "[ convertSVMformat ][ 5 ][ Ejecutando convertSVMformat Terminada ][ "$j" ]"
+done
+
 
 now="$(date)"
 echo "[ convertSVMformat ][ convertSVMformat.sh Terminado ][ "$now" ]"

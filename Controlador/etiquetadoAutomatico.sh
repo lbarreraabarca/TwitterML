@@ -48,6 +48,16 @@ do
 	echo "[ EtiquetadoAutomatico ][ 4 ][ Ejecucion EtiquetadoAutomatico Terminada ][ "$input" ]"
 done
 
+# Earthquake 2014
+for input in ../../Data/EN/*/*/*/*/*/csv/*.csv
+do
+  echo "[ EtiquetadoAutomatico ][ 5 ][ Ejecutando EtiquetadoAutomatico ][ "$input" ]"
+  path_output=$(echo $input | awk '{split($0, data, "csv"); print data[1]}')
+	output_file=$(echo $input | awk '{split($0, data, "csv"); print data[2]}')
+	make run IN=$input WORD=$path_output"keywords/keywords.word" OUT=$path_output"label/"$output_file".csv" TS=$(cat $path_output"horaCrisis/tsMinutos.tm") TW="5" TSF=$path_output"frecuenciaSerie/analisis-hora/frecuencia/serie" TSM=$path_output"frecuenciaSerie/analisis-hora/modelo/model"
+	echo "[ EtiquetadoAutomatico ][ 5 ][ Ejecucion EtiquetadoAutomatico Terminada ][ "$input" ]"
+done
+
 now="$(date)"
 cd ../../Controlador/
 echo "[ EtiquetadoAutomatico ][ cd ../../Controlador/ ]"
