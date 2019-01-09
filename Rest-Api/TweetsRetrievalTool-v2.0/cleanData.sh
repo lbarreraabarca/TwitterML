@@ -1,6 +1,6 @@
 
-$logdata=log_proceso.dat
-if [ -f "$logdata" ]
+$logdata="log_proceso.dat"
+if [ -f $logdata ]
 then
 	rm log_proceso.dat
 fi
