@@ -350,7 +350,7 @@ public class main
 				double coeficienteVariacion = desviacionEstandar / promedio ;
 				coeficienteVariacion = redondear( coeficienteVariacion, 3 );
 				if( coeficienteVariacion > 0 )
-					vectorTemporalidad[ posicionPalabra ] = ( ( coeficienteVariacion - minCV ) / ( maxCV - minCV  ) );
+					vectorTemporalidad[ posicionPalabra ] = redondear( ( ( coeficienteVariacion - minCV ) / ( maxCV - minCV  ) ), 4 );
 				else
 					vectorTemporalidad[ posicionPalabra ] = 0.0;
 				//word
