@@ -1,0 +1,15 @@
+{
+    "name": "home/monTweet System",
+    "description": "Sistema de monitorizacion online de Twitter",
+    "homepage": "localhost",
+    "keywords": ["backend", "admin", "template", "theme", "web"],
+    "license": "ISC",
+    "authors": [
+        {
+            "name": "Luis Barrera Abarca",
+            "email": "lu.barreraabarca@gmail.com",
+            "homepage": "null",
+            "role": "Developer"
+        }
+    ]
+}

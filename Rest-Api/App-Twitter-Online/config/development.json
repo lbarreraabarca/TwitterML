@@ -1,0 +1,46 @@
+{
+
+    "databaseConfig": {
+        "mongoDbUrl": "mongodb://localhost:27017/",
+        "dbName": "unab-database-example"
+    },
+
+    "middleware": {
+
+        "appsec": {
+            "enabled": false,
+            "priority": 110,
+            "module": {
+                "name": "lusca",
+                "arguments": [
+                    {
+                        "csrf": false,
+                        "p3p": false,
+                        "xframe": "SAME-ORIGIN",
+                        "csp": false
+                    }
+                ]
+            }
+        },
+
+        "devtools": {
+            "enabled": true,
+            "priority": 35,
+            "module": {
+                "name": "construx",
+                "arguments": [
+                    "path:./public",
+                    "path:./.build",
+                    {
+
+
+                        "copier": {
+                            "module": "construx-copier",
+                            "files": "**/*"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

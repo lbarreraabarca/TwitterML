@@ -1,0 +1,10 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+}
+
+#chartdiv {
+	width: 100px;
+	height: 100px;
+}
