@@ -1,5 +1,5 @@
 now="$(date)"
-echo "[ getFiles ][ getFiles.sh Inicio ][ "$now" ]"
+echo "[ getResulMALLET ][ getResulMALLET.sh Inicio ][ "$now" ]"
 
 cd ../MineriaDeDatos/Mallet/Twitter/Data
 
@@ -21,7 +21,7 @@ cd ../../../../Controlador
 cp resultados.dat "resultados/resultados-MALLET-TW-"$1".dat"
 
 now="$(date)"
-echo "[ getFiles ][ getFiles.sh Terminado ][ "$now" ]"
+echo "[ getResulMALLET ][ getResulMALLET.sh Terminado ][ "$now" ]"
 
 
 
