@@ -16,6 +16,12 @@ do
   echo "--------------------"   >> ../../../../Controlador/resultados.dat
 done
 
+cd ../../../../Controlador
+
+cp resultados.dat "resultados/resultados-MALLET-TW-"$1".dat"
+
 now="$(date)"
 echo "[ getFiles ][ getFiles.sh Terminado ][ "$now" ]"
-cd ../../../../Controlador
+
+
+

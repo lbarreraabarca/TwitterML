@@ -1,9 +1,9 @@
-add now="$(date)"
+now="$(date)"
 echo "[ modelar ][ modelar.sh Inicio ][ "$now" ]"
 
 #Huracanes
-echo "[ modelar ][ Copy Data ][ Huracan ][ Irma ]"
-cp -fr ../Data/Huracanes/2017/Sept/Irma/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/
+#echo "[ modelar ][ Copy Data ][ Huracan ][ Irma ]"
+#cp -fr ../Data/Huracanes/2017/Sept/Irma/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorInicial/
 #cp -fr ../Data/Huracanes/2017/Sept/Irma/vectorFinal/* ../MineriaDeDatos/Mallet/Twitter/Data/Huracanes/vectorFinal/
 
 #Terremotos
@@ -12,8 +12,8 @@ cp -fr ../Data/Terremotos/2017/Sept/07/vectorInicial/* ../MineriaDeDatos/Mallet/
 # Feat Selection # cp -fr ../Data/Terremotos/2017/Sept/07/vectorFinal/* ../MineriaDeDatos/Mallet/Twitter/Data/Terremoto/vectorFinal/
 
 #Nieve
-echo "[ modelar ][ Copy Data ][ Nieve ][ 2017 ]"
-cp -fr ../Data/Nieve/2017/Jul/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/
+#echo "[ modelar ][ Copy Data ][ Nieve ][ 2017 ]"
+#cp -fr ../Data/Nieve/2017/Jul/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorInicial/
 # Feat Selection #cp -fr ../Data/Nieve/2017/Jul/vectorFinal/* ../MineriaDeDatos/Mallet/Twitter/Data/Nieve/vectorFinal/
 
 #Terremoto 2014

@@ -8,7 +8,7 @@ echo "[ generarVector ][  Compilacion make ]"
 make clean
 make
 
-largoVentana=20
+largoVentana=5	# este parametro es el que se debe variar para obtener los resultados. TW
 
 # Terremoto 2017 y Huracan
 for input in ../../Data/*/*/*/*/label/*

@@ -41,11 +41,11 @@ do
 	pathOutput=$(echo $i | awk '{split( $0, data, "train"); print data[1]}' )
 	file=$(echo $i | awk '{split( $0, data, "train"); print data[2] }' )
 	echo "[ modelarSVM ][ SVM-Light ][ Generar Modelo ][ "$i" ]"
-	../../svm_learn $i $pathOutput"model/modelo.dat"
+	../../svm_perf_learn -c 20.0 $i $pathOutput"model/modelo.dat"
 	echo "[ modelarSVM ][ SVM-Light ][ Clasificar ][ "$i" ]"
 	cat $pathOutput"test"$file"test" | awk '{FS=";"; if($1 == -1 ){print "0 "$2} if($1 == 1){print $1" "$2}}' | sort -k1 > tmpT
 	mv tmpT $pathOutput"test"$file"test"
-	../../svm_classify $pathOutput"test"$file"test" $pathOutput"model/modelo.dat" $pathOutput"salida.dat" > $pathOutput"result/result.dat"
+	../../svm_perf_classify $pathOutput"test"$file"test" $pathOutput"model/modelo.dat" $pathOutput"salida.dat" > $pathOutput"result/result.dat"
 	#echo $i
 done
 
