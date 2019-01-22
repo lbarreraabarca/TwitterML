@@ -3,14 +3,14 @@ F1 : 91.82
 Accuracy : 84.88
 --------------------
 Terremoto_2014/
-F1 : 0.09
-Accuracy : 55.95
+F1 : 0.20
+Accuracy : 55.96
 --------------------
 Terremoto/
-F1 : 71.56
-Accuracy : 55.78
+F1 : 71.71
+Accuracy : 55.90
 --------------------
 Volcano/
-F1 : 0.79
-Accuracy : 59.70
+F1 : 1.34
+Accuracy : 59.77
 --------------------

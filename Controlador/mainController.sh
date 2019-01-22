@@ -1,10 +1,10 @@
 now="$(date)"
 echo "[ mainController ][ mainController.sh Inicio ][ "$now" ]"
 
-./main 5
-./main 10
-./main 15
-./main 20
+./main.sh 5
+./main.sh 10
+./main.sh 15
+./main.sh 20
 
 now="$(date)"
 echo "[ mainController ][ mainController.sh Terminado ][ "$now" ]"

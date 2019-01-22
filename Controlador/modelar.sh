@@ -25,7 +25,7 @@ echo "[ modelar ][ Copy Data ][ Volcano ][ 2014 ]"
 cp -fr ../Data/EN/Event/Volcano/2014/ago/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Volcano/vectorInicial/
 
 
-#Volcano 2014
+#Earthquake 2014
 echo "[ modelar ][ Copy Data ][ Earthquake ][ 2014 ]"
 cp -fr ../Data/EN/Event/Earthquake/2014/ago/24/vectorInicial/* ../MineriaDeDatos/Mallet/Twitter/Data/Earthqueake_2014/vectorInicial/
 

@@ -1,0 +1,96 @@
+earthquake-California-2014.vectorMaxEnt70
+Summary. test f1(CRI) mean = 0.9180135762772419 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.05408079142621599 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.849105733824303 stddev = 0.0 stderr = 0.0
+--------------------
+earthquake-California-2014.vectorMaxEnt80
+Summary. test f1(CRI) mean = 0.920767306088407 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.057971014492753624 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.8538288554858563 stddev = 0.0 stderr = 0.0
+--------------------
+earthquake-California-2014.vectorNaiveBayes70
+Summary. test f1(CRI) mean = 0.9181333486212234 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.08870453095086152 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.8497632824829038 stddev = 0.0 stderr = 0.0
+--------------------
+earthquake-California-2014.vectorNaiveBayes80
+Summary. test f1(CRI) mean = 0.9190559027554066 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.08763011377390463 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.8513039018424271 stddev = 0.0 stderr = 0.0
+--------------------
+earthquake-California-2014.vectorWinnow70
+Summary. test f1(CRI) mean = 0.9087045763348848 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.07903178769320501 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.8338769068911099 stddev = 0.0 stderr = 0.0
+--------------------
+earthquake-California-2014.vectorWinnow80
+Summary. test f1(CRI) mean = 0.913036879647898 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.12251148545176112 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.8417564208782105 stddev = 0.0 stderr = 0.0
+--------------------
+terremoto-chile2014.vectorMaxEnt70
+Summary. test f1(CRI) mean = 0.4164547117062199 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.6942823161465101 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.5987685992816829 stddev = 0.0 stderr = 0.0
+--------------------
+terremoto-chile2014.vectorMaxEnt80
+Summary. test f1(CRI) mean = 0.4202251093185154 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.6968694030158716 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.6018882854758111 stddev = 0.0 stderr = 0.0
+--------------------
+terremoto-chile2014.vectorNaiveBayes70
+Summary. test f1(CRI) mean = 0.4032101062103874 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.7006077048290831 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.6012545256144357 stddev = 0.0 stderr = 0.0
+--------------------
+terremoto-chile2014.vectorNaiveBayes80
+Summary. test f1(CRI) mean = 0.4016990687796112 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.7029749545808461 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.6030264598441243 stddev = 0.0 stderr = 0.0
+--------------------
+terremoto-chile2014.vectorWinnow70
+Summary. test f1(CRI) mean = 0.46419176698081976 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.6201714088124877 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.5554672312995469 stddev = 0.0 stderr = 0.0
+--------------------
+terremoto-chile2014.vectorWinnow80
+Summary. test f1(CRI) mean = 0.45374670006092194 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.6353160220894606 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.5626266896469492 stddev = 0.0 stderr = 0.0
+--------------------
+terremoto-mexico1.vectorMaxEnt70
+Summary. test f1(CRI) mean = 0.7626140017059247 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.6035720155590861 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.7030470914127424 stddev = 0.0 stderr = 0.0
+--------------------
+terremoto-mexico1.vectorMaxEnt80
+Summary. test f1(CRI) mean = 0.7567700036760202 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.5894519131334022 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.6945213911972915 stddev = 0.0 stderr = 0.0
+--------------------
+terremoto-mexico1.vectorNaiveBayes70
+Summary. test f1(CRI) mean = 0.7574526156178923 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.4925126903553299 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.6717759310557094 stddev = 0.0 stderr = 0.0
+--------------------
+terremoto-mexico1.vectorNaiveBayes80
+Summary. test f1(CRI) mean = 0.7568306010928961 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.49287749287749283 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.6712834718374885 stddev = 0.0 stderr = 0.0
+--------------------
+terremoto-mexico1.vectorWinnow70
+Summary. test f1(CRI) mean = 0.7535069564217547 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.38517243851724386 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.6480968503129168 stddev = 0.0 stderr = 0.0
+--------------------
+terremoto-mexico1.vectorWinnow80
+Summary. test f1(CRI) mean = 0.7574939984279067 stddev = 0.0 stderr = 0.0 Summary. test f1(NOC) mean = 0.3626109777206991 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.6486611265004617 stddev = 0.0 stderr = 0.0
+--------------------
+Volcano-2014.vectorMaxEnt70
+Summary. test f1(NOC) mean = 0.7305448270194757 stddev = 0.0 stderr = 0.0 Summary. test f1(CRI) mean = 0.4353366626485276 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.6351802403204272 stddev = 0.0 stderr = 0.0
+--------------------
+Volcano-2014.vectorMaxEnt80
+Summary. test f1(NOC) mean = 0.7362304805713593 stddev = 0.0 stderr = 0.0 Summary. test f1(CRI) mean = 0.4147193123824872 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.6363484646194927 stddev = 0.0 stderr = 0.0
+--------------------
+Volcano-2014.vectorNaiveBayes70
+Summary. test f1(NOC) mean = 0.7369029275808937 stddev = 0.0 stderr = 0.0 Summary. test f1(CRI) mean = 0.31645316253002403 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.6200489541611037 stddev = 0.0 stderr = 0.0
+--------------------
+Volcano-2014.vectorNaiveBayes80
+Summary. test f1(NOC) mean = 0.7332640812557709 stddev = 0.0 stderr = 0.0 Summary. test f1(CRI) mean = 0.30391566265060244 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.6143190921228304 stddev = 0.0 stderr = 0.0
+--------------------
+Volcano-2014.vectorWinnow70
+Summary. test f1(NOC) mean = 0.7094183778822988 stddev = 0.0 stderr = 0.0 Summary. test f1(CRI) mean = 0.22467095194367923 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.5772696929238985 stddev = 0.0 stderr = 0.0
+--------------------
+Volcano-2014.vectorWinnow80
+Summary. test f1(NOC) mean = 0.7218643213265363 stddev = 0.0 stderr = 0.0 Summary. test f1(CRI) mean = 0.18832761157430114 stddev = 0.0 stderr = 0.0
+Summary. test accuracy mean = 0.5856975967957276 stddev = 0.0 stderr = 0.0
+--------------------
