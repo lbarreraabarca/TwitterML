@@ -20,7 +20,7 @@ public class main{
 
       fdrop = new File( arg[1] );
       fdrop.delete( );
-      
+
       if( arg.length == 4 )
       {
         Integer cantProxiesOK=0;
@@ -67,7 +67,7 @@ public class main{
       }
       else
       {
-        
+
         System.out.println("Cantidad de argumentos distinto de 2");
       }
     }
@@ -109,7 +109,7 @@ public class main{
 		//iniciar la descarga
 		final TwitterStream ts = new TwitterStreamFactory( cb.build() ).getInstance();
 		StatusListener listener;
-		
+
 		listener = new StatusListener( )
 		{
 				@Override
@@ -143,11 +143,11 @@ public class main{
 				}
 
 				@Override
-				public void onException( Exception ex ) 
+				public void onException( Exception ex )
 				{
 					//ex.printStackTrace( );
-					
-					synchronized( lock ) 
+
+					synchronized( lock )
 					{
 					  System.out.println( "\t\tPROBLEMA ");
 					  lock.notify( );
@@ -157,7 +157,7 @@ public class main{
 		};
 		ts.addListener( listener );
 		ts.sample( );
-		try 
+		try
 		{
 			synchronized( lock )
 		  	{
@@ -168,7 +168,7 @@ public class main{
 		      		System.out.println( "NOK!" );
 		  	}
 		}
-		catch (InterruptedException e) 
+		catch (InterruptedException e)
 		{
 			// TODO Auto-generated catch block
 			//System.out.println("Se esta cayendo en InterruptedException entre el OK.8 y OK.9");
@@ -184,7 +184,7 @@ public class main{
   }
 
 //*********************************************************************************************
-//Métodos estáticos:
+//Metodos estaticos:
 //*********************************************************************************************
   public static HashMap<String, Integer> CargarListadoProxies( String file_input ) throws IOException
   {
@@ -197,11 +197,11 @@ public class main{
     {
       archivo = new File ( file_input  );
       fr = new FileReader ( archivo );
-      br = new BufferedReader ( fr ); 
+      br = new BufferedReader ( fr );
       String linea;
       while( ( linea = br.readLine( ) ) != null )
       {
-        
+
         String[] parts = linea.split( " " );
         String proxy = parts[0];
         Integer puerto = Integer.parseInt( parts[1] );
@@ -229,19 +229,19 @@ public class main{
 		{
 			File file = new File( file_cta );
 			BufferedReader br = new BufferedReader( new FileReader( file ) );
-			String line;		
+			String line;
 			if ( cta_prueba == 0 )
 			{
 				line = br.readLine( );
 				cb.setOAuthConsumerKey( line );
 				System.out.println( "Cuenta : " + line );
-				
+
 				line = br.readLine( );
 		  	cb.setOAuthConsumerSecret( line );
-				
+
 				line = br.readLine( );
 		  	cb.setOAuthAccessToken( line );
-				
+
 				line = br.readLine( );
 		  	cb.setOAuthAccessTokenSecret( line );
 
@@ -255,16 +255,16 @@ public class main{
 				line = br.readLine( );
         cb.setOAuthConsumerKey( line );
         System.out.println( "Cuenta : " + line );
-        
+
         line = br.readLine( );
         cb.setOAuthConsumerSecret( line );
-        
+
         line = br.readLine( );
         cb.setOAuthAccessToken( line );
-        
+
         line = br.readLine( );
-        cb.setOAuthAccessTokenSecret( line ); 
-				
+        cb.setOAuthAccessTokenSecret( line );
+
 				cta_prueba++;
 			}
 			else if ( cta_prueba == 2 )
