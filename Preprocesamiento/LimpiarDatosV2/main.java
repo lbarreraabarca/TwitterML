@@ -86,7 +86,7 @@ public class main
 
   public static String eliminarSignosPuntuacion( String text )
   {
-    Pattern patron = Pattern.compile("[\"¡!¿?.+,;:'-_()`¨&$%¬~·]*");
+    Pattern patron = Pattern.compile("[\"\u00A1!\u00BF?.+,;:'-_()`\u00A8&$%\u00AC~\u00B7]*");
     Matcher encaja = patron.matcher( text );
     String resultado = encaja.replaceAll("");
     return resultado;
