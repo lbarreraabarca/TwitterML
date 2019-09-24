@@ -22,20 +22,20 @@ public class GetProxyList
     Boolean res;
     res = getUSProxy( bw );
     if( res ) System.out.println( "http://www.us-proxy.org/ OK" );
-    res = getUSProxyAr( bw );
-    if( res ) System.out.println( "http://www.proxys.com.ar/ OK" );
+    //res = getUSProxyAr( bw );
+    //if( res ) System.out.println( "http://www.proxys.com.ar/ OK" );
     //res = getIncloak ( bw );
     //if( res ) System.out.println( "https://hidemy.name/en/proxy-list/ OK" );
 	  res = getsocksProxy( bw );
     if( res ) System.out.println( "https://www.socks-proxy.net/ OK" );
 	  res = getfreeProxy( bw );
   	if( res ) System.out.println( "https://free-proxy-list.net/ OK" );
-    //res = getProxydb(bw) ; 
+    //res = getProxydb(bw) ;
     //if ( res ) System.out.println( "http://proxydb.net/ OK" );
 
 /*
     //TODO: por hacer
-		OK:	
+		OK:
 		getUSProxyAr (bw) (OK)
 		getUSProxy (bw) (OK)
 		getIncloak (bw) (OK)
@@ -44,7 +44,7 @@ public class GetProxyList
 		getProxydb(bw) (Revisar Estructura);
 
 		NOK:
-		gettorvpn(bw);	
+		gettorvpn(bw);
 		getfreeProxy(bw);
 */
 
@@ -137,7 +137,7 @@ public class GetProxyList
 		    	Jsoup.connect ("http://www.proxys.com.ar/").userAgent ("Mozilla").
 		    	timeout (5000).execute ();
 		  doc = res.parse ();
-			
+
      /* url = new URL ("http://www.proxys.com.ar/");
       doc = Jsoup.parse (url, 3000);*/
     }
@@ -195,7 +195,7 @@ public class GetProxyList
     	Element row = rows.get (i);	//se obtiene la fila "i"
     	Elements cols = row.select ("td");	//se obtiene columnas de esa fila
     	String ip = cols.get (0).text () + " " + cols.get (1).text () + "\n";
-      String[ ] data = ip.split( " " ); 
+      String[ ] data = ip.split( " " );
       String[ ] ipport = data[ 0 ].split( ":" ) ;
       bw.write( ipport[ 0 ] + " " + ipport[ 1 ] );
     	bw.write( ipport[ 0 ] + " " + ipport[ 1 ] );
@@ -323,4 +323,3 @@ public class GetProxyList
 
 
 }
-
