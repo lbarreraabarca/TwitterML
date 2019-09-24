@@ -27,7 +27,7 @@ head -n 10 proxies.test > proxies.dat
 
 # obtener proxies correctos
 CK_PROX=/home/centos/dev/git/TwitterML/Stream/DN-Twitter/checkProxy
-cp proxies.dat CK_PROX/proxies.dat
+cp $PCONTROL/proxies.dat $CK_PROX/proxies.dat
 cd $CK_PROX
 echo "cd $CK_PROX"
 
