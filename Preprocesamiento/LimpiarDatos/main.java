@@ -243,7 +243,7 @@ public class main
 		while( st.hasMoreTokens( ) )
     {
       String word = st.nextToken( );
-    	word = word.replaceAll( "-|:|,|\/|'|!|\u00BF|\u00A1|;|&|\u00B0|\u00BA|\\\\.|\\\\?|\\\\)|\\\\(|\\\\||\\\\*|%|=|\u00AC", " " );
+    	word = word.replaceAll( "-|:|,|/|'|!|\u00BF|\u00A1|;|&|\u00B0|\u00BA|\\\\.|\\\\?|\\\\)|\\\\(|\\\\||\\\\*|%|=|\u00AC", " " );
     	word = word.replaceAll( "\u00E1", "a" );
     	word = word.replaceAll( "\u00E9", "e" );
     	word = word.replaceAll( "\u00ED", "i" );
