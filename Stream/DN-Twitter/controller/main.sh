@@ -1,10 +1,10 @@
 #!/bin/bash
 # PATH DE CONTROLLER
 PCONTROL=/home/centos/dev/git/TwitterML/Stream/DN-Twitter/controller
+cd $PCONTROL
+echo "cd $PCONTROL"
 
-rm -fr prox* ok_proxies.dat tmp.out working_data/*
 rm output* working_data/*
-
 
 # NUMERO DE INSTANCIAS
 N=5
@@ -12,7 +12,7 @@ N=5
 # obtener listado de proxies
 JSOUP=/home/centos/dev/git/TwitterML/Stream/DN-Twitter/getProxiesJSOUP
 cd $JSOUP
-echo "$JSOUP"
+echo "cd $JSOUP"
 
 make clean
 make
@@ -22,12 +22,12 @@ mv $JSOUP/proxies.dat $PCONTROL
 # testing
 cd $PCONTROL
 mv proxies.dat proxies.test
-head -n 100 proxies.test > proxies.dat
+head -n 10000 proxies.test > proxies.dat
 
 # obtener proxies correctos
 CK_PROX=/home/centos/dev/git/TwitterML/Stream/DN-Twitter/checkProxy
 cd $CK_PROX
-echo "cd CK_PROX"
+echo "cd $CK_PROX"
 
 make clean
 make
