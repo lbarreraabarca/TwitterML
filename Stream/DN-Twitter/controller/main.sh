@@ -22,7 +22,7 @@ mv $JSOUP/proxies.dat $PCONTROL
 # testing
 cd $PCONTROL
 mv proxies.dat proxies.test
-head -n 10000 proxies.test > proxies.dat
+head -n 10 proxies.test > proxies.dat
 
 # obtener proxies correctos
 CK_PROX=/home/centos/dev/git/TwitterML/Stream/DN-Twitter/checkProxy
