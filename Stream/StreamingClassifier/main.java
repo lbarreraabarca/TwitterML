@@ -63,12 +63,12 @@ public class main
 					/* TODO: Consultar a la base de datos, para el intervalo [ts_minutos - 4, ts_minutos] y conjunto dato Definido. Luego esa data escribirla a un archivo temporal. La base de datos entrega el input.... */
 					consultarBaseDeDatos( Long.parseLong("25279119"), args[ 3 ], args[ 0 ], Long.parseLong( args[ 5 ] ) );
 					System.out.println( " OK !" );
-					leerVectorizarInstancias( args[ 0 ], args[ 2 ], series,  args[ 5 ], verbos, Long.parseLong("25279119") /*ts_minutos_main*/,  palabras_Busqueda, bolsaPalabras );					
+					leerVectorizarInstancias( args[ 0 ], args[ 2 ], series,  args[ 5 ], verbos, Long.parseLong("25279119") /*ts_minutos_main*/,  palabras_Busqueda, bolsaPalabras );
 					System.out.println( "OK !");
 					/* TODO: Ejecutar el modelo.*/
 					ejecutarClasificacion( args[ 2 ], args[ 6 ], args[ 7 ] );
 					/* TODO: Leer el archivo entregado por el modelo, y actualizar los tuits con el datos que fueron etiquetados.*/
-					System.out.print( "Escribir en la Base de Datos" ); 
+					System.out.print( "Escribir en la Base de Datos" );
 					escribirBaseDatos( args[ 6 ], args[ 0 ] );
 					System.out.println( " OK!");
 					ts_minutos_anterior = ts_minutos_main;
@@ -104,12 +104,12 @@ public class main
 						if( data[ 1 ].equals( "CRISIS" ) ) ponderacionCrisis = Double.parseDouble( data[ 2 ] );
 						else if ( data[ 3 ].equals( "CRISIS" ) ) ponderacionCrisis = Double.parseDouble( data[ 4 ] );
 						else if ( data[ 5 ].equals( "CRISIS" ) ) ponderacionCrisis = Double.parseDouble( data[ 6 ] );
-						
+
 						/* PRELUDIO */
 						if( data[ 1 ].equals( "PRELUDIO" ) ) ponderacionPreludio = Double.parseDouble( data[ 2 ] );
             else if ( data[ 3 ].equals( "PRELUDIO" ) ) ponderacionPreludio = Double.parseDouble( data[ 4 ] );
             else if ( data[ 5 ].equals( "PRELUDIO" ) ) ponderacionPreludio = Double.parseDouble( data[ 6 ] );
-						
+
 						/* PRECRISIS */
 						if( data[ 1 ].equals( "PRECRISIS" ) ) ponderacionPrecrisis = Double.parseDouble( data[ 2 ] );
             else if ( data[ 3 ].equals( "PRECRISIS" ) ) ponderacionPrecrisis = Double.parseDouble( data[ 4 ] );
@@ -121,7 +121,7 @@ public class main
               etiquetaSeleccionada = "PRELUDIO";
 						else if( ponderacionPrecrisis >= ponderacionPreludio && ponderacionPrecrisis >= ponderacionCrisis )
               etiquetaSeleccionada = "PRECRISIS";
-						
+
 						etiquetas.add( etiquetaSeleccionada );
 				}
 				else
@@ -144,12 +144,12 @@ public class main
 		    		String retweet_count = data[ 7 ]; /* cantidad de retuits*/
 		    		String text = data[ 8 ]; /* cuerpo del tuit */
 		    		String horaUTC = data[ 9 ]; /* hora del tuit segun el meridiano de greenwich*/
-		    		String etiqueta = data[ 10 ]; /* Etiqueta del tuit puede ser PRECRISIS, CRISIS, PRELUDIO. */	
+		    		String etiqueta = data[ 10 ]; /* Etiqueta del tuit puede ser PRECRISIS, CRISIS, PRELUDIO. */
 						String conjuntoDato = data[ 11 ]; /*Conjunto dato que se quiere almacenar*/
 						writeTwitterMongoDBClass( Long.parseLong( id_tuit ), Long.parseLong( ts_minutos ), hashtags, user_mentions, time_zone,
-                                     	Long.parseLong( followers_count ), Long.parseLong( retweet_count ), text, horaUTC, 
+                                     	Long.parseLong( followers_count ), Long.parseLong( retweet_count ), text, horaUTC,
 																			etiquetas.get( contadorLineas ), conjuntoDato );
-						
+
 						contadorLineas++;
 			}
 			brInstances.close( );
@@ -191,7 +191,7 @@ public class main
 					String horaUTC = ( String )jsonObject.get( "horaUTC" );
 					String etiqueta = ( String )jsonObject.get( "etiqueta" );
 					if( etiqueta.equals( "" )  ) etiqueta = "nullLabel";
-					pw.println( idTuit + "\t" + ts_minutos + "\t" + hashtags + "\t" + userMentions + "\t" + location  + "\t" + 
+					pw.println( idTuit + "\t" + ts_minutos + "\t" + hashtags + "\t" + userMentions + "\t" + location  + "\t" +
 														timeZone + "\t" + followersCount + "\t" + retweetCount + "\t" + text +  "\t" + horaUTC + "\t" + etiqueta + "\t"
 														+ conjuntoDato );
 				}
@@ -205,9 +205,9 @@ public class main
 		{
 		  e.printStackTrace();
    	}
-	} 
+	}
 
-	public static void writeTwitterMongoDBClass( Long idTuit, Long ts_minutos, String hashtags, String userMentions, String timeZone, 
+	public static void writeTwitterMongoDBClass( Long idTuit, Long ts_minutos, String hashtags, String userMentions, String timeZone,
 																								Long followersCount, Long retweetCount, String text, String horaUTC, String etiqueta,
 																								String conjuntoDato )
 	{
@@ -247,7 +247,7 @@ public class main
 			BasicDBObject = BasicPut.invoke( BasicDBObject, "etiqueta", etiqueta );
 			BasicDBObject = BasicPut.invoke( BasicDBObject, "conjuntoDato", conjuntoDato );
 			BasicDBObject = BasicPut.invoke( BasicDBObject, "ts_day", ts_day );
-			
+
 			/*Clase WriteConcern*/
 			Class classWriteConcern = classloader.loadClass( "com.mongodb.WriteConcern" );
 			Field fieldWriteConcernSAFE = classWriteConcern.getField( "SAFE" );
@@ -270,7 +270,7 @@ public class main
 
 	public static void ejecutarClasificacion( String pathVectores, String pathArchivosClasificados, String pathModel ) throws IOException
 	{
-		String[] cmd  = {"../../MineriaDeDatos/Mallet/bin/mallet", "classify-file" , "--input" , pathVectores, "--output", pathArchivosClasificados, 
+		String[] cmd  = {"../../MineriaDeDatos/Mallet/bin/mallet", "classify-file" , "--input" , pathVectores, "--output", pathArchivosClasificados,
 										"--classifier", pathModel };
 		Process pb = Runtime.getRuntime( ).exec( cmd );
 		BufferedReader stdInput = new BufferedReader(new InputStreamReader( pb.getInputStream( ) ) );
@@ -282,14 +282,14 @@ public class main
 		stdError.close( );
 		System.out.println( "Clasificacion OK!" );
 	}
-	
+
 	public static void leerVectorizarInstancias( String pathInstancias, String pathEscritura, HashMap< String,Map< Long,Integer > > series, String ventana, HashMap< String, String > verbos, Long ts_minutos_main, ArrayList < String >  palabras_Busqueda, ArrayList < String > bolsaPalabras )
 	{
 		BufferedReader br = null;
 		String linea = "";
 		System.out.print( "Cargando en Memoria Series de Tiempo ");
 		try
-		{	
+		{
 			br = new BufferedReader( new FileReader( new File( pathInstancias ) ) ); /* Archivo de entrada que contiene los tuits en formato CSV*/
 			Long largoVentanaTiempo = Long.parseLong( ventana ); /*Controla la cantidad de minutos que tendra la ventana de tiempo*/
       while( ( linea = br.readLine( ) ) != null)
@@ -300,7 +300,7 @@ public class main
 				String hashtags = data[ 2 ]; /* conjunto de hashtags del tuit*/
 				String user_mentions = data[ 3 ]; /* conjunto de usuarios mencionados */
 				String text = data[ 8 ]; /* cuerpo del tuit */
-				text =  steamingEspañol( text, verbos ); /* Permite obtener verbos en infinitivo o sustantivos en singular. */
+				text =  steamingEspanol( text, verbos ); /* Permite obtener verbos en infinitivo o sustantivos en singular. */
 				insertarSerie( text, series, ts_minutos ); /* Procesamiento de series de tiempo */
       }
 			Long upperBoundSerie = ts_minutos_main; /* Obtiene el minuto maximo del conjunto de tuits*/
@@ -324,17 +324,17 @@ public class main
 		    String text = data[ 8 ]; /* cuerpo del tuit */
 		    String horaUTC = data[ 9 ]; /* hora del tuit segun el meridiano de greenwich*/
 		    String etiqueta = data[ 10 ]; /* Etiqueta del tuit puede ser PRECRISIS, CRISIS, PRELUDIO. */
-				text =  steamingEspañol( text, verbos );	
-				/* TODO: Metodo para las características Estructurales */
+				text =  steamingEspanol( text, verbos );
+				/* TODO: Metodo para las caracteristicas Estructurales */
 				//String estructurales = generarCaracteristicasEstructurales( palabras_Busqueda, user_mentions, followers_count, retweet_count, text, ts_minutos,series, largoVentanaTiempo );
-				/*TODO: Metodo para las características Temporales */
-				String temporales = generarCaracteristicasTemporales( series, bolsaPalabras, text, ts_minutos, largoVentanaTiempo );			
+				/*TODO: Metodo para las caracteristicas Temporales */
+				String temporales = generarCaracteristicasTemporales( series, bolsaPalabras, text, ts_minutos, largoVentanaTiempo );
 				/*TODO: Metodo para las caracteristicas Bolsa de Hashtags */
 				//String hashTagsCaracteristicas = generarCaracteristicasHashTags( bolsaPalabrasHashtags, hashtags, bolsaPalabras.size( ) + 12 );
 				//String hashTagsCaracteristicas = generarCaracteristicasHashTags( bolsaPalabrasHashtags, hashtags, 1 );
 				/*TODO: Metodo para las caracteristicas Bolsa de User Mentions */
 				//String userMentionsCaracteristicas = generarCaracteristicasUserMentions( bolsaUserMentions, user_mentions, bolsaPalabras.size( ) + 12 + bolsaPalabrasHashtags.size( ) );
-				//String userMentionsCaracteristicas = generarCaracteristicasUserMentions( bolsaUserMentions, user_mentions, 1 );				
+				//String userMentionsCaracteristicas = generarCaracteristicasUserMentions( bolsaUserMentions, user_mentions, 1 );
 				//String vectorFinal = estructurales + temporales + hashTagsCaracteristicas + userMentionsCaracteristicas ;
 				String vectorFinal = /*estructurales +*/ temporales; //+ hashTagsCaracteristicas + userMentionsCaracteristicas ;
 				//System.out.println(  id_tuit  + "\t" + etiqueta  + "\t" + vectorFinal );
@@ -345,11 +345,11 @@ public class main
 		}
 		catch( Exception lectura )
 		{
-			lectura.printStackTrace( );	
+			lectura.printStackTrace( );
 		}
 
 	}
-	
+
 	public static HashMap < String, String > cargarVerbos( String archivoEntrada ) throws FileNotFoundException, IOException
   {
     HashMap < String, String > listadoVerbos = new HashMap< String, String >( );
@@ -375,13 +375,13 @@ public class main
 
 
 	/* Funcion que permite llevar verbos a infinitivo y sustantivos en plurales a singulares.  */
-	//public static String steamingEspañol( String text, ArrayList < String > verbosConjugados, ArrayList < String > verbosInfinitivo )
-  public static String steamingEspañol( String text, HashMap < String , String > verbos )
+	//public static String steamingEspanol( String text, ArrayList < String > verbosConjugados, ArrayList < String > verbosInfinitivo )
+  public static String steamingEspanol( String text, HashMap < String , String > verbos )
   {
     text = text.toLowerCase( );
 		StringTokenizer st = new StringTokenizer( text );
     String outputText = "";
-    while ( st.hasMoreTokens( ) ) 
+    while ( st.hasMoreTokens( ) )
     {
     	String word = st.nextToken( );
 			String palabraModificada = "";
@@ -396,12 +396,12 @@ public class main
 				/* Sino se pregunta si es un verbo y obtener la palabra en singular. */
       	palabraModificada = tipoSustantivo( word );
       }
-			outputText = outputText + palabraModificada + " ";		
+			outputText = outputText + palabraModificada + " ";
     }
     return outputText;
   }
 
-	public static HashMap< String,Map< Long,Integer > > insertarSerie( String text, HashMap< String,Map< Long,Integer > > series, 
+	public static HashMap< String,Map< Long,Integer > > insertarSerie( String text, HashMap< String,Map< Long,Integer > > series,
 																																			String ts_minutos )
 	{
 		StringTokenizer st = new StringTokenizer( text );
@@ -442,11 +442,11 @@ public class main
       	String antepenultimaLetra = palabra.substring( palabra.length( ) -3 , palabra.length( ) - 2 );
       	if ( penultimaLetra.equals( "a" ) )
 					palabraSingular = palabra.substring( 0, palabra.length( ) -1 );
-      	else if ( penultimaLetra.equals( "e" ) ) // Ojo con la E se debe validas que despues de la E no venga una S 
+      	else if ( penultimaLetra.equals( "e" ) ) // Ojo con la E se debe validas que despues de la E no venga una S
         {
        		if ( antepenultimaLetra.equals( "i" ) )
 							palabraSingular = palabra.substring( 0, palabra.length( ) - 2 );
-          	else if ( antepenultimaLetra.equals( "c" ) )  // Además validar qe antes de la E no haya una C porque de debe transformar a Z
+          	else if ( antepenultimaLetra.equals( "c" ) )  // Ademas validar qe antes de la E no haya una C porque de debe transformar a Z
 							palabraSingular = palabra.substring( 0, palabra.length( ) - 3 ) + "z";
              else
 							palabraSingular = palabra.substring( 0, palabra.length( ) -2 );
@@ -485,7 +485,7 @@ public class main
 
       while( ( linea = br.readLine( ) ) != null)
       	BW.add( linea );
-        
+
       br.close( );
       fr.close( );
 
@@ -500,8 +500,8 @@ public class main
 
 
 
-	public static String 	generarCaracteristicasEstructurales( ArrayList < String > palabras_Busqueda, 
-																																					String user_mentions, String followers_count, 
+	public static String 	generarCaracteristicasEstructurales( ArrayList < String > palabras_Busqueda,
+																																					String user_mentions, String followers_count,
 																																					String retweet_count, String text,
 																																					String ts_minutos,
 																																					HashMap< String,Map< Long,Integer > > series,
@@ -509,31 +509,31 @@ public class main
 	{
 		ArrayList < Double > estructurales = new ArrayList< Double >( );
 		int cantidadCaracteres = text.length(); /* Cantidad de Caracteres del tuit */
-		String []palabras = text.split( " " );  
+		String []palabras = text.split( " " );
 		double cantidadPalabras = palabras.length; /* Cantidad de palabras del tuit */
 		double cantidadPalabrasClaves = 0;
 		for ( int i = 0 ; i < cantidadPalabras ;  i++ )
 			if( palabras_Busqueda.contains( palabras[ i ] ) )
 				cantidadPalabrasClaves++; /* Ocurrencia de palabras claves */
-		
+
 		double tasaPalabraClaves = cantidadPalabrasClaves / cantidadPalabras ; /* Porcentaje de palabras claves en el tuit */
 		tasaPalabraClaves = redondear( tasaPalabraClaves, 3 );
 		int cantidadRetuit = Integer.parseInt( retweet_count );   /* Cantidad de veces retuiteado */
-		
+
 		String []usuarios_mencionados = user_mentions.split( " " );
-		double cantidadUsuariosMencionados = 0 ; 
+		double cantidadUsuariosMencionados = 0 ;
 		if ( ! user_mentions.equals( "null_userMentions" ) ) cantidadUsuariosMencionados = usuarios_mencionados.length;	/* Cantidad de usuarios mencionados*/
-		
+
 		double cantidadSeguidores = followers_count.length();  /* Cantidad de seguidores del usuario que publico el tuit*/
 		int cantidadVocales = contadorVocales( text, true );
 		int cantidadConsonantes = contadorVocales( text, false );
 		int posicionHashtags = posicionHashtag( palabras, palabras_Busqueda );
-		int cantidadPalabrasRafaga = contadorPalabrasRafaga( text, ts_minutos, series, largoVentanaTiempo);	
-	
+		int cantidadPalabrasRafaga = contadorPalabrasRafaga( text, ts_minutos, series, largoVentanaTiempo);
+
 		/*TODO: Insertar valores al vector de caracteristicas EStructurales */
 		estructurales.add( ( double ) cantidadCaracteres ); 					/* 1 */
 		estructurales.add( ( double ) cantidadPalabras );							/* 2 */
-		estructurales.add( ( double ) cantidadPalabrasClaves );				/* 3 */		
+		estructurales.add( ( double ) cantidadPalabrasClaves );				/* 3 */
 		estructurales.add( ( double ) tasaPalabraClaves );						/* 4 */
 		estructurales.add( ( double ) cantidadRetuit );								/* 5 */
 		estructurales.add( ( double ) cantidadUsuariosMencionados );	/* 6 */
@@ -542,7 +542,7 @@ public class main
 		estructurales.add( ( double ) cantidadConsonantes );					/* 9 */
 		estructurales.add( ( double ) posicionHashtags );							/* 10 */
 		estructurales.add( ( double ) cantidadPalabrasRafaga );				/* 11 */
-	
+
 		String vectorSalida = "";
 		for( int i = 0 ; i < estructurales.size( ) ; i++ )
 			if( estructurales.get( i ) > 0 )
@@ -554,7 +554,7 @@ public class main
 	}
 
 
-	public static String generarCaracteristicasTemporales( HashMap< String,Map< Long,Integer > > series, 
+	public static String generarCaracteristicasTemporales( HashMap< String,Map< Long,Integer > > series,
 																																				ArrayList < String >  bolsaPalabras, String text,
 																																				String ts_minutos, Long largoVentanaTiempo )
 	{
@@ -608,9 +608,9 @@ public class main
       if ( vectorTemporalidad[ i ] > 0.0 )
 			{
 				int posicionReal = i + 1 ;
-				//int posicionReal = i + 12 ;	
+				//int posicionReal = i + 12 ;
 				vectorSalida = vectorSalida + posicionReal + ":" + vectorTemporalidad[ i ]  + " ";
-			} 
+			}
 		return vectorSalida;
 	}
 
@@ -625,7 +625,7 @@ public class main
 	public static int contadorVocales( String text, Boolean contarVocales )
 	{
 		int varContaVocales = 0 ;
-		
+
 		if( contarVocales == true )
 		{
 			for( int i = 0 ; i < text.length(); i++ )
@@ -637,7 +637,7 @@ public class main
 			for( int i = 0 ; i < text.length(); i++ )
         if( ! esVocal( text.charAt( i ) ) )
           varContaVocales++;
-		}	
+		}
 
 		return varContaVocales;
 	}
@@ -688,7 +688,7 @@ public class main
 				promedio = sumaFrecuencias / largoVentanaTiempo;
 				double desviacionEstandar = 0.0;
 				double sumaDesviaciones = 0.0;
-				for( int i = 0 ; i < ventanaTiempoFrecuencia.size( ); i++ )	
+				for( int i = 0 ; i < ventanaTiempoFrecuencia.size( ); i++ )
 				{
 					sumaDesviaciones += Math.pow( ventanaTiempoFrecuencia.get( i ) - promedio, 2 );
 				}
@@ -704,7 +704,7 @@ public class main
 					varContadorPalabrasRafaga++;
 			}
 		}
-		
+
 		return varContadorPalabrasRafaga;
 	}
 
@@ -713,7 +713,7 @@ public class main
   	if ((Character.toLowerCase(c)=='a') || (Character.toLowerCase(c)=='e') || (Character.toLowerCase(c)=='i') || (Character.toLowerCase(c)=='o') || (Character.toLowerCase(c)=='u'))
     	return true;
   	else
-    	return false;		
+    	return false;
 	}
 
 }
