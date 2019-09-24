@@ -36,7 +36,7 @@ import java.lang.reflect.*;
 //7: Tamano de la serie de tiempo
 //8: Umbral para determinar que es rafaga y que no
 //9: constante que acompana a la funcion mean + constante * std
-//10: Frecuencia mínima en el instante actual
+//10: Frecuencia minima en el instante actual
 //11: Output Tweet por dia
 //12: Nombre del archivo para mapear los terminos de busqueda
 //13: Conjunto de Datos
@@ -168,7 +168,7 @@ public class main {
           }
           catch( IOException e )
           {
-		        e.printStackTrace( ); // Si hubo algún error en la escritura
+		        e.printStackTrace( ); // Si hubo algun error en la escritura
           }
 
           try
@@ -432,7 +432,7 @@ public class main {
     Properties props = new Properties( );
     // Nombre del host de correo, es smtp.gmail.com
     props.setProperty("mail.smtp.host", "smtp.gmail.com");
-    // TLS si está disponible
+    // TLS si esta disponible
     props.setProperty("mail.smtp.starttls.enable", "true");
     // Puerto de gmail para envio de correos
     props.setProperty("mail.smtp.port", "587");
