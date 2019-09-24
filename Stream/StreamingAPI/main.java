@@ -26,15 +26,15 @@ import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Method;
 import java.lang.reflect.*;
 //Argumentos:
-//0: número de cuenta (cuentas.dat)
+//0: numero de cuenta (cuentas.dat)
 //1: linea de terminos a leer (terminos.dat)
 //2: path de escritura
 //3: Nombre del archivo con los proxies
 //4: Nombre del archivo de terminos
 //5: Nombre de archivo de las cuentas
 //6: Nombre de archivo de stopwords
-//7: Tamaño de la serie de tiempo
-//8: Umbral para determinar que es ráfaga y que no
+//7: Tamano de la serie de tiempo
+//8: Umbral para determinar que es rafaga y que no
 //9: constante que acompana a la funcion mean + constante * std
 //10: Frecuencia mínima en el instante actual
 //11: Output Tweet por dia
@@ -51,7 +51,7 @@ public class main {
   static HashMap<String, ArrayList < Integer > > words_serie; //Estructura de datos principal: almacena la palabra y su serie.
 	static HashMap<String, Integer > palabras_por_dia; //Estructura de datos: Que almacena palabra y la frecuencia diaria.
   static HashMap < String, Long > initWord; //almacena la palabra y el instante en el cual inicio la descarga de dicha palabra.
-  static Double thresholdCV;  //Umbral para determinar que CV son ráfaga y cuales no.
+  static Double thresholdCV;  //Umbral para determinar que CV son rafaga y cuales no.
   static Double constantSTD;  //constante que acompana a la funcion mean + constante * std
   static Integer currentFrecuencyMin; // Frecuencia actual minima en un intervalo de tiempo determinado
   static Integer countTweetDay; //Contador de cantidad de tuits por dia
@@ -139,7 +139,7 @@ public class main {
     cargarCuenta( n , cb, fileCuentas );  //Cargo los datos de la cuenta donde n es el numero de la cta a utilizar
     final String file_out = fileSalida;   //Definir archivo de salida donde seran escritos los tweets.
     final FileWriter file = new FileWriter( file_out , true ); //Archivo de salida donde se escriben los tuits en formato json.
-    final FileWriter logF = new FileWriter( logFile, true ); //Archivo que muestra la cantidad de tuits por día.
+    final FileWriter logF = new FileWriter( logFile, true ); //Archivo que muestra la cantidad de tuits por dia.
     countTweetDay = 0; //Contador de tuits por dia.
     lowerBoundTweetDay = Long.parseLong( "0" );
     TwitterStream ts = new TwitterStreamFactory( cb.build() ).getInstance();  //Configuracion http
@@ -280,7 +280,7 @@ public class main {
     };
     String[] keywords = cargarTerminos( nTerms, fileTerminos ); //Se definen los terminos de busqueda de los tweets
     FilterQuery fq = new FilterQuery( );  //Se inicializa el filterQuery
-    String lang [] = {"es"};  //Se define que el lenguaje de descarga de los tweets deben ser en español
+    String lang [] = {"es"};  //Se define que el lenguaje de descarga de los tweets deben ser en espanol
     fq.language( lang );   //SE setea el valor del filterQuery con lang.
     fq.track( keywords ); //Se setea las palabras claves al filterQuery
     ts.addListener( listener ); //Comienza el sistema que escucha el flujo de tweets que vienen.
@@ -580,7 +580,7 @@ public class main {
 
   public static String cleanText( String body )
   {
-    body = body.replaceAll( "-|:|,|\/|'|!|\u00BF|\u00A1|;|&|\u00B0|\u00BA|\\\\.|\\\\?|\\\\)|\\\\(|\\\\||\\\\*|%|=|\u00AC", " " );
+    body = body.replaceAll( "-|:|,|/|'|!|\u00BF|\u00A1|;|&|\u00B0|\u00BA|\\\\.|\\\\?|\\\\)|\\\\(|\\\\||\\\\*|%|=|\u00AC", " " );
     body = body.replaceAll( "\u00E1", "a" );
     body = body.replaceAll( "\u00E9", "e" );
     body = body.replaceAll( "\u00ED", "i" );
@@ -786,7 +786,7 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
 
   public static String eliminarSignosPuntuacion( String text )
   {
-    Pattern patron = Pattern.compile("[\"¡!¿?.+,;:'-_()`¨&$%¬~·]*");
+    Pattern patron = Pattern.compile("[\"\u00A1!\u00BF?.+,;:'-_()`\u00A8&$%\u00AC~\u00B7]*");
     Matcher encaja = patron.matcher( text );
     String resultado = encaja.replaceAll("");
     return resultado;
