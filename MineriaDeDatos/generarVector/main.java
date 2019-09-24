@@ -62,7 +62,7 @@ public class main
 					String hashtags = data[ 2 ]; /* conjunto de hashtags del tuit*/
 					String user_mentions = data[ 3 ]; /* conjunto de usuarios mencionados */
 					String text = data[ 8 ]; /* cuerpo del tuit */
-					text =  steamingEspañol( text, verbos ); /* Permite obtener verbos en infinitivo o sustantivos en singular. */
+					text =  steamingEspanol( text, verbos ); /* Permite obtener verbos en infinitivo o sustantivos en singular. */
 					instantes_ts_minuto.add( Long.parseLong( ts_minutos ) ); /* Se agregan los minutos para generar una series de minutos */
 					insertarSerie( text, series, ts_minutos ); /* Procesamiento de series de tiempo */
 					frecuenciaHashtags = agregarHashtagsFrecuencia( hashtags, frecuenciaHashtags );  /* Insertan hashtags a la bolsa de Hashtags */
@@ -100,7 +100,7 @@ public class main
          	if( data.length != 11 ) continue;
          	String ts_minutos = data[ 1 ]; /* instante del tuit*/
          	String text = data[ 8 ]; /* cuerpo del tuit */
-					text =  steamingEspañol( text, verbos );
+					text =  steamingEspanol( text, verbos );
 					getMinMaxCVWord( series, bolsaPalabras, text, ts_minutos, largoVentanaTiempo, false );
 
 				}
@@ -134,10 +134,10 @@ public class main
          	String text = data[ 8 ]; /* cuerpo del tuit */
          	String horaUTC = data[ 9 ]; /* hora del tuit segun el meridiano de greenwich*/
          	String etiqueta = data[ 10 ]; /* Etiqueta del tuit puede ser PRECRISIS, CRISIS, PRELUDIO. */
-					text =  steamingEspañol( text, verbos );
-					/* TODO: Metodo para las características Estructurales */
+					text =  steamingEspanol( text, verbos );
+					/* TODO: Metodo para las caracteristicas Estructurales */
 					String estructurales = generarCaracteristicasEstructurales( palabras_Busqueda, user_mentions, followers_count, retweet_count, text, ts_minutos,series, largoVentanaTiempo );
-					/*TODO: Metodo para las características Temporales */
+					/*TODO: Metodo para las caracteristicas Temporales */
 					String temporales    = generarCaracteristicasTemporales( series, bolsaPalabras, text, ts_minutos, largoVentanaTiempo, false );
 					String temporalesAll = generarCaracteristicasTemporales( series, bolsaPalabras, text, ts_minutos, largoVentanaTiempo, true );
 					/*TODO: Metodo para las caracteristicas Bolsa de Hashtags */
@@ -686,8 +686,8 @@ public class main
   }
 
 	/* Funcion que permite llevar verbos a infinitivo y sustantivos en plurales a singulares.  */
-	//public static String steamingEspañol( String text, ArrayList < String > verbosConjugados, ArrayList < String > verbosInfinitivo )
-	public static String steamingEspañol( String text, HashMap < String , String > verbos )
+	//public static String steamingEspanol( String text, ArrayList < String > verbosConjugados, ArrayList < String > verbosInfinitivo )
+	public static String steamingEspanol( String text, HashMap < String , String > verbos )
   {
     text = text.toLowerCase( );
   	StringTokenizer st = new StringTokenizer( text );
@@ -729,7 +729,7 @@ public class main
         {
        		if ( antepenultimaLetra.equals( "i" ) )
 							palabraSingular = palabra.substring( 0, palabra.length( ) - 2 );
-          	else if ( antepenultimaLetra.equals( "c" ) )  // Además validar qe antes de la E no haya una C porque de debe transformar a Z
+          	else if ( antepenultimaLetra.equals( "c" ) )  // Ademas validar qe antes de la E no haya una C porque de debe transformar a Z
 							palabraSingular = palabra.substring( 0, palabra.length( ) - 3 ) + "z";
              else
 							palabraSingular = palabra.substring( 0, palabra.length( ) -2 );
