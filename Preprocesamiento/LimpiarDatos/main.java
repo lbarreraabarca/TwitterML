@@ -75,7 +75,7 @@ public class main
 
   public static String eliminarSignosPuntuacion( String text )
   {
-    Pattern patron = Pattern.compile("[\"¡!¿?.+,;:'-_()`¨&$%¬~·]*");
+    Pattern patron = Pattern.compile("[\"\u00A1!\u00BF?.+,;:'-_()`\u00A8&$%\u00AC~\u00B7]*");
     Matcher encaja = patron.matcher( text );
     String resultado = encaja.replaceAll("");
     return resultado;
@@ -243,12 +243,12 @@ public class main
 		while( st.hasMoreTokens( ) )
     {
       String word = st.nextToken( );
-    	word = word.replaceAll( "-|:|,|/|'|!|¿|¡|;|&|°|º|\\.|\\?|\\)|\\(|\\||\\*|%|=|¬", " " );
-    	word = word.replaceAll( "á", "a" );
-    	word = word.replaceAll( "é", "e" );
-    	word = word.replaceAll( "í", "i" );
-    	word = word.replaceAll( "ó", "o" );
-    	word = word.replaceAll( "ú", "u" );
+    	word = word.replaceAll( "-|:|,|/|'|!|\u00BF|\u00A1|;|&|\u00B0|\u00BA|\\\\.|\\\\?|\\\\)|\\\\(|\\\\||\\\\*|%|=|\u00AC", " " );
+    	word = word.replaceAll( "\u00E1", "a" );
+    	word = word.replaceAll( "\u00E9", "e" );
+    	word = word.replaceAll( "\u00ED", "i" );
+    	word = word.replaceAll( "\u00F3", "o" );
+    	word = word.replaceAll( "\u00FA", "u" );
 			word = eliminarSignosPuntuacion( word );
 			salida = salida + word + " ";
 		}

@@ -26,17 +26,17 @@ import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Method;
 import java.lang.reflect.*;
 //Argumentos:
-//0: número de cuenta (cuentas.dat)
+//0: numero de cuenta (cuentas.dat)
 //1: linea de terminos a leer (terminos.dat)
 //2: path de escritura
 //3: Nombre del archivo con los proxies
 //4: Nombre del archivo de terminos
 //5: Nombre de archivo de las cuentas
 //6: Nombre de archivo de stopwords
-//7: Tamaño de la serie de tiempo
-//8: Umbral para determinar que es ráfaga y que no
+//7: Tamano de la serie de tiempo
+//8: Umbral para determinar que es rafaga y que no
 //9: constante que acompana a la funcion mean + constante * std
-//10: Frecuencia mínima en el instante actual
+//10: Frecuencia minima en el instante actual
 //11: Output Tweet por dia
 //12: Nombre del archivo para mapear los terminos de busqueda
 //13: Conjunto de Datos
@@ -51,7 +51,7 @@ public class main {
   static HashMap<String, ArrayList < Integer > > words_serie; //Estructura de datos principal: almacena la palabra y su serie.
 	static HashMap<String, Integer > palabras_por_dia; //Estructura de datos: Que almacena palabra y la frecuencia diaria.
   static HashMap < String, Long > initWord; //almacena la palabra y el instante en el cual inicio la descarga de dicha palabra.
-  static Double thresholdCV;  //Umbral para determinar que CV son ráfaga y cuales no.
+  static Double thresholdCV;  //Umbral para determinar que CV son rafaga y cuales no.
   static Double constantSTD;  //constante que acompana a la funcion mean + constante * std
   static Integer currentFrecuencyMin; // Frecuencia actual minima en un intervalo de tiempo determinado
   static Integer countTweetDay; //Contador de cantidad de tuits por dia
@@ -61,7 +61,7 @@ public class main {
 	static String conjuntoDato;
 	//static MongoClient mongoClient;
   public static void main( String arg[ ] ) throws IOException, JSONException, InterruptedException, Throwable, NoSuchProviderException, MessagingException
-  {  
+  {
     HashMap<String,  ArrayList < Integer > >words_serie = new HashMap<String, ArrayList < Integer > >( );
     HashMap<String, Long > wordInit = new HashMap<String, Long>( );
     if( arg.length != 14 ) System.out.println( "Cantidad de Argumentos invalida" );
@@ -91,7 +91,7 @@ public class main {
           countProxy++; //Aumenta el contador de proxy para saber cuantos ha consumido
           main objm = new main( );
           objm.listenerData(proxy, puerto, arg[0], arg[5], arg[2], arg[4], arg[1], words_serie, wordInit, logFile );  //Comienza la dload
-          try 
+          try
           {
             synchronized( lock )
             {
@@ -112,9 +112,9 @@ public class main {
       }
     }
   }
-  
-  public void listenerData( String proxy, Integer puerto, String n, String fileCuentas, 
-                            String fileSalida, String fileTerminos, String nTerms, 
+
+  public void listenerData( String proxy, Integer puerto, String n, String fileCuentas,
+                            String fileSalida, String fileTerminos, String nTerms,
                             HashMap<String,  ArrayList < Integer > > ws, HashMap<String, Long > wordInitial, String logFile )
                             throws NoSuchMethodError, IOException, InterruptedException,JSONException
   {
@@ -139,11 +139,11 @@ public class main {
     cargarCuenta( n , cb, fileCuentas );  //Cargo los datos de la cuenta donde n es el numero de la cta a utilizar
     final String file_out = fileSalida;   //Definir archivo de salida donde seran escritos los tweets.
     final FileWriter file = new FileWriter( file_out , true ); //Archivo de salida donde se escriben los tuits en formato json.
-    final FileWriter logF = new FileWriter( logFile, true ); //Archivo que muestra la cantidad de tuits por día.
+    final FileWriter logF = new FileWriter( logFile, true ); //Archivo que muestra la cantidad de tuits por dia.
     countTweetDay = 0; //Contador de tuits por dia.
     lowerBoundTweetDay = Long.parseLong( "0" );
     TwitterStream ts = new TwitterStreamFactory( cb.build() ).getInstance();  //Configuracion http
-    StatusListener listener;  
+    StatusListener listener;
     pr  = proxy;  // Se inicializa pr con el proxy a descargar.
     pu = puerto;  // Se inicializa pu con el puerto asociado al proxy por el cual se descarga.
     words_serie = ws; // Se inicializa la estrcutura de datos principal con lo que viene por parametro de la funcion.
@@ -155,22 +155,22 @@ public class main {
 			{
 		    try
 		    {
-		      String json = TwitterObjectFactory.getRawJSON( status ); // Obtiene el tweet en formato string 
+		      String json = TwitterObjectFactory.getRawJSON( status ); // Obtiene el tweet en formato string
           JSONObject jsonObject = new JSONObject( json ); // Obtiene el tweet en formato JSON
           Calendar calendar = Calendar.getInstance( );    // Se genera una instancia de la hora y fecha actual
           final String TWITTER="EEE, dd MMM yyyy HH:mm:ss Z"; // Formato de la fecha.
           SimpleDateFormat sdf = new SimpleDateFormat( TWITTER, Locale.ENGLISH ); //Se define que debe venir en formato Ingles
           sdf.setLenient(true);
-          try 
+          try
 				  {
 					  file.write( jsonObject.toString() );  //Se escribe el tweet completo en formato JSON
             file.write( "\n" );
           }
           catch( IOException e )
           {
-		        e.printStackTrace( ); // Si hubo algún error en la escritura
+		        e.printStackTrace( ); // Si hubo algun error en la escritura
           }
-          
+
           try
           {
             String objTime = ( String )jsonObject.getString( "created_at" );  //Se obtiene la fecha de creacion del tweet
@@ -180,7 +180,7 @@ public class main {
               String []data = objTime.split( " " ); // data[0] = Sun ; data[1] =Apr ; [2]=30; [3]=16:20:48; [4]=+0000 ; [5]=2017
               String postedTime = data[0] + ", " + data[2] + " " + data[1] + " " + data[ 5 ]+ " " + data[ 3 ] + " " + data[ 4 ];
               Date date = sdf.parse( postedTime );  //Se asigna la hora del tweet
-              calendar.setTime( date ); // Se setea el valor en el calendario 
+              calendar.setTime( date ); // Se setea el valor en el calendario
               Long ts_minutos = new Long(calendar.getTimeInMillis( ) / ( 1000 * 60 ));  //Se transforma la fecha a un numero expresado en minutos.
               String body = ( ( String )jsonObject.getString( "text" ) ).toLowerCase( );  //Se obtiene el texto del tweet
               body = eliminarHttp( body ); //Eliminan todas las referecnias a url.
@@ -191,7 +191,7 @@ public class main {
               Long ts_day = new Long(calendar.getTimeInMillis( ) / ( 1000 * 60 * 60 * 24 )); // Obtener la fecha del tweet en dias
 							/* Control y procesamiento de series de tiempo. */
               if ( deltaTime < 0 )
-              {  
+              {
                 lowerBound = ts_minutos;  //Se asigan el lowerbound como el primer tweet descargado
                 insertWord( body, ts_minutos ); //Se insertan las palabras del tweet a la struct
               }
@@ -201,18 +201,18 @@ public class main {
               {
                 repair( lowerBound ); //Si una palabra no fue mencionada en ese minuto su frecuencia debe ser 0.
                 frecuencyNull( lowerBound ); //Si la suma de las frecuencias de la ventana movil es 0 entonces se borra.
-                burstyDetection( thresholdCV, constantSTD, lowerBound );  //Se analiza si la palabra es rafaga o no. 
+                burstyDetection( thresholdCV, constantSTD, lowerBound );  //Se analiza si la palabra es rafaga o no.
                 lowerBound = ts_minutos;  //lowerbound va a ser el ts_minutos actual para hacer movil la cota inferior
                 insertWord( body, ts_minutos ); //Se insertan las palabras del tweet a la struct
                 tweetsForDay( logF, ts_day, postedTime );
                 String correo = "Cantidad de tuits : " + countTweetDay + "\n";
                 //sendEmail( "l.barreraabarca@uandresbello.edu" , "cantidad de tuits" , correo );
               }
-							
-							Long tuitID = idTuit( jsonObject );	
+
+							Long tuitID = idTuit( jsonObject );
 							String ht_list = ListarHashtags( getHashTags( jsonObject ) );
 							String user_mentions = ListarUserMentions( getUserMentions( jsonObject ) );
-							writeTwitterMongoDBClass( tuitID , ts_minutos , ht_list , user_mentions, getTime_Zone( jsonObject ), 
+							writeTwitterMongoDBClass( tuitID , ts_minutos , ht_list , user_mentions, getTime_Zone( jsonObject ),
                   											getFollowersCount( jsonObject ), getRetuitCount( jsonObject ), body, objTime, "");
 							/* Control y procesamiento de palabras por dia. */
 							Long deltaTimeDay = ts_day - lowerBoundTweetDay;
@@ -239,8 +239,8 @@ public class main {
 		    }
 		    catch( JSONException js )
         {
-		      System.out.println( "error JSONException");                                                                              
-		    }   
+		      System.out.println( "error JSONException");
+		    }
 			}
 
       @Override
@@ -266,7 +266,7 @@ public class main {
       {
         System.out.println("Got stall warning:" + warning);
       }
-              
+
       @Override
       public void onException(Exception ex)
       {
@@ -280,7 +280,7 @@ public class main {
     };
     String[] keywords = cargarTerminos( nTerms, fileTerminos ); //Se definen los terminos de busqueda de los tweets
     FilterQuery fq = new FilterQuery( );  //Se inicializa el filterQuery
-    String lang [] = {"es"};  //Se define que el lenguaje de descarga de los tweets deben ser en español
+    String lang [] = {"es"};  //Se define que el lenguaje de descarga de los tweets deben ser en espanol
     fq.language( lang );   //SE setea el valor del filterQuery con lang.
     fq.track( keywords ); //Se setea las palabras claves al filterQuery
     ts.addListener( listener ); //Comienza el sistema que escucha el flujo de tweets que vienen.
@@ -288,9 +288,9 @@ public class main {
   }
 
 //*********************************************************************************************
-//Métodos estáticos:
+//Metodos estaticos:
 //******************************************************************************************
-	
+
 	public static void insertWordsForDay( HashMap < String, Integer > palabras_por_dia, Long ts_day, String body )
 	{
 		StringTokenizer st = new StringTokenizer( body );
@@ -326,7 +326,7 @@ public class main {
 			Class classDBCollection = classloader.loadClass("com.mongodb.DBCollection");
       Method getCollection = classDB.getMethod( "getCollection", String.class );
       Object CollectionObject = getCollection.invoke( DBObject, "tuits_por_dias" );
-     
+
 			/*Recorrer estructura de datos.*/
 			Iterator it = palabras_por_dia.entrySet( ).iterator( );
     	while( it.hasNext( ) )
@@ -334,7 +334,7 @@ public class main {
       	Map.Entry pair = (Map.Entry)it.next( );
       	String wordi = ( String )  pair.getKey( );
  				Integer frecuencia = palabras_por_dia.get( wordi );
-			
+
 				/*Clase BasicDBObject*/
 				Class classBasicDBObject = classloader.loadClass( "com.mongodb.BasicDBObject" );
       	Constructor constructorBasicDBObject = classBasicDBObject.getConstructor( );
@@ -342,9 +342,9 @@ public class main {
       	Method BasicPut = classBasicDBObject.getMethod( "append", String.class, Object.class );
      	 	BasicDBObject = BasicPut.invoke( BasicDBObject, "palabra", wordi );
       	BasicDBObject = BasicPut.invoke( BasicDBObject, "ts_day", ts_day );
-      	BasicDBObject = BasicPut.invoke( BasicDBObject, "frecuencia",  frecuencia );	
+      	BasicDBObject = BasicPut.invoke( BasicDBObject, "frecuencia",  frecuencia );
 				BasicDBObject = BasicPut.invoke( BasicDBObject, "conjuntoDato",  conjuntoDato );
-			
+
 				/*Clase WriteConcern*/
 				Class classWriteConcern = classloader.loadClass( "com.mongodb.WriteConcern" );
       	Field fieldWriteConcernSAFE = classWriteConcern.getField( "SAFE" );
@@ -356,7 +356,7 @@ public class main {
      		/*Insertar documento en la base de datos*/
 				insertCollection.invoke(CollectionObject, BasicDBObject );
       }
-			/*Cerrar conexion */	
+			/*Cerrar conexion */
 			Method closeMongoClient = classMongoClient.getMethod( "close" );
 			closeMongoClient.invoke( mongoClient );
     }
@@ -367,7 +367,7 @@ public class main {
 	}
 
 
-	public static void writeTwitterMongoDBClass( Long idTuit, Long ts_minutos, String hashtags, String userMentions, String timeZone, 
+	public static void writeTwitterMongoDBClass( Long idTuit, Long ts_minutos, String hashtags, String userMentions, String timeZone,
 																								Long followersCount, Long retweetCount, String text, String horaUTC, String etiqueta )
 	{
 		try
@@ -404,7 +404,7 @@ public class main {
 			BasicDBObject = BasicPut.invoke( BasicDBObject, "horaUTC", horaUTC );
 			BasicDBObject = BasicPut.invoke( BasicDBObject, "etiqueta", etiqueta );
 			BasicDBObject = BasicPut.invoke( BasicDBObject, "conjuntoDato", conjuntoDato );
-			
+
 			/*Clase WriteConcern*/
 			Class classWriteConcern = classloader.loadClass( "com.mongodb.WriteConcern" );
 			Field fieldWriteConcernSAFE = classWriteConcern.getField( "SAFE" );
@@ -432,7 +432,7 @@ public class main {
     Properties props = new Properties( );
     // Nombre del host de correo, es smtp.gmail.com
     props.setProperty("mail.smtp.host", "smtp.gmail.com");
-    // TLS si está disponible
+    // TLS si esta disponible
     props.setProperty("mail.smtp.starttls.enable", "true");
     // Puerto de gmail para envio de correos
     props.setProperty("mail.smtp.port", "587");
@@ -441,8 +441,8 @@ public class main {
     // Si requiere o no usuario y password para conectarse.
     props.setProperty("mail.smtp.auth", "true");
     Session session = Session.getDefaultInstance(props);
-    // Para obtener un log de salida más extenso
-    session.setDebug( true );                                                            
+    // Para obtener un log de salida mas extenso
+    session.setDebug( true );
     MimeMessage message = new MimeMessage( session );
     // Quien envia el correo
     message.setFrom(new InternetAddress( "lu.barreraabarca@gmail.com" ) );
@@ -486,7 +486,7 @@ public class main {
       e.printStackTrace();
     }
 	}*/
-  
+
   public static void tweetsForDay( FileWriter fw, Long ts_day, String dateDay ) throws NoSuchProviderException
   {
     Long diff = ts_day - lowerBoundTweetDay;
@@ -515,7 +515,7 @@ public class main {
       lowerBoundTweetDay = ts_day;
     }
   }
-  
+
   public static void frecuencyNull( Long ts_minutos )
   {
     ArrayList< String > eliminar = new ArrayList < String >( );
@@ -571,21 +571,21 @@ public class main {
       }
     }
   }
-  
+
   public static String onlyWords( String text )
   {
-    String resultado = text.replaceAll("[^a-zñ#@]*", "");
+    String resultado = text.replaceAll("[^a-z\u00F1#@]*", "");
     return resultado;
   }
 
   public static String cleanText( String body )
   {
-    body = body.replaceAll( "-|:|,|/|'|!|¿|¡|;|&|°|º|\\.|\\?|\\)|\\(|\\||\\*|%|=|¬", " " );
-    body = body.replaceAll( "á", "a" );
-    body = body.replaceAll( "é", "e" );
-    body = body.replaceAll( "í", "i" );
-    body = body.replaceAll( "ó", "o" );
-    body = body.replaceAll( "ú", "u" );
+    body = body.replaceAll( "-|:|,|/|'|!|\u00BF|\u00A1|;|&|\u00B0|\u00BA|\\\\.|\\\\?|\\\\)|\\\\(|\\\\||\\\\*|%|=|\u00AC", " " );
+    body = body.replaceAll( "\u00E1", "a" );
+    body = body.replaceAll( "\u00E9", "e" );
+    body = body.replaceAll( "\u00ED", "i" );
+    body = body.replaceAll( "\u00F3", "o" );
+    body = body.replaceAll( "\u00FA", "u" );
     return body;
   }
 
@@ -639,7 +639,7 @@ public class main {
             initWord.put( token, initWord.get( token ) + 1 ) ;
           }
           else if ( diff == 0 )
-             window.set( largoSerie - 1 , window.get( largoSerie - 1 ) + 1 );  
+             window.set( largoSerie - 1 , window.get( largoSerie - 1 ) + 1 );
         }
       }
     }
@@ -653,10 +653,10 @@ public class main {
       double mean = 0;
       double std = 0;
       double cv = 0;
-      ArrayList< Double > list = new ArrayList< Double >( );  
+      ArrayList< Double > list = new ArrayList< Double >( );
       Map.Entry pair = (Map.Entry)it.next( );
       String wordi = ( String )  pair.getKey( );
-      ArrayList< Integer > windowSerie = ( ArrayList< Integer > )pair.getValue( ); 
+      ArrayList< Integer > windowSerie = ( ArrayList< Integer > )pair.getValue( );
       if ( windowSerie.size( ) == largoSerie )
       {
         double currentFrecuency = ( double ) windowSerie.get( largoSerie - 1 );
@@ -671,7 +671,7 @@ public class main {
           mean= mean / windowSerie.size( ) ;
           mean = redondear( mean, 2 );
           for( int ij= 0; ij < list.size( ); ij++)
-          { 
+          {
             double y = list.get( ij );
             std+= Math.pow( y - mean, 2);
           }
@@ -732,7 +732,7 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
 			BasicDBObject = BasicPut.invoke( BasicDBObject, "desviacionEstandar", desviacionEstandar );
 			BasicDBObject = BasicPut.invoke( BasicDBObject, "coeficienteVariacion", coeficienteVariacion );
 			BasicDBObject = BasicPut.invoke( BasicDBObject, "conjuntoDato", conjuntoDato );
-			
+
 			/*Clase WriteConcern*/
 			Class classWriteConcern = classloader.loadClass( "com.mongodb.WriteConcern" );
 			Field fieldWriteConcernSAFE = classWriteConcern.getField( "SAFE" );
@@ -786,7 +786,7 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
 
   public static String eliminarSignosPuntuacion( String text )
   {
-    Pattern patron = Pattern.compile("[\"¡!¿?.+,;:'-_()`¨&$%¬~·]*");
+    Pattern patron = Pattern.compile("[\"\u00A1!\u00BF?.+,;:'-_()`\u00A8&$%\u00AC~\u00B7]*");
     Matcher encaja = patron.matcher( text );
     String resultado = encaja.replaceAll("");
     return resultado;
@@ -800,7 +800,7 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
     return resultado;
   }
 
- 
+
   public static HashMap<String, Integer> CargarListadoProxies( String file_input ) throws IOException
   {
     HashMap<String, Integer> conjunto_proxies = new HashMap<String, Integer>();
@@ -835,7 +835,7 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
     {
 			File file = new File( file_cuentas );
 			BufferedReader br = new BufferedReader( new FileReader( file ) );
-			String line;		
+			String line;
 			int bit = 0; //Variable para control de flujo
 			while( (line = br.readLine()) != null )
 			{
@@ -856,11 +856,11 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
 			return;
 		}
 	}
- 
+
 	static String[] cargarTerminos( String num_conjunto, String file_terminos ) throws IOException
 	{
     ArrayList<String> terminos = new ArrayList<String>( );
-    try{			
+    try{
       File file = new File( file_terminos );
 			BufferedReader br = new BufferedReader( new FileReader( file ) );
 			String line;
@@ -934,7 +934,7 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
     }
     catch ( IOException e)
     {
-      System.out.println( "Error al leer el archivo de stopwords" ); 
+      System.out.println( "Error al leer el archivo de stopwords" );
     }
     return stopWords;
   }
@@ -944,7 +944,7 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
 		ArrayList < String > hashtags_words = new ArrayList < String >( );
     JSONObject jsonUser = ( JSONObject ) jsonObject.get( "entities" );
 		JSONArray jsonHT   = ( JSONArray ) jsonUser.get( "hashtags" );
-		
+
 		for( int i = 0; i < jsonHT.length() ; i++ )
 		//for ( int i = 0; i < jsonHT.size( ) ; i++ )
 		{
@@ -957,7 +957,7 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
 		}
 		return hashtags_words;
   }
-	
+
 	public static ArrayList< String > getUserMentions( JSONObject jsonObject ) throws JSONException
   {
     ArrayList < String > hashtags_words = new ArrayList < String >( );
@@ -975,7 +975,7 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
     }
     return hashtags_words;
   }
-	
+
 	/* Obtiene el id de tuit*/
 	public static Long idTuit( JSONObject jsonObject ) throws JSONException
 	{
@@ -1008,14 +1008,14 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
     followers_count = ( int ) jsonUser.get( "followers_count" );
     return ( long ) followers_count;
   }
-	
+
 	public static String getTime_Zone( JSONObject jsonObject ) throws JSONException
-	{	
+	{
 		JSONObject jsonUser = ( JSONObject ) jsonObject.get( "user" );
 		String time_zone = "null_timeZone";
-		/*if ( jsonUser.get( "time_zone" ) != null ) 
+		/*if ( jsonUser.get( "time_zone" ) != null )
 			time_zone = ( String ) jsonUser.get( "time_zone" ) ;
-		else 
+		else
 			time_zone = "null_timeZone";*/
 		return time_zone;
 	}
@@ -1036,7 +1036,7 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
 
     return idRT;
   }
-	
+
 	public static String ListarHashtags( ArrayList< String > ht ) throws JSONException
 	{
 		String output = "";
@@ -1045,7 +1045,7 @@ public static void writeSerieTiempoMongoDB( String palabra, Long ts_minutos, dou
 		if( output.length() == 0 ) output = "null_hashtag";
 		return output;
 	}
-	
+
 	public static String ListarUserMentions( ArrayList< String > ht )
   {
     String output = "";
