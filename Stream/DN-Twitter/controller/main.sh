@@ -1,37 +1,38 @@
 #!/bin/bash
+# PATH DE CONTROLLER
+PCONTROL=/home/centos/dev/git/TwitterML/Stream/DN-Twitter/controller
 
-#rm -fr prox* ok_proxies.dat tmp.out output* working_data/*
+rm -fr prox* ok_proxies.dat tmp.out working_data/*
 rm output* working_data/*
 
-
-# PATH DE CONTROLLER
-PCONTROL=/home/lbarrera/Documentos/MCC/2017-02/pruebas/DN-Twitter/controller
 
 # NUMERO DE INSTANCIAS
 N=5
 
 # obtener listado de proxies
-#cd /home/rac/Escritorio/practica/DN-Twitter/getProxiesJSOUP
-#echo "cd /home/rac/Escritorio/practica/DN-Twitter/getProxiesJSOUP"
+JSOUP=/home/centos/dev/git/TwitterML/Stream/DN-Twitter/getProxiesJSOUP
+cd $JSOUP
+echo "$JSOUP"
 
-#make clean
-#make
-#make run
-#mv /home/rac/Escritorio/practica/DN-Twitter/getProxiesJSOUP/proxies.dat $PCONTROL
+make clean
+make
+make run
+mv $JSOUP/proxies.dat $PCONTROL
 
 # testing
-#cd $PCONTROL
-#mv proxies.dat proxies.test
-#head -n 100 proxies.test > proxies.dat
+cd $PCONTROL
+mv proxies.dat proxies.test
+head -n 100 proxies.test > proxies.dat
 
 # obtener proxies correctos
-#cd /home/rac/Escritorio/practica/DN-Twitter/checkProxy
-#echo "cd /home/rac/Escritorio/practica/DN-Twitter/checkProxy"
+CK_PROX=/home/centos/dev/git/TwitterML/Stream/DN-Twitter/checkProxy
+cd $CK_PROX
+echo "cd CK_PROX"
 
-#make clean
-#make
-#make PROXYFILE=$PCONTROL/proxies.dat CTAFILE=$PCONTROL/cuenta_test.dat run
-#mv /home/rac/Escritorio/practica/DN-Twitter/checkProxy/ok_proxies.dat $PCONTROL
+make clean
+make
+make PROXYFILE=$PCONTROL/proxies.dat CTAFILE=$PCONTROL/cuenta_test.dat run
+mv $CK_PROX/ok_proxies.dat $PCONTROL
 
 # particionar los proxies correctos
 cd $PCONTROL
