@@ -13,7 +13,7 @@ function cargarChart( )
 	var fechaHastaSplit = fechaHasta.split("/");
 
 	var dateFechaDesde, dateFechaHasta;
-	
+
 	if( fechaDesdeSplit.length === 3 && fechaHastaSplit.length === 3 )
 	{
 		var errores = "";
@@ -32,7 +32,7 @@ function cargarChart( )
 		{
 			errores = errores + "Formato del anio desde ser: 2006.\n";
 		}
-		
+
 		var diaHasta  = fechaHastaSplit[ 0 ];
 		if ( diaHasta < 1 && diaHasta > 31 )
 		{
@@ -58,11 +58,11 @@ function cargarChart( )
 		dateFechaDesde = new Date(anioDesde,mesDesde,diaDesde);
 		//dateFechaDesde.setHours(dateFechaDesde.getHours()+23);
 		//dateFechaDesde.setMinutes(dateFechaDesde.getMinutes()+59);
-		
+
 		dateFechaHasta = new Date(anioHasta,mesHasta,diaHasta);
 		dateFechaHasta.setHours(dateFechaHasta.getHours()+23);
 		dateFechaHasta.setMinutes(dateFechaHasta.getMinutes()+59);
-			
+
 	}
 	else
 	{
@@ -106,7 +106,7 @@ function cargarChart( )
 			alert( 'Error al cargar Tabla.');
 		}
 	});
-	
+
 	var dataGraficoString = "[ "; //['Tiempo', 'Frecuencia']
 	dataGraficoArray = null;
 	palabraTitulo = "";
@@ -120,11 +120,11 @@ function cargarChart( )
 	{
 		dataGraficoString = dataGraficoString + "[ " + data[i].ts_minutos + ",";
 		dataGraficoString = dataGraficoString + " " + data[i].frecuencia + " ], ";
-		
+
 	}
 	dataGraficoString = dataGraficoString.substr( 0 , dataGraficoString.length - 2 );
 	dataGraficoString = dataGraficoString +  "]";
-	dataGraficoArray  = JSON.parse( dataGraficoString ); 
+	dataGraficoArray  = JSON.parse( dataGraficoString );
 	palabraTitulo = document.getElementById( "palabraBuscar" ).value;
 	loadGrafico( );
 }
@@ -146,10 +146,10 @@ function cargarSelect( )
 		}
 	});
 	var selectConjunto = document.getElementById( "comboBoxConjunto" );
-	
+
 	if( selectConjunto.length === 0 )
 	{
-		for (var i = 0; i < dataSelect.length ; i++) 
+		for (var i = 0; i < dataSelect.length ; i++)
 		{
 			var option = document.createElement("option");
 			option.value = dataSelect[ i ].nombreConjunto;
@@ -170,7 +170,7 @@ function cargarSelect( )
 		var mes = fechaActual.getMonth()+1;
 		var anio = fechaActual.getFullYear();
 		if ( dia < 10 ) { dia = "0" + dia; }
-		if ( mes < 10 ) { mes = "0" + mes; } 
+		if ( mes < 10 ) { mes = "0" + mes; }
 		document.getElementById( "fFin" ).value = dia + "/" + mes + "/" + anio;
 	}
 
@@ -184,7 +184,7 @@ function cargarSelect( )
 function loadGrafico( )
 {
 	google.charts.load('current', {'packages':['corechart']});
-	google.charts.setOnLoadCallback(drawChart());
+	google.charts.setOnLoadCallback(drawChart);
 }
 
 function deleteChart(){
@@ -203,7 +203,7 @@ function drawChart( ) {
           title: palabraTitulo,
           curveType: 'function',
           legend: { position: 'bottom' },
-	  colors: [ 'red', 'blue' ] 
+	  colors: [ 'red', 'blue' ]
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
