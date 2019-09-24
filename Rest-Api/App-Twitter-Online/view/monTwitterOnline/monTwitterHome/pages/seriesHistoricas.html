@@ -9,11 +9,11 @@
 
         <title>MonTweet System</title>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-		
-	
+
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<!-- CheckBox -->
 	<link href="../css/checkBox.css" rel="stylesheet">
-	
+
 
 	<!-- Input-Text -->
 	<link href="../css/input_text.css" rel="stylesheet">
@@ -237,32 +237,32 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Conjunto de datos
 				<div class="caja">
   					<select id="comboBoxConjunto" onchange="cargarSelect()">
   					</select>
 				</div>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				Desde				
+				Desde
 				<input style="margin-left: 10px" type="text" placeholder="dd/mm/aaaa" id="fInicio">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				Hasta				
+				Hasta
 				<input style="margin-left: 10px" type="text" placeholder="dd/mm/aaaa" id="fFin">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				Palabra				
+				Palabra
 				<input style="margin-left: 10px" type="text" placeholder="Keyword" id="palabraBuscar">
  	 	 	       <input style="margin-left: 10px" type="submit" value="Cargar" id="cargarData" onClick="cargarChart( )">
-			    
-			    <div id="curve_chart" style="width: 1100px; height: 550px"></div>	                    
+
+			    <div id="curve_chart" style="width: 1100px; height: 550px"></div>
                         </div>
-				
+
                         <!-- /.panel -->
                     </div>
-                   
-                    
+
+
                         <!-- /.panel -->
                     </div>
                     <!-- /.col-lg-6 -->
@@ -289,12 +289,11 @@
         <script src="../js/morris-data.js"></script>
 	<script src="../js/cargaUrlServer.js"> </script>
 	<script src="../js/cargarGraficoSeriesHistoricas.js"></script>
-	
-	
+
+
 
         <!-- Custom Theme JavaScript -->
         <script src="../js/startmin.js"></script>
 
     </body>
 </html>
-
