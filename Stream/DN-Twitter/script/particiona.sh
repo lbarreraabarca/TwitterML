@@ -3,8 +3,6 @@
 # $1 : archivo de proxies
 # $2 : numero de instancias
 
-echo "$1=$(OK_PROXIES)"
-
 rm -fr tmp.out
 cat $1 | sort -k3 -n | awk '{print $1 " " $2;}' > tmp.out
 
@@ -22,6 +20,3 @@ print $0 > "proxy" n ".dat"
 i++;
 
 }'
-
-
-
