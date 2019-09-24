@@ -580,7 +580,7 @@ public class main {
 
   public static String cleanText( String body )
   {
-    body = body.replaceAll( "-|:|,|/|'|!|\u00BF|\u00A1|;|&|\u00B0|\u00BA|\\\\.|\\\\?|\\\\)|\\\\(|\\\\||\\\\*|%|=|\u00AC", " " );
+    body = body.replaceAll( "-|:|,|/|'|!|\u00BF|\u00A1|;|&|\u00B0|\u00BA|\\.|\\?|\\)|\\(|\\||\\*|%|=|\u00AC", " " );
     body = body.replaceAll( "\u00E1", "a" );
     body = body.replaceAll( "\u00E9", "e" );
     body = body.replaceAll( "\u00ED", "i" );
