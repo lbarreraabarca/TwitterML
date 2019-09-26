@@ -683,19 +683,19 @@ public class main {
           cv = redondear( cv, 2);
           String seriePrint= ImprimirSerie( wordi, ts_minutos, false );
           seriePrint = seriePrint + "\tavg : " + mean + "\tstd : " + std + "\tcv : " + cv;
-          System.out.println( seriePrint );
+          //System.out.println( seriePrint );
           double thresholdFrecuency = mean + std * constantFrecuency;
           if ( cv >= thresholdCV && thresholdFrecuency <= currentFrecuency )
           {
             String correo = seriePrint + "\n";
             correo = correo + "RAFAGA : " + wordi ;
             burstyDay = burstyDay + correo + "\n";
-            System.out.println( "RAFAGA : " + wordi + "\t\t");
+            //System.out.println( "RAFAGA : " + wordi + "\t\t");
             //sendEmail( "l.barreraabarca@uandresbello.edu" , "Rafaga " + termino , correo );
             //sendEmail( "carlos.gomez.pantoja@unab.cl", "Rafaga " +termino , correo );
           }
         }
-				System.out.println( "Series Escribiendo : " + wordi + "\t\t");
+				//System.out.println( "Series Escribiendo : " + wordi + "\t\t");
 				writeSerieTiempoMongoDB( wordi, ts_minutos, currentFrecuency, mean, std, cv );
       }
     }
