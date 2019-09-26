@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # PATH DE CONTROLLER
 PCONTROL=/home/centos/dev/git/TwitterML/Stream/DN-Twitter/controller
 cd $PCONTROL
