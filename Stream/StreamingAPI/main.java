@@ -77,7 +77,8 @@ public class main {
       String logFile = arg[ 11 ];
 			conjuntoDato = arg[ 13 ];
       burstyDay = "";
-      while( true )
+      int intentos_conectar = 0;
+      while( intentos_conectar <= 1 )
       {
         System.out.println( "Leyendo Listado Proxies..." );
         HashMap<String,Integer> proxies = CargarListadoProxies( arg[3] ); //Se cargan los proxies y puerto en memoria
@@ -108,7 +109,8 @@ public class main {
         }
         System.out.println( "Proxies agotados..." );
         String correo = "Se agotaron los proxies : " + termino;
-        sendEmail( "l.barreraabarca@uandresbello.edu", "Proxies Agotados", correo );
+        //sendEmail( "XXXXXXXXXXXXXXX", "Proxies Agotados", correo );
+        intentos_conectar++;
       }
     }
   }
@@ -437,7 +439,7 @@ public class main {
     // Puerto de gmail para envio de correos
     props.setProperty("mail.smtp.port", "587");
     // Nombre del usuario
-    props.setProperty("mail.smtp.user", "lu.barreraabarca@gmail.com");
+    props.setProperty("mail.smtp.user", "XXXXXXXXXXXXXXX");
     // Si requiere o no usuario y password para conectarse.
     props.setProperty("mail.smtp.auth", "true");
     Session session = Session.getDefaultInstance(props);
@@ -445,7 +447,7 @@ public class main {
     session.setDebug( true );
     MimeMessage message = new MimeMessage( session );
     // Quien envia el correo
-    message.setFrom(new InternetAddress( "lu.barreraabarca@gmail.com" ) );
+    message.setFrom(new InternetAddress( "XXXXXXXXXXXXXXX" ) );
     // A quien va dirigido
     message.addRecipient( Message.RecipientType.TO, new InternetAddress( destinatario ) );
     message.setSubject( subject );
@@ -454,7 +456,7 @@ public class main {
     /*ENVIAR EL MENSAJE*/
     Transport t = session.getTransport( "smtp" );
     // Aqui usuario y password de gmail
-    t.connect( "smtp.gmail.com", 587, "lu.barreraabarca@gmail.com", "f5d9791611" );
+    t.connect( "smtp.gmail.com", 587, "XXXXXXXXXXXXXXX", "YYYYYYYYYYYYYY" );
     t.sendMessage( message, message.getAllRecipients( ) );
     t.close( );
   }
