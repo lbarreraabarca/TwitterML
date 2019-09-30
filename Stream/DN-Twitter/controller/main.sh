@@ -8,7 +8,7 @@ echo "cd $PCONTROL"
 rm output* working_data/*
 
 # NUMERO DE INSTANCIAS
-N=3
+N=2
 
 # obtener listado de proxies
 JSOUP=/home/centos/dev/git/TwitterML/Stream/DN-Twitter/getProxiesJSOUP
